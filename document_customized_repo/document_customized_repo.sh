@@ -1,4 +1,4 @@
-OUTPUT_DIR="output_dir"
+OUTPUT_DIR=$1
 CURRENT_DIR=$(cd $(dirname $0); pwd)
 export DATA4AIGCHIP_HOME=$(cd $CURRENT_DIR/..; pwd)
 echo "DATA4AIGCHIP_HOME=$DATA4AIGCHIP_HOME"
