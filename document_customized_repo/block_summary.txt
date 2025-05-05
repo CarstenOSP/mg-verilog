@@ -1,0 +1,8 @@
+Block 0: This block first calculates how many hierarchical stages are needed for the encoder based on the input width. It then determines the internal bus size by rounding the width up to the nearest power of two and pads the original input with zeros to match that size. The code next defines arrays that will hold “validity” signals and partial encoded outputs at each level of the hierarchy. Finally, a generate block creates logic for the initial stage by examining each two-bit subset of the padded input, identifying which pairs contain a valid (set) bit.
+
+Block 1: 
+
+Block 2: 
+
+Block 3: This block concludes the module. It does not introduce new logic or signals; it merely denotes the completion of all definitions and statements associated with the priority encoder.
+

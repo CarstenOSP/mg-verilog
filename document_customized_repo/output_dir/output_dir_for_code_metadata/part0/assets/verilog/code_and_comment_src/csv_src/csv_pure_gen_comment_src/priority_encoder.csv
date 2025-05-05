@@ -1,0 +1,23 @@
+content,line_number
+Top-level priority encoder definition with parameterizable width and optional LSB-high priority.,0
+Determines the number of stages for the hierarchical encoder based on the input width.,1
+Sets the internal width to the nearest power of two.,2
+Pads the input to align with the internal width.,3
+Declares the validity signals for each stage of the encoder.,4
+Stores partial encoded outputs for each level of the hierarchy.,5
+Begins generation of the hierarchical structures for the encoder.,6
+Defines loop variables for traversing levels and subranges.,7
+Generates logic for each pair of bits within the initial stage.,8
+Marks the validity of each two-bit subset for the first stage.,9
+Checks if the encoder should treat the least significant bit as highest priority.,10
+Inverts the lower bit to generate the encoded output for LSB-high-priority mode.,11
+Selects the high bit of the pair for encoding when LSB is not high priority.,13
+Begins the next hierarchical level to refine the partial results.,16
+Iterates through sub-blocks within the level to compress valid signals.,17
+Combines the signals from the previous level to determine validity at this level.,18
+Determines the path for encoding based on least significant bit priority.,19
+"Chooses between lower or upper sub-encodings based on which is valid, enforcing LSB-first priority by prefixing 0 if the lower segment is valid.",20
+"Chooses between upper or lower sub-encodings based on which is valid, enforcing MSB-first priority by prefixing 1 if the upper segment is valid.",22
+Takes the final valid signal from the last compression stage as the global output.,27
+Provides the final index from the last compression stage as the primary encoded output.,28
+Generates a one-hot representation using the final encoded index.,29
