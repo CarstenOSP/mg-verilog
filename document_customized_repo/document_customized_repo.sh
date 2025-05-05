@@ -4,7 +4,7 @@ export DATA4AIGCHIP_HOME=$(cd $CURRENT_DIR/..; pwd)
 echo "DATA4AIGCHIP_HOME=$DATA4AIGCHIP_HOME"
 echo "OUTPUT_DIR=$OUTPUT_DIR"
 
-# python ../auto_data_gen_val/preprocess_data/process_data/preprocess.py $OUTPUT_DIR/raw_code -customized_dataset_dir $TEST_DIR
+# python ../auto_data_gen_val/preprocess_data/process_data/preprocess.py $OUTPUT_DIR/raw_code -customized_dataset_dir test_dir
 
 python ../auto_data_gen_val/utils.py \
     --src_code_dir $OUTPUT_DIR/raw_code \
