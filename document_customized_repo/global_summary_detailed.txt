@@ -1,0 +1,55 @@
+Overview  
+-------------------------------------------------------------------------------
+This top-level module implements a parameterized priority encoder. It accepts a vector of one or more bits and outputs three signals:
+
+1. output_valid (1 bit): Indicates that at least one bit in the input vector is set to 1.
+2. output_encoded (⌈log2(WIDTH)⌉ bits): Provides a binary index corresponding to the highest-priority set bit of the input vector.
+3. output_unencoded (WIDTH bits): Provides a one-hot representation of that same index.
+
+The module’s parameters are:  
+• WIDTH: The width of the input vector (integer ≥ 1).  
+• LSB_HIGH_PRIORITY: A boolean parameter (0 or 1) that determines whether the least significant bit has higher priority (when set to 1) or the most significant bit in each pair has higher priority (when set to 0).
+
+I/O Specifications  
+-------------------------------------------------------------------------------
+• input_unencoded [WIDTH-1:0] (input):  
+  – Each bit is valid logic “0” or “1”.  
+  – This is the vector on which priority encoding is performed.
+
+• output_valid (output):  
+  – 1 bit wide.  
+  – Outputs ‘1’ if at least one bit of input_unencoded is ‘1’, otherwise outputs ‘0’.
+
+• output_encoded [⌈log2(WIDTH)⌉-1 : 0] (output):  
+  – Encodes the index of the highest priority set bit in the input.  
+  – Range is from 0 to (WIDTH-1).  
+  – If no bits are set (i.e., if output_valid=0), the encoder still produces a binary value, but that value is only meaningful if output_valid=1.
+
+• output_unencoded [WIDTH-1:0] (output):  
+  – One-hot representation of the highest-priority set bit.  
+  – Exactly one bit will be ‘1’ in this output if output_valid=1 (the bit that corresponds to output_encoded).  
+  – If output_valid=0, the one-hot output will typically be all zeros.
+
+High-Level Functionality  
+-------------------------------------------------------------------------------
+1. Determination of Internal Size (Power-of-Two Padding):  
+   a) The module calculates LEVELS = ⌈log2(WIDTH)⌉.  
+   b) It also determines W = 2**LEVELS, the smallest power of two >= WIDTH.  
+   c) If WIDTH is not itself a power of two, the input_unencoded is padded with zeros up to W bits (input_padded).  
+      - For example, if WIDTH=5, then LEVELS=3 (because 2³=8 ≥ 5), and W=8. The 5 input bits get concatenated to 3 zeros for uniform processing.
+
+2. Multi-Level Priority Detection (stage_valid) and Encoding (stage_enc):  
+   a) The design logically groups bits into pairs at the first level and determines whether each 2-bit slice contains at least one ‘1’.  
+      - stage_valid[0][n] = OR of each 2-bit pair.  
+      - stage_enc[0][n] = choice of which bit in those two is highest priority.  
+        · If LSB_HIGH_PRIORITY = 1, the least significant bit in that 2-bit pair has higher priority, so the encoder uses “~LSB” as the partial code.  
+        · If LSB_HIGH_PRIORITY = 0, the most significant bit in that 2-bit pair has higher priority, so the encoder uses “MSB” as the partial code.
+
+     Example for one 2-bit pair in the first stage, with signals called bit1:bit0:  
+       ┌───────────────────────┬───────────────────────┬───────────────────┐
+       │     Inputs (bit1:bit0)│   stage_valid[0][n]   │  stage_enc[0][n]  │
+       ├───────────────────────┼───────────────────────┼───────────────────┤
+       │       00              │        0              │   (depends on LSB_HIGH_PRIORITY, but no set bits → not used)  
+       │       10              │        1              │   = bit1 if LSB_HIGH_PRIORITY=0, = !bit0 if LSB_HIGH_PRIORITY=1  
+       │       01              │        1              │   same logic, reversed roles  
+       │       

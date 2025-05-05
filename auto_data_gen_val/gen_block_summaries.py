@@ -19,7 +19,7 @@ if __name__ == "__main__":
     parser.add_argument("--documented_code_dir", help="documented code directory", type=str, default="/home/user_name/DAC_2024/ckpts/")
     parser.add_argument("--code_metadata_dir", help="code metadata directory", type=str, default="/home/user_name/DAC_2024/ckpt3_user_name_valid_content_code_metadata/")
     parser.add_argument("--block_line_length", help="block line length", type=int, default=10)
-    parser.add_argument("--model", help="model", type=str, default="gpt-3.5-turbo-1106")
+    parser.add_argument("--model", help="model", type=str, default="o1-2024-12-17")
     args = parser.parse_args()
     code_part_start_id = args.start_id
     total_code_parts = args.total_code_parts

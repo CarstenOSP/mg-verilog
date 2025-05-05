@@ -137,7 +137,7 @@ def validate_global_summary_openai(global_summary, task_id, eval_file, max_trial
         raise Exception("Module header not found")
     #generate the prompt
     user_prompt = question_prompt + problem_description.format(description=global_summary, module_header=module_header)
-    chain = SimpleConverseChain(system_prompt=system_prompt, model="gpt-4-0613", temperature=0.7, max_tokens=512, top_p=0.95, have_memory=False, verbose=False)
+    chain = SimpleConverseChain(system_prompt=system_prompt, model="o1-2024-12-17", temperature=0.7, max_tokens=512, top_p=0.95, have_memory=False, verbose=False)
     for trial in range(max_trials):
         print("Trial: {}".format(trial))
         completion = chain.chat(user_prompt, system_prompt=system_prompt)
@@ -263,7 +263,7 @@ class CodeDataset:
         for code in self.codes:
             self.codes_inMemory[code] = {}
         self.cb = cb
-        self.tokenizer = tiktoken.encoding_for_model("gpt-3.5-turbo")
+        self.tokenizer = tiktoken.get_encoding("o200k_base")
             
     def get_codes_recursive(self, code_dir):
         codes = {}
@@ -479,8 +479,8 @@ class CodeDataset:
 
     def init_vectorstore(self, global_summary_chain_from_verilog_eval = True,
                          detailed = True,
-                         block_summary_model="gpt-3.5-turbo-1106",
-                         global_summary_model="gpt-3.5-turbo-1106",
+                         block_summary_model="o1-2024-12-17",
+                         global_summary_model="o1-2024-12-17",
                          global_summary_example_cstr_json = f"{os.environ.get('DATA4AIGCHIP_HOME')}/auto_data_gen_val/preprocess_data/example_code_strings_detailed_instructions.json",
                          global_summary_example_code_description_file = f"{os.environ.get('DATA4AIGCHIP_HOME')}/verilog_eval/descriptions/VerilogDescription_Machine.jsonl"
                          ):

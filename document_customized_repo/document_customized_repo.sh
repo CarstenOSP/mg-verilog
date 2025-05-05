@@ -6,8 +6,6 @@ echo "DATA4AIGCHIP_HOME=$DATA4AIGCHIP_HOME"
 echo "TEST_DIR=$TEST_DIR"
 echo "OUTPUT_DIR=$OUTPUT_DIR"
 
-
-
 python ../auto_data_gen_val/preprocess_data/process_data/preprocess.py $OUTPUT_DIR/raw_code -customized_dataset_dir $TEST_DIR
 
 python ../auto_data_gen_val/utils.py \
@@ -34,21 +32,18 @@ python ../auto_data_gen_val/gen_block_summaries.py 0 1 \
     --code_metadata_dir $OUTPUT_DIR/output_dir_for_code_metadata/ \
     --documented_code_dir $OUTPUT_DIR/documented_code \
     --block_line_length 10 \
-    --model gpt-4-turbo
-
+    --model o1-2024-12-17
 
 
 python ../auto_data_gen_val/gen_global_summary.py 0 1 \
     --code_metadata_dir $OUTPUT_DIR/output_dir_for_code_metadata/ \
     --documented_code_dir $OUTPUT_DIR/documented_code \
-    --model gpt-4-turbo \
+    --model o1-2024-12-17 \
     --detailed
 
-
 python ../auto_data_gen_val/gen_global_summary.py 0 1 \
     --code_metadata_dir $OUTPUT_DIR/output_dir_for_code_metadata/ \
     --documented_code_dir $OUTPUT_DIR/documented_code \
-    --model gpt-4-turbo
-
+    --model o1-2024-12-17
 
 python decode_results.py $OUTPUT_DIR

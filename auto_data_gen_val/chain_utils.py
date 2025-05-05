@@ -84,11 +84,11 @@ def gpt4_request(prompt):
     # print("prompt: ", prompt)
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-4-0613",
+            model="o1-2024-12-17",
             # model="gpt-3.5-turbo",
             messages=prompt,
             temperature=0.7,
-            max_tokens=1024
+            max_completion_tokens=1024
         )
     except Exception as e:
         #check if openai.error.RateLimitError: Rate limit reached. 
@@ -96,25 +96,25 @@ def gpt4_request(prompt):
         print("Rate limit reached, sleep for 1 min")
         time.sleep(60)
         response = openai.ChatCompletion.create(
-            model="gpt-4-0613",
+            model="o1-2024-12-17",
             # model="gpt-3.5-turbo",
             messages=prompt,
             temperature=0.7,
-            max_tokens=1024
+            max_completion_tokens=1024
         )
     return response
 
-def openai_chat(system_prompt, humain_input, model="gpt-4-0613", max_token=4096):
+def openai_chat(system_prompt, humain_input, model="o1-2024-12-17", max_token=4096):
       
     messages=[
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": humain_input},
     ]
     response = openai.ChatCompletion.create(
-        model="gpt-4-0613",
+        model="o1-2024-12-17",
         messages=messages,
         # temperature=0.7,
-        max_tokens=max_token,
+        max_completion_tokens=max_token,
     )
     response_str = response["choices"][0]["message"]["content"]
     return response_str
@@ -124,7 +124,7 @@ class Usage_summary(BaseModel):
     summary: str = Field(description="summary")
 
 class Global_summary:
-    def __init__(self, model="gpt-3.5-turbo-1106", system_prompt=None, detailed = True) -> None:
+    def __init__(self, model="o1-2024-12-17", system_prompt=None, detailed = True) -> None:
         self.detailed = detailed
         if system_prompt is None:
             if self.detailed:
@@ -223,8 +223,8 @@ class Global_summary:
         return results
 
 def gen_block_summary_chain(model="llama2", temperature=0.7, max_tokens=1024):
-    if "gpt" in model:
-        llm = ChatOpenAI(max_retries=4, model=model, temperature=temperature, max_tokens=max_tokens, request_timeout=40)
+    if "gpt" in model or "o1" in model:
+        llm = ChatOpenAI(max_retries=4, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40)
     else:
         llm = HuggingFaceTextGenInference(
                         inference_server_url=os.environ.get("LLAMA_INFERENCE_SERVER_URL"),
@@ -239,7 +239,7 @@ def gen_block_summary_chain(model="llama2", temperature=0.7, max_tokens=1024):
     prompt += "{block_doc_history}\n" 
     prompt += "Summarize the following next code block.\n block_{block_num} Code: \n\n```\n{doc1}\n```\n\n"
     prompt += "Be very specific, do not include code and avoid ambiguity.\n"
-    if "gpt" not in model:
+    if "gpt" not in model and "o1" not in model:
         prompt = llama2_prompt_without_memory_without_sys.format(human_input=prompt)
 
     prompt_template = PromptTemplate(
@@ -258,8 +258,8 @@ def gen_block_summary_chain(model="llama2", temperature=0.7, max_tokens=1024):
 
 
 def detail_steps_chain(model="llama2", temperature=0.7, max_tokens=256): 
-    if "gpt" in model:
-        llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_tokens=max_tokens, request_timeout=40)
+    if "gpt" in model or "o1" in model:
+        llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40)
     else:
         llm = HuggingFaceTextGenInference(
                         inference_server_url=os.environ.get("LLAMA_INFERENCE_SERVER_URL"),
@@ -276,7 +276,7 @@ def detail_steps_chain(model="llama2", temperature=0.7, max_tokens=256):
                 For your context, here is part of the commented code:\n\n```\n{commented_code}\n```\n\n
                 Please provide the detailed steps as prompt to write the above part of the code, be very concise, do not include code, and do not include step number as prefix:
                """
-    if "gpt" not in model:
+    if "gpt" not in model and "o1" not in model:
         prompt = llama2_prompt_without_memory_without_sys.format(human_input=prompt)
 
     prompt_template = PromptTemplate(
@@ -307,8 +307,8 @@ class Func_lookup(BaseModel):
 
 def func_name_lookup_chain(model="llama2", temperature=0.7, max_tokens=128, language="verilog"):
 
-    if "gpt" in model:
-        cheap_model = ChatOpenAI(max_retries=2, model=model, temperature=temperature, max_tokens=max_tokens,request_timeout=40)
+    if "gpt" in model or "o1" in model:
+        cheap_model = ChatOpenAI(max_retries=2, model=model, temperature=temperature, max_completion_tokens=max_tokens,request_timeout=40)
     else:
         cheap_model = HuggingFaceTextGenInference(
                         inference_server_url=os.environ.get("LLAMA_INFERENCE_SERVER_URL"),
@@ -316,7 +316,7 @@ def func_name_lookup_chain(model="llama2", temperature=0.7, max_tokens=128, lang
                         )
 
     # gpt-3.5-turbo or gpt-4-0613
-    expensive_model = ChatOpenAI(max_retries=0, model="gpt-4-1106-preview", temperature=temperature, max_tokens=max_tokens, request_timeout=40,
+    expensive_model = ChatOpenAI(max_retries=0, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40,
                                  model_kwargs={"response_format": { "type": "json_object" }})
 
     parser = PydanticOutputParser(pydantic_object=Func_lookup)
@@ -331,10 +331,10 @@ def func_name_lookup_chain(model="llama2", temperature=0.7, max_tokens=128, lang
         prompt += "Are there function calls? if yes, please provide the list of function names.\n"
     prompt += '{format_instructions}\n'
 
-    if "gpt" not in model:
+    if "gpt" not in model and "o1" not in model:
         prompt = llama2_prompt_without_memory_without_sys.format(human_input=prompt)
 
-    if "gpt" in model:
+    if "gpt" in model or "o1" in model:
         prompt_template = PromptTemplate(
             template=prompt,
             input_variables=["doc"],
@@ -374,7 +374,7 @@ def func_name_lookup_chain(model="llama2", temperature=0.7, max_tokens=128, lang
 
 
 class SimpleConverseChain:
-    def __init__(self, model="gpt-3.5-turbo-1106", temperature=0.7, max_tokens=256, top_p=1.0, 
+    def __init__(self, model="o1-2024-12-17", temperature=0.7, max_tokens=256, top_p=1.0, 
                  system_prompt="", have_memory=True, memory=None, memory_length=5, 
                  output_parser=StrOutputParser(), fixing_chain=None,
                  customized_format_instructions=""" """, json_mode=False,
@@ -394,7 +394,7 @@ class SimpleConverseChain:
         self.memory_buffer = []
         self.current_memory_length = 0
         
-        if "gpt" not in model:
+        if "gpt" not in model and "o1" not in model:
             assert "llama" in model.lower(), "model name should be llama or gpt series"
 
         #human and ai is actually good prefix
@@ -416,11 +416,11 @@ class SimpleConverseChain:
                 self.memory = memory
 
 
-            if "gpt" in model:
+            if "gpt" in model or "o1" in model:
                 if not self.json_mode:
-                    cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_tokens=max_tokens, top_p=top_p, request_timeout=40)
+                    cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40)
                 else:
-                    cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_tokens=max_tokens, top_p=top_p, request_timeout=40,  
+                    cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40,  
                                              model_kwargs={"response_format": {"type": "json_object"}})
             else:
                 cheap_model = HuggingFaceTextGenInference(
@@ -432,12 +432,12 @@ class SimpleConverseChain:
                                 # top_p=0.1
                                 )
             if not self.json_mode:
-                expensive_model = ChatOpenAI(max_retries=5, model="gpt-3.5-turbo-1106", temperature=temperature, max_tokens=max_tokens, top_p=top_p, request_timeout=40)
+                expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40)
             else:
-                expensive_model = ChatOpenAI(max_retries=5, model="gpt-3.5-turbo-1106", temperature=temperature, max_tokens=max_tokens, request_timeout=40,  
+                expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40,  
                                          model_kwargs={"response_format": { "type": "json_object" }})
 
-            if "gpt" in model:
+            if "gpt" in model or "o1" in model:
                 #TODO: better to swap to expression format: https://python.langchain.com/docs/expression_language/cookbook/memory
                 chat_llm_chain = LLMChain(
                     llm=cheap_model,
@@ -474,11 +474,11 @@ class SimpleConverseChain:
                 HumanMessagePromptTemplate.from_template("{human_input}"), # Where the human input will injected
             ])
 
-            if "gpt" in model:
+            if "gpt" in model or "o1" in model:
                 if not self.json_mode:
-                    cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_tokens=max_tokens, top_p=top_p, request_timeout=40)
+                    cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40)
                 else:
-                    cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_tokens=max_tokens, top_p=top_p,  
+                    cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p,  
                                              model_kwargs={"response_format": { "type": "json_object" }},
                                              request_timeout=40)
             else:
@@ -487,13 +487,13 @@ class SimpleConverseChain:
                                 max_new_tokens=max_tokens
                                 )
             if not self.json_mode:
-                expensive_model = ChatOpenAI(max_retries=5, model="gpt-3.5-turbo-1106", temperature=temperature, max_tokens=max_tokens, request_timeout=40)
+                expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40)
             else:
-                expensive_model = ChatOpenAI(max_retries=5, model="gpt-3.5-turbo-1106", temperature=temperature, max_tokens=max_tokens,  
+                expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens,  
                                          model_kwargs={"response_format": { "type": "json_object" }},
                                          request_timeout=40)
                 
-            if "gpt" in model:
+            if "gpt" in model or "o1" in model:
                 chat_llm_chain = LLMChain(
                     llm=cheap_model,
                     prompt=self.prompt,
@@ -523,7 +523,7 @@ class SimpleConverseChain:
         if self.have_memory:
             print("Memory buffer length: {}".format(len(self.memory_buffer)))
             print("Memory length: {}".format(len(self.memory.buffer)))
-        if self.have_memory and "gpt" in self.model:
+        if self.have_memory and ("gpt" in self.model or "o1" in self.model):
             if system_prompt is None:
                 system_prompt = self.system_prompt
             old_converse_length = len(self.memory.buffer)
@@ -574,7 +574,7 @@ class SimpleConverseChain:
             orig_human_input = copy.deepcopy(human_input)
             try:
                 #models other than gpt have poor output format enforcement
-                if "gpt" not in self.model:
+                if "gpt" not in self.model and "o1" not in self.model:
                     #take out the output format
                     #TODO: fix this via format instructions mod to the form_commenting_prompt function in utils.py
                     #format instructions from langchain is a little too complicated
@@ -614,7 +614,7 @@ class SimpleConverseChain:
                 if self.verbose:
                     print("Response before parsing: {}".format(response))
                 #parsing the response
-                if "gpt" not in self.model:
+                if "gpt" not in self.model and "o1" not in self.model:
                     #try using the ouput parser first
                     try:
                         response = response.replace("False", "false")
@@ -708,7 +708,7 @@ class SimpleConverseChain:
 
 
 class VerilogEval:
-    def __init__(self, model="gpt-3.5-turbo-1106", system_prompt=None) -> None:
+    def __init__(self, model="o1-2024-12-17", system_prompt=None) -> None:
         if system_prompt is None:
             self.system_prompt = "Explain the high-level functionality of the Verilog module. Use as many high-level concepts that are directly applicable to describe the code, say at the level of an undergraduate EECS major, but do not include extraneous details that aren't immediately applicable. Use text-based truth tables and state transition graphs when necessary. Speak concisely as if this was a specification for a circuit designer to implement. You should only reply with descriptive natural language and not use any code."
             # self.system_prompt = "Explain the high-level functionality of the Verilog module. Use as many high-level concepts that are directly applicable to describe the code, say at the level of an undergraduate EECS major, but do not include extraneous details that aren't immediately applicable. Use text-based truth tables and state transition graphs when necessary. You should only reply with descriptive natural language and not use any code."

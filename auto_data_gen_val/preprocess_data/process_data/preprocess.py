@@ -219,7 +219,7 @@ def valid_content(row):
 
 
 # remove rows with more than 1024 tokens
-def valid_len(row):
+def valid_len_4o_mini(row):
     # lines = len(row["text"].splitlines())
     # tokens = len(tokenizer.encode(row["text"], bos=True, eos=False))
     # tokens = len(row["text"]) / 4
@@ -231,10 +231,9 @@ def valid_len(row):
     with open(os.path.join(tmp_module_inst_dir, module_inst_json), "w") as f:
         json.dump(module_inst_dict, f, indent=4)
 
-    tokenizer = tiktoken.encoding_for_model("gpt-3.5-turbo")
+    tokenizer = tiktoken.get_encoding("o200k_base")
     tokens = len(tokenizer.encode(row["text"]))
-    return tokens <= 1024*16
-
+    return tokens <= 119000
 
 def valid_syntax_with_module_inst(row):
     raw_row = row
@@ -429,7 +428,7 @@ class VerilogEval_Dataprocess:
         tmp_module_inst_dir = "tmp/tmp_module_inst_valid_len/"
         if not os.path.exists(tmp_module_inst_dir):
             os.makedirs(tmp_module_inst_dir)
-        data_content = dataset.filter(valid_len)
+        data_content = dataset.filter(valid_len_4o_mini, num_proc=48)
         print(data_content.shape)
         print("=="*20)
         return data_content
@@ -489,8 +488,34 @@ if __name__ == "__main__":
     if not os.path.exists(raw_dataset_output_dir):
         os.makedirs(raw_dataset_output_dir)
         
-    
+    if False:
+        _ , module_num = separate_modules_in_dataset("shailja/Verilog_GitHub", "./cache", output_dir=f"tmp/ckpt_separated_modules", customized_dataset_dir=customized_dataset_dir)
+        # VerilogEval_Dataprocess0 = VerilogEval_Dataprocess(raw_dataset_name="shailja/Verilog_GitHub",  raw_dataset_cache_dir=f"tmp/ckpt_valid_len_4o_mini", lfd=True)
+        VerilogEval_Dataprocess0 = VerilogEval_Dataprocess(raw_dataset_name="shailja/Verilog_GitHub",  raw_dataset_cache_dir=f"tmp/ckpt_separated_modules", lfd=True)
+        VerilogEval_Dataprocess0.load_raw_dataset()
+        # dataset = VerilogEval_Dataprocess0.f_remove_comments(VerilogEval_Dataprocess0.raw_dataset)
+        # dataset = VerilogEval_Dataprocess0.f_remove_premod_postmod_lines(dataset)
+        # dataset.save_to_disk("tmp/ckpt_remove_premod_postmod_lines")
 
+        # dataset = VerilogEval_Dataprocess0.f_valid_content(dataset)
+        # Mess with this for original vs. pure 4o-mini
+        # dataset = VerilogEval_Dataprocess0.f_valid_len(VerilogEval_Dataprocess0.raw_dataset)
+        # dataset.save_to_disk("tmp/ckpt_valid_len_4o_mini")
+        
+        # dataset = VerilogEval_Dataprocess0.f_valid_syntax_with_module_inst(dataset)
+        #### LINE TO CHANGE
+        dataset = VerilogEval_Dataprocess0.f_de_duplicate(VerilogEval_Dataprocess0.raw_dataset, threshold=0.6)
+        #### END
+        print(dataset.shape)
+
+        module_inst_dict = merge_module_insts(module_inst_dir = f"tmp/tmp_module_inst_valid_len/", output_json_name = f"{raw_dataset_output_dir}/../module_inst.json")
+        module_name_to_task_id_mapping = gen_module_name_to_task_id_mapping(module_inst_dict)
+        #dump the mapping as deduplication is not decisive, use the version before deduplication
+        with open(f"{raw_dataset_output_dir}/../module_name_to_task_id_mapping.json", "w") as f:
+            json.dump(module_name_to_task_id_mapping, f, indent=4)
+
+        store_dataset_entries_to_file(dataset, raw_dataset_output_dir)
+    
     _ , module_num = separate_modules_in_dataset("shailja/Verilog_GitHub", "./cache", output_dir=f"tmp/ckpt_separated_modules", customized_dataset_dir=customized_dataset_dir)
     VerilogEval_Dataprocess0 = VerilogEval_Dataprocess(raw_dataset_name="shailja/Verilog_GitHub",  raw_dataset_cache_dir=f"tmp/ckpt_separated_modules", lfd=True)
     VerilogEval_Dataprocess0.load_raw_dataset()

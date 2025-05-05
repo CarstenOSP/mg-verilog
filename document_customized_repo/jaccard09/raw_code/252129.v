@@ -1,0 +1,592 @@
+module kernel_atax_kernel_atax_node0 (ap_clk,ap_rst,ap_start,ap_done,ap_idle,ap_ready,v353_0_address0,v353_0_ce0,v353_0_q0,v353_0_address1,v353_0_ce1,v353_0_q1,v353_1_address0,v353_1_ce0,v353_1_q0,v353_1_address1,v353_1_ce1,v353_1_q1,v355_address0,v355_ce0,v355_q0,v355_address1,v355_ce1,v355_q1,v354_address0,v354_ce0,v354_q0,v354_address1,v354_ce1,v354_q1,v357_address0,v357_ce0,v357_q0,v356_address0,v356_ce0,v356_we0,v356_d0,v356_q0,v356_address1,v356_ce1,v356_we1,v356_d1,v356_q1,v358_address0,v358_ce0,v358_we0,v358_d0); 
+parameter    ap_ST_fsm_state1 = 7'd1;
+parameter    ap_ST_fsm_state2 = 7'd2;
+parameter    ap_ST_fsm_state3 = 7'd4;
+parameter    ap_ST_fsm_state4 = 7'd8;
+parameter    ap_ST_fsm_state5 = 7'd16;
+parameter    ap_ST_fsm_state6 = 7'd32;
+parameter    ap_ST_fsm_state7 = 7'd64;
+input   ap_clk;
+input   ap_rst;
+input   ap_start;
+output   ap_done;
+output   ap_idle;
+output   ap_ready;
+output  [16:0] v353_0_address0;
+output   v353_0_ce0;
+input  [31:0] v353_0_q0;
+output  [16:0] v353_0_address1;
+output   v353_0_ce1;
+input  [31:0] v353_0_q1;
+output  [16:0] v353_1_address0;
+output   v353_1_ce0;
+input  [31:0] v353_1_q0;
+output  [16:0] v353_1_address1;
+output   v353_1_ce1;
+input  [31:0] v353_1_q1;
+output  [8:0] v355_address0;
+output   v355_ce0;
+input  [31:0] v355_q0;
+output  [8:0] v355_address1;
+output   v355_ce1;
+input  [31:0] v355_q1;
+output  [17:0] v354_address0;
+output   v354_ce0;
+input  [31:0] v354_q0;
+output  [17:0] v354_address1;
+output   v354_ce1;
+input  [31:0] v354_q1;
+output  [8:0] v357_address0;
+output   v357_ce0;
+input  [31:0] v357_q0;
+output  [8:0] v356_address0;
+output   v356_ce0;
+output   v356_we0;
+output  [31:0] v356_d0;
+input  [31:0] v356_q0;
+output  [8:0] v356_address1;
+output   v356_ce1;
+output   v356_we1;
+output  [31:0] v356_d1;
+input  [31:0] v356_q1;
+output  [8:0] v358_address0;
+output   v358_ce0;
+output   v358_we0;
+output  [31:0] v358_d0;
+reg ap_done;
+reg ap_idle;
+reg ap_ready;
+reg[8:0] v356_address0;
+reg v356_ce0;
+reg v356_we0;
+reg[31:0] v356_d0;
+reg[8:0] v356_address1;
+reg v356_ce1;
+reg v356_we1;
+reg[31:0] v356_d1;
+(* fsm_encoding = "none" *) reg   [6:0] ap_CS_fsm;
+wire    ap_CS_fsm_state1;
+reg   [8:0] v349_1_reg_137;
+wire    ap_CS_fsm_state4;
+wire    grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_start;
+wire    grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_done;
+wire    grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_idle;
+wire    grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_ready;
+wire   [8:0] grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_address0;
+wire    grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_ce0;
+wire    grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_we0;
+wire   [31:0] grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_d0;
+wire   [8:0] grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_address1;
+wire    grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_ce1;
+wire    grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_we1;
+wire   [31:0] grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_d1;
+wire    grp_kernel_atax_node2_fu_72_ap_start;
+wire    grp_kernel_atax_node2_fu_72_ap_done;
+wire    grp_kernel_atax_node2_fu_72_ap_idle;
+wire    grp_kernel_atax_node2_fu_72_ap_ready;
+wire   [16:0] grp_kernel_atax_node2_fu_72_v353_0_address0;
+wire    grp_kernel_atax_node2_fu_72_v353_0_ce0;
+wire   [16:0] grp_kernel_atax_node2_fu_72_v353_0_address1;
+wire    grp_kernel_atax_node2_fu_72_v353_0_ce1;
+wire   [16:0] grp_kernel_atax_node2_fu_72_v353_1_address0;
+wire    grp_kernel_atax_node2_fu_72_v353_1_ce0;
+wire   [16:0] grp_kernel_atax_node2_fu_72_v353_1_address1;
+wire    grp_kernel_atax_node2_fu_72_v353_1_ce1;
+wire   [8:0] grp_kernel_atax_node2_fu_72_v355_address0;
+wire    grp_kernel_atax_node2_fu_72_v355_ce0;
+wire   [8:0] grp_kernel_atax_node2_fu_72_v355_address1;
+wire    grp_kernel_atax_node2_fu_72_v355_ce1;
+wire   [0:0] grp_kernel_atax_node2_fu_72_v350_din;
+wire    grp_kernel_atax_node2_fu_72_v350_write;
+wire   [8:0] grp_kernel_atax_node2_fu_72_v358_address0;
+wire    grp_kernel_atax_node2_fu_72_v358_ce0;
+wire    grp_kernel_atax_node2_fu_72_v358_we0;
+wire   [31:0] grp_kernel_atax_node2_fu_72_v358_d0;
+wire   [31:0] grp_kernel_atax_node2_fu_72_grp_fu_146_p_din0;
+wire   [31:0] grp_kernel_atax_node2_fu_72_grp_fu_146_p_din1;
+wire   [1:0] grp_kernel_atax_node2_fu_72_grp_fu_146_p_opcode;
+wire    grp_kernel_atax_node2_fu_72_grp_fu_146_p_ce;
+wire   [31:0] grp_kernel_atax_node2_fu_72_grp_fu_150_p_din0;
+wire   [31:0] grp_kernel_atax_node2_fu_72_grp_fu_150_p_din1;
+wire   [1:0] grp_kernel_atax_node2_fu_72_grp_fu_150_p_opcode;
+wire    grp_kernel_atax_node2_fu_72_grp_fu_150_p_ce;
+wire   [31:0] grp_kernel_atax_node2_fu_72_grp_fu_154_p_din0;
+wire   [31:0] grp_kernel_atax_node2_fu_72_grp_fu_154_p_din1;
+wire    grp_kernel_atax_node2_fu_72_grp_fu_154_p_ce;
+wire   [31:0] grp_kernel_atax_node2_fu_72_grp_fu_158_p_din0;
+wire   [31:0] grp_kernel_atax_node2_fu_72_grp_fu_158_p_din1;
+wire    grp_kernel_atax_node2_fu_72_grp_fu_158_p_ce;
+wire    grp_kernel_atax_node1_fu_86_ap_start;
+wire    grp_kernel_atax_node1_fu_86_ap_done;
+wire    grp_kernel_atax_node1_fu_86_ap_idle;
+wire    grp_kernel_atax_node1_fu_86_ap_ready;
+wire   [17:0] grp_kernel_atax_node1_fu_86_v354_address0;
+wire    grp_kernel_atax_node1_fu_86_v354_ce0;
+wire   [17:0] grp_kernel_atax_node1_fu_86_v354_address1;
+wire    grp_kernel_atax_node1_fu_86_v354_ce1;
+wire    grp_kernel_atax_node1_fu_86_v350_read;
+wire   [8:0] grp_kernel_atax_node1_fu_86_v357_address0;
+wire    grp_kernel_atax_node1_fu_86_v357_ce0;
+wire   [8:0] grp_kernel_atax_node1_fu_86_v356_address0;
+wire    grp_kernel_atax_node1_fu_86_v356_ce0;
+wire    grp_kernel_atax_node1_fu_86_v356_we0;
+wire   [31:0] grp_kernel_atax_node1_fu_86_v356_d0;
+wire   [8:0] grp_kernel_atax_node1_fu_86_v356_address1;
+wire    grp_kernel_atax_node1_fu_86_v356_ce1;
+wire    grp_kernel_atax_node1_fu_86_v356_we1;
+wire   [31:0] grp_kernel_atax_node1_fu_86_v356_d1;
+wire   [31:0] grp_kernel_atax_node1_fu_86_grp_fu_146_p_din0;
+wire   [31:0] grp_kernel_atax_node1_fu_86_grp_fu_146_p_din1;
+wire   [1:0] grp_kernel_atax_node1_fu_86_grp_fu_146_p_opcode;
+wire    grp_kernel_atax_node1_fu_86_grp_fu_146_p_ce;
+wire   [31:0] grp_kernel_atax_node1_fu_86_grp_fu_150_p_din0;
+wire   [31:0] grp_kernel_atax_node1_fu_86_grp_fu_150_p_din1;
+wire   [1:0] grp_kernel_atax_node1_fu_86_grp_fu_150_p_opcode;
+wire    grp_kernel_atax_node1_fu_86_grp_fu_150_p_ce;
+wire   [31:0] grp_kernel_atax_node1_fu_86_grp_fu_154_p_din0;
+wire   [31:0] grp_kernel_atax_node1_fu_86_grp_fu_154_p_din1;
+wire    grp_kernel_atax_node1_fu_86_grp_fu_154_p_ce;
+wire   [31:0] grp_kernel_atax_node1_fu_86_grp_fu_158_p_din0;
+wire   [31:0] grp_kernel_atax_node1_fu_86_grp_fu_158_p_din1;
+wire    grp_kernel_atax_node1_fu_86_grp_fu_158_p_ce;
+reg    grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_start_reg;
+wire    ap_CS_fsm_state2;
+reg    grp_kernel_atax_node2_fu_72_ap_start_reg;
+wire   [0:0] icmp_ln476_fu_107_p2;
+wire    ap_CS_fsm_state5;
+wire    v350_full_n;
+reg    v350_write;
+reg    grp_kernel_atax_node1_fu_86_ap_start_reg;
+wire    ap_CS_fsm_state6;
+wire    ap_CS_fsm_state7;
+wire   [0:0] v350_dout;
+wire    v350_empty_n;
+reg    v350_read;
+reg   [8:0] v349_fu_58;
+wire   [8:0] v349_2_fu_113_p2;
+wire    ap_CS_fsm_state3;
+wire   [31:0] grp_fu_146_p2;
+reg   [31:0] grp_fu_146_p0;
+reg   [31:0] grp_fu_146_p1;
+reg    grp_fu_146_ce;
+wire   [31:0] grp_fu_150_p2;
+reg   [31:0] grp_fu_150_p0;
+reg   [31:0] grp_fu_150_p1;
+reg    grp_fu_150_ce;
+wire   [31:0] grp_fu_154_p2;
+reg   [31:0] grp_fu_154_p0;
+reg   [31:0] grp_fu_154_p1;
+reg    grp_fu_154_ce;
+wire   [31:0] grp_fu_158_p2;
+reg   [31:0] grp_fu_158_p0;
+reg   [31:0] grp_fu_158_p1;
+reg    grp_fu_158_ce;
+reg   [6:0] ap_NS_fsm;
+reg    ap_ST_fsm_state1_blk;
+reg    ap_ST_fsm_state2_blk;
+wire    ap_ST_fsm_state3_blk;
+wire    ap_ST_fsm_state4_blk;
+reg    ap_ST_fsm_state5_blk;
+wire    ap_ST_fsm_state6_blk;
+reg    ap_ST_fsm_state7_blk;
+wire    ap_ce_reg;
+initial begin
+#0 ap_CS_fsm = 7'd1;
+#0 grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_start_reg = 1'b0;
+#0 grp_kernel_atax_node2_fu_72_ap_start_reg = 1'b0;
+#0 grp_kernel_atax_node1_fu_86_ap_start_reg = 1'b0;
+#0 v349_fu_58 = 9'd0;
+end
+kernel_atax_kernel_atax_node0_Pipeline_label_2 grp_kernel_atax_node0_Pipeline_label_2_fu_66(.ap_clk(ap_clk),.ap_rst(ap_rst),.ap_start(grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_start),.ap_done(grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_done),.ap_idle(grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_idle),.ap_ready(grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_ready),.v356_address0(grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_address0),.v356_ce0(grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_ce0),.v356_we0(grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_we0),.v356_d0(grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_d0),.v356_address1(grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_address1),.v356_ce1(grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_ce1),.v356_we1(grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_we1),.v356_d1(grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_d1));
+kernel_atax_kernel_atax_node2 grp_kernel_atax_node2_fu_72(.ap_clk(ap_clk),.ap_rst(ap_rst),.ap_start(grp_kernel_atax_node2_fu_72_ap_start),.ap_done(grp_kernel_atax_node2_fu_72_ap_done),.ap_idle(grp_kernel_atax_node2_fu_72_ap_idle),.ap_ready(grp_kernel_atax_node2_fu_72_ap_ready),.v353_0_address0(grp_kernel_atax_node2_fu_72_v353_0_address0),.v353_0_ce0(grp_kernel_atax_node2_fu_72_v353_0_ce0),.v353_0_q0(v353_0_q0),.v353_0_address1(grp_kernel_atax_node2_fu_72_v353_0_address1),.v353_0_ce1(grp_kernel_atax_node2_fu_72_v353_0_ce1),.v353_0_q1(v353_0_q1),.v353_1_address0(grp_kernel_atax_node2_fu_72_v353_1_address0),.v353_1_ce0(grp_kernel_atax_node2_fu_72_v353_1_ce0),.v353_1_q0(v353_1_q0),.v353_1_address1(grp_kernel_atax_node2_fu_72_v353_1_address1),.v353_1_ce1(grp_kernel_atax_node2_fu_72_v353_1_ce1),.v353_1_q1(v353_1_q1),.v355_address0(grp_kernel_atax_node2_fu_72_v355_address0),.v355_ce0(grp_kernel_atax_node2_fu_72_v355_ce0),.v355_q0(v355_q0),.v355_address1(grp_kernel_atax_node2_fu_72_v355_address1),.v355_ce1(grp_kernel_atax_node2_fu_72_v355_ce1),.v355_q1(v355_q1),.v350_din(grp_kernel_atax_node2_fu_72_v350_din),.v350_full_n(v350_full_n),.v350_write(grp_kernel_atax_node2_fu_72_v350_write),.v358_address0(grp_kernel_atax_node2_fu_72_v358_address0),.v358_ce0(grp_kernel_atax_node2_fu_72_v358_ce0),.v358_we0(grp_kernel_atax_node2_fu_72_v358_we0),.v358_d0(grp_kernel_atax_node2_fu_72_v358_d0),.v175(v349_1_reg_137),.grp_fu_146_p_din0(grp_kernel_atax_node2_fu_72_grp_fu_146_p_din0),.grp_fu_146_p_din1(grp_kernel_atax_node2_fu_72_grp_fu_146_p_din1),.grp_fu_146_p_opcode(grp_kernel_atax_node2_fu_72_grp_fu_146_p_opcode),.grp_fu_146_p_dout0(grp_fu_146_p2),.grp_fu_146_p_ce(grp_kernel_atax_node2_fu_72_grp_fu_146_p_ce),.grp_fu_150_p_din0(grp_kernel_atax_node2_fu_72_grp_fu_150_p_din0),.grp_fu_150_p_din1(grp_kernel_atax_node2_fu_72_grp_fu_150_p_din1),.grp_fu_150_p_opcode(grp_kernel_atax_node2_fu_72_grp_fu_150_p_opcode),.grp_fu_150_p_dout0(grp_fu_150_p2),.grp_fu_150_p_ce(grp_kernel_atax_node2_fu_72_grp_fu_150_p_ce),.grp_fu_154_p_din0(grp_kernel_atax_node2_fu_72_grp_fu_154_p_din0),.grp_fu_154_p_din1(grp_kernel_atax_node2_fu_72_grp_fu_154_p_din1),.grp_fu_154_p_dout0(grp_fu_154_p2),.grp_fu_154_p_ce(grp_kernel_atax_node2_fu_72_grp_fu_154_p_ce),.grp_fu_158_p_din0(grp_kernel_atax_node2_fu_72_grp_fu_158_p_din0),.grp_fu_158_p_din1(grp_kernel_atax_node2_fu_72_grp_fu_158_p_din1),.grp_fu_158_p_dout0(grp_fu_158_p2),.grp_fu_158_p_ce(grp_kernel_atax_node2_fu_72_grp_fu_158_p_ce));
+kernel_atax_kernel_atax_node1 grp_kernel_atax_node1_fu_86(.ap_clk(ap_clk),.ap_rst(ap_rst),.ap_start(grp_kernel_atax_node1_fu_86_ap_start),.ap_done(grp_kernel_atax_node1_fu_86_ap_done),.ap_idle(grp_kernel_atax_node1_fu_86_ap_idle),.ap_ready(grp_kernel_atax_node1_fu_86_ap_ready),.v354_address0(grp_kernel_atax_node1_fu_86_v354_address0),.v354_ce0(grp_kernel_atax_node1_fu_86_v354_ce0),.v354_q0(v354_q0),.v354_address1(grp_kernel_atax_node1_fu_86_v354_address1),.v354_ce1(grp_kernel_atax_node1_fu_86_v354_ce1),.v354_q1(v354_q1),.v350_dout(v350_dout),.v350_empty_n(v350_empty_n),.v350_read(grp_kernel_atax_node1_fu_86_v350_read),.v357_address0(grp_kernel_atax_node1_fu_86_v357_address0),.v357_ce0(grp_kernel_atax_node1_fu_86_v357_ce0),.v357_q0(v357_q0),.v356_address0(grp_kernel_atax_node1_fu_86_v356_address0),.v356_ce0(grp_kernel_atax_node1_fu_86_v356_ce0),.v356_we0(grp_kernel_atax_node1_fu_86_v356_we0),.v356_d0(grp_kernel_atax_node1_fu_86_v356_d0),.v356_q0(v356_q0),.v356_address1(grp_kernel_atax_node1_fu_86_v356_address1),.v356_ce1(grp_kernel_atax_node1_fu_86_v356_ce1),.v356_we1(grp_kernel_atax_node1_fu_86_v356_we1),.v356_d1(grp_kernel_atax_node1_fu_86_v356_d1),.v356_q1(v356_q1),.v4(v349_1_reg_137),.grp_fu_146_p_din0(grp_kernel_atax_node1_fu_86_grp_fu_146_p_din0),.grp_fu_146_p_din1(grp_kernel_atax_node1_fu_86_grp_fu_146_p_din1),.grp_fu_146_p_opcode(grp_kernel_atax_node1_fu_86_grp_fu_146_p_opcode),.grp_fu_146_p_dout0(grp_fu_146_p2),.grp_fu_146_p_ce(grp_kernel_atax_node1_fu_86_grp_fu_146_p_ce),.grp_fu_150_p_din0(grp_kernel_atax_node1_fu_86_grp_fu_150_p_din0),.grp_fu_150_p_din1(grp_kernel_atax_node1_fu_86_grp_fu_150_p_din1),.grp_fu_150_p_opcode(grp_kernel_atax_node1_fu_86_grp_fu_150_p_opcode),.grp_fu_150_p_dout0(grp_fu_150_p2),.grp_fu_150_p_ce(grp_kernel_atax_node1_fu_86_grp_fu_150_p_ce),.grp_fu_154_p_din0(grp_kernel_atax_node1_fu_86_grp_fu_154_p_din0),.grp_fu_154_p_din1(grp_kernel_atax_node1_fu_86_grp_fu_154_p_din1),.grp_fu_154_p_dout0(grp_fu_154_p2),.grp_fu_154_p_ce(grp_kernel_atax_node1_fu_86_grp_fu_154_p_ce),.grp_fu_158_p_din0(grp_kernel_atax_node1_fu_86_grp_fu_158_p_din0),.grp_fu_158_p_din1(grp_kernel_atax_node1_fu_86_grp_fu_158_p_din1),.grp_fu_158_p_dout0(grp_fu_158_p2),.grp_fu_158_p_ce(grp_kernel_atax_node1_fu_86_grp_fu_158_p_ce));
+kernel_atax_fadd_32ns_32ns_32_7_full_dsp_1 #(.ID( 1 ),.NUM_STAGE( 7 ),.din0_WIDTH( 32 ),.din1_WIDTH( 32 ),.dout_WIDTH( 32 ))
+fadd_32ns_32ns_32_7_full_dsp_1_U45(.clk(ap_clk),.reset(ap_rst),.din0(grp_fu_146_p0),.din1(grp_fu_146_p1),.ce(grp_fu_146_ce),.dout(grp_fu_146_p2));
+kernel_atax_fadd_32ns_32ns_32_7_full_dsp_1 #(.ID( 1 ),.NUM_STAGE( 7 ),.din0_WIDTH( 32 ),.din1_WIDTH( 32 ),.dout_WIDTH( 32 ))
+fadd_32ns_32ns_32_7_full_dsp_1_U46(.clk(ap_clk),.reset(ap_rst),.din0(grp_fu_150_p0),.din1(grp_fu_150_p1),.ce(grp_fu_150_ce),.dout(grp_fu_150_p2));
+kernel_atax_fmul_32ns_32ns_32_4_max_dsp_1 #(.ID( 1 ),.NUM_STAGE( 4 ),.din0_WIDTH( 32 ),.din1_WIDTH( 32 ),.dout_WIDTH( 32 ))
+fmul_32ns_32ns_32_4_max_dsp_1_U47(.clk(ap_clk),.reset(ap_rst),.din0(grp_fu_154_p0),.din1(grp_fu_154_p1),.ce(grp_fu_154_ce),.dout(grp_fu_154_p2));
+kernel_atax_fmul_32ns_32ns_32_4_max_dsp_1 #(.ID( 1 ),.NUM_STAGE( 4 ),.din0_WIDTH( 32 ),.din1_WIDTH( 32 ),.dout_WIDTH( 32 ))
+fmul_32ns_32ns_32_4_max_dsp_1_U48(.clk(ap_clk),.reset(ap_rst),.din0(grp_fu_158_p0),.din1(grp_fu_158_p1),.ce(grp_fu_158_ce),.dout(grp_fu_158_p2));
+kernel_atax_fifo_w1_d2_S v350_fifo_U(.clk(ap_clk),.reset(ap_rst),.if_read_ce(1'b1),.if_write_ce(1'b1),.if_din(grp_kernel_atax_node2_fu_72_v350_din),.if_full_n(v350_full_n),.if_write(v350_write),.if_dout(v350_dout),.if_empty_n(v350_empty_n),.if_read(v350_read));
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        ap_CS_fsm <= ap_ST_fsm_state1;
+    end else begin
+        ap_CS_fsm <= ap_NS_fsm;
+    end
+end
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_start_reg <= 1'b0;
+    end else begin
+        if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_start_reg <= 1'b1;
+        end else if ((grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_ready == 1'b1)) begin
+            grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_start_reg <= 1'b0;
+        end
+    end
+end
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        grp_kernel_atax_node1_fu_86_ap_start_reg <= 1'b0;
+    end else begin
+        if ((1'b1 == ap_CS_fsm_state6)) begin
+            grp_kernel_atax_node1_fu_86_ap_start_reg <= 1'b1;
+        end else if ((grp_kernel_atax_node1_fu_86_ap_ready == 1'b1)) begin
+            grp_kernel_atax_node1_fu_86_ap_start_reg <= 1'b0;
+        end
+    end
+end
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        grp_kernel_atax_node2_fu_72_ap_start_reg <= 1'b0;
+    end else begin
+        if (((icmp_ln476_fu_107_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state4))) begin
+            grp_kernel_atax_node2_fu_72_ap_start_reg <= 1'b1;
+        end else if ((grp_kernel_atax_node2_fu_72_ap_ready == 1'b1)) begin
+            grp_kernel_atax_node2_fu_72_ap_start_reg <= 1'b0;
+        end
+    end
+end
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        v349_fu_58 <= 9'd0;
+    end else if (((icmp_ln476_fu_107_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state4))) begin
+        v349_fu_58 <= v349_2_fu_113_p2;
+    end
+end
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        v349_1_reg_137 <= v349_fu_58;
+    end
+end
+always @ (*) begin
+    if ((ap_start == 1'b0)) begin
+        ap_ST_fsm_state1_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state1_blk = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_done == 1'b0)) begin
+        ap_ST_fsm_state2_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state2_blk = 1'b0;
+    end
+end
+assign ap_ST_fsm_state3_blk = 1'b0;
+assign ap_ST_fsm_state4_blk = 1'b0;
+always @ (*) begin
+    if ((grp_kernel_atax_node2_fu_72_ap_done == 1'b0)) begin
+        ap_ST_fsm_state5_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state5_blk = 1'b0;
+    end
+end
+assign ap_ST_fsm_state6_blk = 1'b0;
+always @ (*) begin
+    if ((grp_kernel_atax_node1_fu_86_ap_done == 1'b0)) begin
+        ap_ST_fsm_state7_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state7_blk = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((((icmp_ln476_fu_107_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state4)) | ((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0)))) begin
+        ap_done = 1'b1;
+    end else begin
+        ap_done = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0))) begin
+        ap_idle = 1'b1;
+    end else begin
+        ap_idle = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((icmp_ln476_fu_107_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state4))) begin
+        ap_ready = 1'b1;
+    end else begin
+        ap_ready = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        grp_fu_146_ce = grp_kernel_atax_node1_fu_86_grp_fu_146_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_146_ce = grp_kernel_atax_node2_fu_72_grp_fu_146_p_ce;
+    end else begin
+        grp_fu_146_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        grp_fu_146_p0 = grp_kernel_atax_node1_fu_86_grp_fu_146_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_146_p0 = grp_kernel_atax_node2_fu_72_grp_fu_146_p_din0;
+    end else begin
+        grp_fu_146_p0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        grp_fu_146_p1 = grp_kernel_atax_node1_fu_86_grp_fu_146_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_146_p1 = grp_kernel_atax_node2_fu_72_grp_fu_146_p_din1;
+    end else begin
+        grp_fu_146_p1 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        grp_fu_150_ce = grp_kernel_atax_node1_fu_86_grp_fu_150_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_150_ce = grp_kernel_atax_node2_fu_72_grp_fu_150_p_ce;
+    end else begin
+        grp_fu_150_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        grp_fu_150_p0 = grp_kernel_atax_node1_fu_86_grp_fu_150_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_150_p0 = grp_kernel_atax_node2_fu_72_grp_fu_150_p_din0;
+    end else begin
+        grp_fu_150_p0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        grp_fu_150_p1 = grp_kernel_atax_node1_fu_86_grp_fu_150_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_150_p1 = grp_kernel_atax_node2_fu_72_grp_fu_150_p_din1;
+    end else begin
+        grp_fu_150_p1 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        grp_fu_154_ce = grp_kernel_atax_node1_fu_86_grp_fu_154_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_154_ce = grp_kernel_atax_node2_fu_72_grp_fu_154_p_ce;
+    end else begin
+        grp_fu_154_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        grp_fu_154_p0 = grp_kernel_atax_node1_fu_86_grp_fu_154_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_154_p0 = grp_kernel_atax_node2_fu_72_grp_fu_154_p_din0;
+    end else begin
+        grp_fu_154_p0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        grp_fu_154_p1 = grp_kernel_atax_node1_fu_86_grp_fu_154_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_154_p1 = grp_kernel_atax_node2_fu_72_grp_fu_154_p_din1;
+    end else begin
+        grp_fu_154_p1 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        grp_fu_158_ce = grp_kernel_atax_node1_fu_86_grp_fu_158_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_158_ce = grp_kernel_atax_node2_fu_72_grp_fu_158_p_ce;
+    end else begin
+        grp_fu_158_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        grp_fu_158_p0 = grp_kernel_atax_node1_fu_86_grp_fu_158_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_158_p0 = grp_kernel_atax_node2_fu_72_grp_fu_158_p_din0;
+    end else begin
+        grp_fu_158_p0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        grp_fu_158_p1 = grp_kernel_atax_node1_fu_86_grp_fu_158_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_158_p1 = grp_kernel_atax_node2_fu_72_grp_fu_158_p_din1;
+    end else begin
+        grp_fu_158_p1 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        v350_read = grp_kernel_atax_node1_fu_86_v350_read;
+    end else begin
+        v350_read = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        v350_write = grp_kernel_atax_node2_fu_72_v350_write;
+    end else begin
+        v350_write = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        v356_address0 = grp_kernel_atax_node1_fu_86_v356_address0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        v356_address0 = grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_address0;
+    end else begin
+        v356_address0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        v356_address1 = grp_kernel_atax_node1_fu_86_v356_address1;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        v356_address1 = grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_address1;
+    end else begin
+        v356_address1 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        v356_ce0 = grp_kernel_atax_node1_fu_86_v356_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        v356_ce0 = grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_ce0;
+    end else begin
+        v356_ce0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        v356_ce1 = grp_kernel_atax_node1_fu_86_v356_ce1;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        v356_ce1 = grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_ce1;
+    end else begin
+        v356_ce1 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        v356_d0 = grp_kernel_atax_node1_fu_86_v356_d0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        v356_d0 = grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_d0;
+    end else begin
+        v356_d0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        v356_d1 = grp_kernel_atax_node1_fu_86_v356_d1;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        v356_d1 = grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_d1;
+    end else begin
+        v356_d1 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        v356_we0 = grp_kernel_atax_node1_fu_86_v356_we0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        v356_we0 = grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_we0;
+    end else begin
+        v356_we0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        v356_we1 = grp_kernel_atax_node1_fu_86_v356_we1;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        v356_we1 = grp_kernel_atax_node0_Pipeline_label_2_fu_66_v356_we1;
+    end else begin
+        v356_we1 = 1'b0;
+    end
+end
+always @ (*) begin
+    case (ap_CS_fsm)
+        ap_ST_fsm_state1 : begin
+            if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state2;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end
+        end
+        ap_ST_fsm_state2 : begin
+            if (((grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state2))) begin
+                ap_NS_fsm = ap_ST_fsm_state3;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state2;
+            end
+        end
+        ap_ST_fsm_state3 : begin
+            ap_NS_fsm = ap_ST_fsm_state4;
+        end
+        ap_ST_fsm_state4 : begin
+            if (((icmp_ln476_fu_107_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state4))) begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state5;
+            end
+        end
+        ap_ST_fsm_state5 : begin
+            if (((1'b1 == ap_CS_fsm_state5) & (grp_kernel_atax_node2_fu_72_ap_done == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state6;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state5;
+            end
+        end
+        ap_ST_fsm_state6 : begin
+            ap_NS_fsm = ap_ST_fsm_state7;
+        end
+        ap_ST_fsm_state7 : begin
+            if (((1'b1 == ap_CS_fsm_state7) & (grp_kernel_atax_node1_fu_86_ap_done == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state4;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state7;
+            end
+        end
+        default : begin
+            ap_NS_fsm = 'bx;
+        end
+    endcase
+end
+assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
+assign ap_CS_fsm_state2 = ap_CS_fsm[32'd1];
+assign ap_CS_fsm_state3 = ap_CS_fsm[32'd2];
+assign ap_CS_fsm_state4 = ap_CS_fsm[32'd3];
+assign ap_CS_fsm_state5 = ap_CS_fsm[32'd4];
+assign ap_CS_fsm_state6 = ap_CS_fsm[32'd5];
+assign ap_CS_fsm_state7 = ap_CS_fsm[32'd6];
+assign grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_start = grp_kernel_atax_node0_Pipeline_label_2_fu_66_ap_start_reg;
+assign grp_kernel_atax_node1_fu_86_ap_start = grp_kernel_atax_node1_fu_86_ap_start_reg;
+assign grp_kernel_atax_node2_fu_72_ap_start = grp_kernel_atax_node2_fu_72_ap_start_reg;
+assign icmp_ln476_fu_107_p2 = ((v349_fu_58 == 9'd390) ? 1'b1 : 1'b0);
+assign v349_2_fu_113_p2 = (v349_fu_58 + 9'd1);
+assign v353_0_address0 = grp_kernel_atax_node2_fu_72_v353_0_address0;
+assign v353_0_address1 = grp_kernel_atax_node2_fu_72_v353_0_address1;
+assign v353_0_ce0 = grp_kernel_atax_node2_fu_72_v353_0_ce0;
+assign v353_0_ce1 = grp_kernel_atax_node2_fu_72_v353_0_ce1;
+assign v353_1_address0 = grp_kernel_atax_node2_fu_72_v353_1_address0;
+assign v353_1_address1 = grp_kernel_atax_node2_fu_72_v353_1_address1;
+assign v353_1_ce0 = grp_kernel_atax_node2_fu_72_v353_1_ce0;
+assign v353_1_ce1 = grp_kernel_atax_node2_fu_72_v353_1_ce1;
+assign v354_address0 = grp_kernel_atax_node1_fu_86_v354_address0;
+assign v354_address1 = grp_kernel_atax_node1_fu_86_v354_address1;
+assign v354_ce0 = grp_kernel_atax_node1_fu_86_v354_ce0;
+assign v354_ce1 = grp_kernel_atax_node1_fu_86_v354_ce1;
+assign v355_address0 = grp_kernel_atax_node2_fu_72_v355_address0;
+assign v355_address1 = grp_kernel_atax_node2_fu_72_v355_address1;
+assign v355_ce0 = grp_kernel_atax_node2_fu_72_v355_ce0;
+assign v355_ce1 = grp_kernel_atax_node2_fu_72_v355_ce1;
+assign v357_address0 = grp_kernel_atax_node1_fu_86_v357_address0;
+assign v357_ce0 = grp_kernel_atax_node1_fu_86_v357_ce0;
+assign v358_address0 = grp_kernel_atax_node2_fu_72_v358_address0;
+assign v358_ce0 = grp_kernel_atax_node2_fu_72_v358_ce0;
+assign v358_d0 = grp_kernel_atax_node2_fu_72_v358_d0;
+assign v358_we0 = grp_kernel_atax_node2_fu_72_v358_we0;
+endmodule 

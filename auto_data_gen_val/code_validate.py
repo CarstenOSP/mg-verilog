@@ -62,7 +62,7 @@ def compile_syntax_check(code_str):
         shutil.rmtree(asset_dir)
         return False
 
-def reverse_codegen(description, code_str, model="gpt-4-0613", max_trials=10):
+def reverse_codegen(description, code_str, model="o1-2024-12-17", max_trials=10):
     system_prompt = "You only complete chats with syntax correct Verilog code. End the Verilog module code completion with 'endmodule'. Do not include module, input and output definitions."
     question_prompt = "Implement the Verilog module based on the following description. Assume that signals are positive clock/clk edge triggered unless otherwise stated."
     problem_description = "\n\n {description} \n\n Module header:\n\n {module_header}\n"

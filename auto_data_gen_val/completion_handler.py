@@ -144,8 +144,8 @@ class Line_comment_format(BaseModel):
     #         raise ValueError('Comment must exist if comment_exist is True')
     #     return v
 
-def Line_comment_format_fixing_chain(model="gpt-3.5-turbo-1106", temperature=0.7, max_tokens=128):
-    llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_tokens=max_tokens, request_timeout=10)
+def Line_comment_format_fixing_chain(model="o1-2024-12-17", temperature=0.7, max_tokens=128):
+    llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=10)
     parser = PydanticOutputParserMessages(pydantic_object=Line_comment_format)
     prompt = "Fix the output format:\n{format_instructions}\n\n{doc}\n\n"
     prompt_template = PromptTemplate(
@@ -161,8 +161,8 @@ def Line_comment_format_fixing_chain(model="gpt-3.5-turbo-1106", temperature=0.7
         )
     return chain
 
-def summarize_comments_fixing_chain(model="gpt-3.5-turbo-1106", temperature=0.7, max_tokens=512):
-    llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_tokens=max_tokens, request_timeout=10)
+def summarize_comments_fixing_chain(model="o1-2024-12-17", temperature=0.7, max_tokens=512):
+    llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=10)
     parser = PydanticOutputParserMessages(pydantic_object=Code_summary_format)
     prompt = "Fix the output format:\n{format_instructions}\n\n{doc}\n\n"
     prompt_template = PromptTemplate(
@@ -240,7 +240,7 @@ class Chatbot:
         self.code_summary_response_parser = PydanticOutputParserMessages(pydantic_object=Code_summary_format)
 
         self.line_by_line_format_instructions = """Format your answer in json format, with entries of "comment_exist", "comment", and "line_number"; \n "comment_exist" is a List of boolean value denating if comment exist for each code line.\n "comment" is list of string comments, each of which is the comment for the corresponding code line; do not include original code here; empty string if comment does not exist. \n "line_number" is {line_numbers}. \n Here is the response format: {"comment_exist": [bool, bool], "comment": [str comment, str comment], "line_number": {line_numbers}}\n Only include the json response! Do not include anything else!\n"""
-        self.line_by_line_comment_converse_chain = SimpleConverseChain(model="gpt-4-turbo", temperature=0.7, max_tokens=2048, 
+        self.line_by_line_comment_converse_chain = SimpleConverseChain(model="o1-2024-12-17", temperature=0.7, max_tokens=2048, 
                                                   verbose=False, 
                                                   memory=self.converse_memory,
                                                   memory_length=self.convers_memory_length,
@@ -250,12 +250,12 @@ class Chatbot:
                                                   json_mode=True)
         
         self.summary_format_instructions = """Format your answer in json format, with entries of "usage" and "summary", denoting usage of the code block and summary of the code, respectively\n Do not include answer other than the json string.\n"""
-        self.summarize_comments_chain = SimpleConverseChain(model="gpt-4-turbo", temperature=0.7, max_tokens=2048,
+        self.summarize_comments_chain = SimpleConverseChain(model="o1-2024-12-17", temperature=0.7, max_tokens=2048,
                                                             verbose=False,
                                                             have_memory=False,
                                                             customized_format_instructions=self.summary_format_instructions,
                                                             output_parser=self.code_summary_response_parser)
-        self.reverse_code_gen_chain = SimpleConverseChain(model="gpt-4-turbo", temperature=0.7, max_tokens=1024,
+        self.reverse_code_gen_chain = SimpleConverseChain(model="o1-2024-12-17", temperature=0.7, max_tokens=1024,
                                                             verbose=False,
                                                             have_memory=False)
 
@@ -310,7 +310,7 @@ class Chatbot:
                                 inference_server_url=os.environ.get("LLAMA_INFERENCE_SERVER_URL"),
                                 max_new_tokens=128
                                 )
-                llm = llm.with_fallbacks([ChatOpenAI(model="gpt-3.5-turbo-16k", temperature=0.7, max_tokens=128)])
+                llm = llm.with_fallbacks([ChatOpenAI(model="o1-2024-12-17", temperature=0.7, max_tokens=128)])
                 summary_prompt_template = PromptTemplate(
                     template=summary_prompt,
                     input_variables=["converse_histry"]

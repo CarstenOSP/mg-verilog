@@ -1,9 +1,4 @@
-wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh
-chmod u=rxw Anaconda3-2023.09-0-Linux-x86_64.sh
-./Anaconda3-2023.09-0-Linux-x86_64.sh
-
-echo y | conda create -n aigchip-sft python=3.8
-conda activate aigchip-sft
+conda list
 
 #to be cleaned ...
 echo y | conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
@@ -279,8 +274,8 @@ pip install wrapt==1.16.0
 pip install xxhash==3.4.1
 pip install yarl==1.9.2
 pip install zipp==3.17.0
-zope.event==5.0
-zope.interface==6.1
+pip install zope.event==5.0
+pip install zope.interface==6.1
 pip install aioboto3==11.3.0
 pip install aiobotocore==2.6.0
 pip install aiodns==3.0.0
@@ -600,13 +595,13 @@ pip install zstandard==0.21.0
 
 
 echo y | conda install -c conda-forge gperf flex bison
-echo y | sudo apt install -y autoconf gperf make gcc g++ bison flex
+echo y | apt install -y autoconf gperf make gcc g++ bison flex
 git clone https://github.com/steveicarus/iverilog.git 
 cd iverilog
 autoconf 
 ./configure
 make 
-sudo make install
+make install
 cd ..
 
 pip install -e verilog_eval
@@ -618,7 +613,7 @@ cd ..
 git clone https://github.com/PyHDI/Pyverilog.git
 cd Pyverilog
 git checkout 1.3.0
-sudo apt install graphviz libgraphviz-dev
+apt install graphviz libgraphviz-dev
 pip install jinja2 ply
 pip install pytest pytest-pythonpath  
 pip install pygraphviz

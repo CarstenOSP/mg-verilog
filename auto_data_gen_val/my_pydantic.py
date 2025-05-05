@@ -22,7 +22,7 @@ class PydanticOutputParserMessages(BaseOutputParser[T]):
             match = re.search(
                 r"\{.*\}", text.strip(), re.MULTILINE | re.IGNORECASE | re.DOTALL
             )
-            json_str = ""
+            json_str = "{}"
             if match:
                 json_str = match.group()
             json_object = json.loads(json_str, strict=False)

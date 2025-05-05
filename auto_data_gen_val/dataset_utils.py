@@ -113,7 +113,7 @@ def merge_dataset(dataset_list, merged_dataset_dir):
 
 def test_dataset(dataset_path):
     dataset = load_from_disk(dataset_path)
-    tokenizer = tiktoken.encoding_for_model("gpt-3.5-turbo")
+    tokenizer = tiktoken.get_encoding("o200k_base")
     while True:
         #take user input for the index of the code to test
         idx = input("Enter the code index to test: ")
@@ -132,7 +132,7 @@ class Data4AIGChipDataset:
     def __init__(self, dataset_metadata_dir: list, 
                  packaged_dir: str = "./packaged_dataset",
                  ) -> None:
-        self.tokenizer = tiktoken.encoding_for_model("gpt-3.5-turbo")
+        self.tokenizer = tiktoken.get_encoding("o200k_base")
         self.dataset_metadata_dir = dataset_metadata_dir
         self.packaged_dir = packaged_dir
         self.bookkeeping_dir = "bookkeeping"
