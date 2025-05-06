@@ -125,9 +125,10 @@ class CodeRepoDocumentor:
                 #check the # of lines of code
                 with open(os.path.join(self.code_preprocesser.store_src_code_dir, code_src), "r") as f:
                     lines = f.readlines()
-                if len(lines) > 200:
-                    print("Skip {} because it has too many lines of code".format(code_src))
-                    continue
+                # This seems arbitrary? As long as tokens are fine, should be fine
+                # if len(lines) > 200:
+                #     print("Skip {} because it has too many lines of code".format(code_src))
+                #     continue
 
                 dependent_funcs = self.code_metadata[code_src.split(".")[0]]["module_inst_list"]
                 self.documentor.comment_a_code_file(csv_code_file, csv_comment_file, csv_new_comment_file, csv_pure_gen_comment_file, dependent_funcs=dependent_funcs)

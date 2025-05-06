@@ -1,0 +1,1822 @@
+{
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_43": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_43",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_344": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_344",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_234": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_234",
+        "module_inst_list": []
+    },
+    "stencil3d_stencil3d_Pipeline_col_bound_height": {
+        "code_name": "stencil3d_stencil3d_Pipeline_col_bound_height",
+        "module_inst_list": []
+    },
+    "ms_mergesort_merge_Pipeline_merge_label1": {
+        "code_name": "ms_mergesort_merge_Pipeline_merge_label1",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node2_Pipeline_label_417": {
+        "code_name": "bicg_bicg_node2_Pipeline_label_417",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_555": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_555",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_418": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_418",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_35": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_35",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_18015_1_Loop_VITIS_LOOP_17703_1_proc18875": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_18015_1_Loop_VITIS_LOOP_17703_1_proc18875",
+        "module_inst_list": []
+    },
+    "sha_stream_sha_transform_Pipeline_trans_lp3": {
+        "code_name": "sha_stream_sha_transform_Pipeline_trans_lp3",
+        "module_inst_list": []
+    },
+    "forward_forward_node20": {
+        "code_name": "forward_forward_node20",
+        "module_inst_list": []
+    },
+    "viterbi_viterbi_Pipeline_L_prev_state": {
+        "code_name": "viterbi_viterbi_Pipeline_L_prev_state",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_3": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_3",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_228": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_228",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_53": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_53",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_27_label_28": {
+        "code_name": "backprop_backprop_Pipeline_label_27_label_28",
+        "module_inst_list": []
+    },
+    "atax_atax_node1": {
+        "code_name": "atax_atax_node1",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_16": {
+        "code_name": "backprop_backprop_Pipeline_label_16",
+        "module_inst_list": []
+    },
+    "gesummv_gesummv_Pipeline_lp3_lp4": {
+        "code_name": "gesummv_gesummv_Pipeline_lp3_lp4",
+        "module_inst_list": []
+    },
+    "SgdLR_sw": {
+        "code_name": "SgdLR_sw",
+        "module_inst_list": []
+    },
+    "kernel_3mm_fifo_w1_d2_S_x": {
+        "code_name": "kernel_3mm_fifo_w1_d2_S_x",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node2_Pipeline_label_416": {
+        "code_name": "bicg_bicg_node2_Pipeline_label_416",
+        "module_inst_list": []
+    },
+    "sha_stream_sha_transform": {
+        "code_name": "sha_stream_sha_transform",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_1201_1_Loop_VITIS_LOOP_1154_1_proc_Pipeline_VITIS_LO": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_1201_1_Loop_VITIS_LOOP_1154_1_proc_Pipeline_VITIS_LO",
+        "module_inst_list": []
+    },
+    "viterbi_viterbi_Pipeline_L_end": {
+        "code_name": "viterbi_viterbi_Pipeline_L_end",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_534": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_534",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_4": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_4",
+        "module_inst_list": []
+    },
+    "viterbi": {
+        "code_name": "viterbi",
+        "module_inst_list": []
+    },
+    "aes256_encrypt_ecb_aes_expandEncKey": {
+        "code_name": "aes256_encrypt_ecb_aes_expandEncKey",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_1_Pipeline_up_weight_loop10": {
+        "code_name": "backprop_update_weights_1_Pipeline_up_weight_loop10",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1": {
+        "code_name": "kernel_2mm_kernel_2mm_node1",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_311": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_311",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_19": {
+        "code_name": "backprop_backprop_Pipeline_label_19",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_24": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_24",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_326": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_326",
+        "module_inst_list": []
+    },
+    "kernel_atax_kernel_atax_node2": {
+        "code_name": "kernel_atax_kernel_atax_node2",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_VITIS_LOOP_113_1_delta_matrix_weights1_loop": {
+        "code_name": "backprop_backprop_Pipeline_VITIS_LOOP_113_1_delta_matrix_weights1_loop",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_16393_1_Loop_VITIS_LOOP_14572_1_proc44": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_16393_1_Loop_VITIS_LOOP_14572_1_proc44",
+        "module_inst_list": []
+    },
+    "ms_mergesort_sparsemux_9_2_32_1_1": {
+        "code_name": "ms_mergesort_sparsemux_9_2_32_1_1",
+        "module_inst_list": []
+    },
+    "bicg_bicg_Pipeline_lprd_1_lprd_2": {
+        "code_name": "bicg_bicg_Pipeline_lprd_1_lprd_2",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_9": {
+        "code_name": "backprop_backprop_Pipeline_label_9",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_27": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_27",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_28": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_28",
+        "module_inst_list": []
+    },
+    "needwun_needwun_Pipeline_init_col": {
+        "code_name": "needwun_needwun_Pipeline_init_col",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_38": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_38",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_VITIS_LOOP_8_1": {
+        "code_name": "backprop_backprop_Pipeline_VITIS_LOOP_8_1",
+        "module_inst_list": []
+    },
+    "forward_start_for_forward_node29_U0": {
+        "code_name": "forward_start_for_forward_node29_U0",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_2": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_2",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_442": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_442",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_210": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_210",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_3": {
+        "code_name": "backprop_backprop_Pipeline_label_3",
+        "module_inst_list": []
+    },
+    "fft1D_512_fft1D_512_Pipeline_loop2": {
+        "code_name": "fft1D_512_fft1D_512_Pipeline_loop2",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_25": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_25",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_21": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_21",
+        "module_inst_list": []
+    },
+    "viterbi_viterbi_Pipeline_L_init": {
+        "code_name": "viterbi_viterbi_Pipeline_L_init",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_33_label_34": {
+        "code_name": "backprop_backprop_Pipeline_label_33_label_34",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_255": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_255",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0": {
+        "code_name": "kernel_2mm_kernel_2mm_node0",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_338": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_338",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_237": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_237",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_222": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_222",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_7": {
+        "code_name": "backprop_backprop_Pipeline_label_7",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_activations2_loop": {
+        "code_name": "backprop_backprop_Pipeline_activations2_loop",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_4_label_53": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_4_label_53",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_230_1_Loop_VITIS_LOOP_51_1_proc": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_230_1_Loop_VITIS_LOOP_51_1_proc",
+        "module_inst_list": []
+    },
+    "Gsm_LPC_Analysis_Quantization_and_coding": {
+        "code_name": "Gsm_LPC_Analysis_Quantization_and_coding",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_41": {
+        "code_name": "backprop_backprop_Pipeline_label_41",
+        "module_inst_list": []
+    },
+    "needwun_needwun_Pipeline_pad_a": {
+        "code_name": "needwun_needwun_Pipeline_pad_a",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_39_label_40": {
+        "code_name": "backprop_backprop_Pipeline_label_39_label_40",
+        "module_inst_list": []
+    },
+    "k2mm_k2mm_Pipeline_lp7": {
+        "code_name": "k2mm_k2mm_Pipeline_lp7",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_delta_matrix_weights3_loop": {
+        "code_name": "backprop_backprop_Pipeline_delta_matrix_weights3_loop",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_18453_1_Loop_VITIS_LOOP_18244_1_proc51_Pipeline_VITI": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_18453_1_Loop_VITIS_LOOP_18244_1_proc51_Pipeline_VITI",
+        "module_inst_list": []
+    },
+    "gesummv_gesummv_Pipeline_lp5": {
+        "code_name": "gesummv_gesummv_Pipeline_lp5",
+        "module_inst_list": []
+    },
+    "backprop_matrix_vector_product_with_bias_input_layer_35_36_1": {
+        "code_name": "backprop_matrix_vector_product_with_bias_input_layer_35_36_1",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_2": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_2",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_13": {
+        "code_name": "backprop_backprop_Pipeline_label_13",
+        "module_inst_list": []
+    },
+    "kernel_2mm": {
+        "code_name": "kernel_2mm",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_212": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_212",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node1_Pipeline_label_212": {
+        "code_name": "bicg_bicg_node1_Pipeline_label_212",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_231": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_231",
+        "module_inst_list": []
+    },
+    "ss_sort_hist": {
+        "code_name": "ss_sort_hist",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_421": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_421",
+        "module_inst_list": []
+    },
+    "fft1D_512_fft1D_512_Pipeline_loop11": {
+        "code_name": "fft1D_512_fft1D_512_Pipeline_loop11",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_374": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_374",
+        "module_inst_list": []
+    },
+    "syr2k_syr2k_Pipeline_lp1_lp2_lp3": {
+        "code_name": "syr2k_syr2k_Pipeline_lp1_lp2_lp3",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_35": {
+        "code_name": "backprop_backprop_Pipeline_label_35",
+        "module_inst_list": []
+    },
+    "main_graph_main_graph_Pipeline_VITIS_LOOP_899_156_VITIS_LOOP_900_157_VITIS_LOOP_901_158_VIT": {
+        "code_name": "main_graph_main_graph_Pipeline_VITIS_LOOP_899_156_VITIS_LOOP_900_157_VITIS_LOOP_901_158_VIT",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_240": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_240",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_29": {
+        "code_name": "backprop_backprop_Pipeline_label_29",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_556": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_556",
+        "module_inst_list": []
+    },
+    "sha_stream_sha_transform_Pipeline_trans_lp6": {
+        "code_name": "sha_stream_sha_transform_Pipeline_trans_lp6",
+        "module_inst_list": []
+    },
+    "gesummv_gesummv_Pipeline_lp1_lp2": {
+        "code_name": "gesummv_gesummv_Pipeline_lp1_lp2",
+        "module_inst_list": []
+    },
+    "k2mm_buff_E_out_RAM_AUTO_1R1W": {
+        "code_name": "k2mm_buff_E_out_RAM_AUTO_1R1W",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_564": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_564",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_436": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_436",
+        "module_inst_list": []
+    },
+    "backprop_get_delta_matrix_weights3": {
+        "code_name": "backprop_get_delta_matrix_weights3",
+        "module_inst_list": []
+    },
+    "viterbi_viterbi_Pipeline_L_state": {
+        "code_name": "viterbi_viterbi_Pipeline_L_state",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_18872_1_Loop_VITIS_LOOP_18720_1_proc18361": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_18872_1_Loop_VITIS_LOOP_18720_1_proc18361",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_430": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_430",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node1_Pipeline_label_25": {
+        "code_name": "bicg_bicg_node1_Pipeline_label_25",
+        "module_inst_list": []
+    },
+    "atax_atax_node0": {
+        "code_name": "atax_atax_node0",
+        "module_inst_list": []
+    },
+    "syr2k_buff_C_RAM_1WNR_AUTO_1R1W": {
+        "code_name": "syr2k_buff_C_RAM_1WNR_AUTO_1R1W",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_77": {
+        "code_name": "backprop_backprop_Pipeline_label_77",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_270": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_270",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node2_Pipeline_label_45": {
+        "code_name": "bicg_bicg_node2_Pipeline_label_45",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_12": {
+        "code_name": "backprop_backprop_Pipeline_label_12",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_20": {
+        "code_name": "backprop_backprop_Pipeline_label_20",
+        "module_inst_list": []
+    },
+    "kernel_2mm_mac_muladd_8ns_5ns_13s_13_4_1_DSP48_0": {
+        "code_name": "kernel_2mm_mac_muladd_8ns_5ns_13s_13_4_1_DSP48_0",
+        "module_inst_list": []
+    },
+    "k2mm_k2mm_Pipeline_lp7_lp8": {
+        "code_name": "k2mm_k2mm_Pipeline_lp7_lp8",
+        "module_inst_list": []
+    },
+    "fft1D_512_fft1D_512_Pipeline_loop8": {
+        "code_name": "fft1D_512_fft1D_512_Pipeline_loop8",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_59": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_59",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_225": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_225",
+        "module_inst_list": []
+    },
+    "atax_atax_Pipeline_lp3_lp4": {
+        "code_name": "atax_atax_Pipeline_lp3_lp4",
+        "module_inst_list": []
+    },
+    "fft1D_512_fft1D_512_Pipeline_loop7": {
+        "code_name": "fft1D_512_fft1D_512_Pipeline_loop7",
+        "module_inst_list": []
+    },
+    "ss_sort_local_scan": {
+        "code_name": "ss_sort_local_scan",
+        "module_inst_list": []
+    },
+    "ss_sort": {
+        "code_name": "ss_sort",
+        "module_inst_list": []
+    },
+    "ss_sort_update": {
+        "code_name": "ss_sort_update",
+        "module_inst_list": []
+    },
+    "Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_34s_34_4_1_DSP48_0": {
+        "code_name": "Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_34s_34_4_1_DSP48_0",
+        "module_inst_list": []
+    },
+    "ss_sort_last_step_scan": {
+        "code_name": "ss_sort_last_step_scan",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_1_Pipeline_VITIS_LOOP_184_6": {
+        "code_name": "backprop_update_weights_1_Pipeline_VITIS_LOOP_184_6",
+        "module_inst_list": []
+    },
+    "atax_atax_node0_Pipeline_label_115": {
+        "code_name": "atax_atax_node0_Pipeline_label_115",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node2_Pipeline_label_421": {
+        "code_name": "bicg_bicg_node2_Pipeline_label_421",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_314": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_314",
+        "module_inst_list": []
+    },
+    "atax": {
+        "code_name": "atax",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_10288_1_Loop_VITIS_LOOP_10249_1_proc": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_10288_1_Loop_VITIS_LOOP_10249_1_proc",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node2_Pipeline_label_429": {
+        "code_name": "bicg_bicg_node2_Pipeline_label_429",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_71": {
+        "code_name": "backprop_backprop_Pipeline_label_71",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_216": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_216",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node2_Pipeline_label_428": {
+        "code_name": "bicg_bicg_node2_Pipeline_label_428",
+        "module_inst_list": []
+    },
+    "syrk_syrk_Pipeline_lp4_lp5": {
+        "code_name": "syrk_syrk_Pipeline_lp4_lp5",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_32": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_32",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_262": {
+        "code_name": "backprop_backprop_Pipeline_label_262",
+        "module_inst_list": []
+    },
+    "fft1D_512_fft1D_512_Pipeline_loop9": {
+        "code_name": "fft1D_512_fft1D_512_Pipeline_loop9",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_9130_1_Loop_VITIS_LOOP_9039_1_proc_Pipeline_VITIS_LO": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_9130_1_Loop_VITIS_LOOP_9039_1_proc_Pipeline_VITIS_LO",
+        "module_inst_list": []
+    },
+    "kernel_atax_fifo_w1_d2_S": {
+        "code_name": "kernel_atax_fifo_w1_d2_S",
+        "module_inst_list": []
+    },
+    "Gsm_LPC_Analysis_Autocorrelation_16_17_Pipeline_autocol_lp2": {
+        "code_name": "Gsm_LPC_Analysis_Autocorrelation_16_17_Pipeline_autocol_lp2",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_230": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_230",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node1": {
+        "code_name": "bicg_bicg_node1",
+        "module_inst_list": []
+    },
+    "atax_atax_node0_Pipeline_label_1": {
+        "code_name": "atax_atax_node0_Pipeline_label_1",
+        "module_inst_list": []
+    },
+    "sha_stream_sha_transform_Pipeline_trans_lp5": {
+        "code_name": "sha_stream_sha_transform_Pipeline_trans_lp5",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_68_69_1_Pipeline_VITIS_LOOP_152_3_up_weight_loop5": {
+        "code_name": "backprop_update_weights_68_69_1_Pipeline_VITIS_LOOP_152_3_up_weight_loop5",
+        "module_inst_list": []
+    },
+    "gesummv_gesummv_Pipeline_lprd_2": {
+        "code_name": "gesummv_gesummv_Pipeline_lprd_2",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_463": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_463",
+        "module_inst_list": []
+    },
+    "forward_start_for_forward_node4_U0": {
+        "code_name": "forward_start_for_forward_node4_U0",
+        "module_inst_list": []
+    },
+    "bicg": {
+        "code_name": "bicg",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_56": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_56",
+        "module_inst_list": []
+    },
+    "k2mm_k2mm_Pipeline_lp1_lp2_lp3": {
+        "code_name": "k2mm_k2mm_Pipeline_lp1_lp2_lp3",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_252": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_252",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_350": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_350",
+        "module_inst_list": []
+    },
+    "stencil_stencil_Pipeline_stencil_label1_stencil_label2": {
+        "code_name": "stencil_stencil_Pipeline_stencil_label1_stencil_label2",
+        "module_inst_list": []
+    },
+    "bicg_bicg_Pipeline_lp1": {
+        "code_name": "bicg_bicg_Pipeline_lp1",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_VITIS_LOOP_66_1": {
+        "code_name": "backprop_backprop_Pipeline_VITIS_LOOP_66_1",
+        "module_inst_list": []
+    },
+    "atax_atax_node0_Pipeline_label_14": {
+        "code_name": "atax_atax_node0_Pipeline_label_14",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_24": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_24",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_5": {
+        "code_name": "backprop_backprop_Pipeline_label_5",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node1_Pipeline_label_246": {
+        "code_name": "bicg_bicg_node1_Pipeline_label_246",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_515": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_515",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_210": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_210",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_8758_1_Loop_VITIS_LOOP_8667_1_proc95_Pipeline_VITIS_s": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_8758_1_Loop_VITIS_LOOP_8667_1_proc95_Pipeline_VITIS_s",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_258": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_258",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_19_label_20": {
+        "code_name": "backprop_backprop_Pipeline_label_19_label_20",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_445": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_445",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_242": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_242",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node2_Pipeline_label_43": {
+        "code_name": "bicg_bicg_node2_Pipeline_label_43",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_VITIS_LOOP_47_4": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_VITIS_LOOP_47_4",
+        "module_inst_list": []
+    },
+    "gesummv": {
+        "code_name": "gesummv",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_4_label_58": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_4_label_58",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_14520_1_Loop_VITIS_LOOP_14500_1_proc111_Pipeline_VIT": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_14520_1_Loop_VITIS_LOOP_14500_1_proc111_Pipeline_VIT",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_231": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_231",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node1_Pipeline_label_236": {
+        "code_name": "bicg_bicg_node1_Pipeline_label_236",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_2112": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_2112",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_213": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_213",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_448": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_448",
+        "module_inst_list": []
+    },
+    "forward_forward_node82": {
+        "code_name": "forward_forward_node82",
+        "module_inst_list": []
+    },
+    "syrk": {
+        "code_name": "syrk",
+        "module_inst_list": []
+    },
+    "atax_atax_Pipeline_lprd_1_lprd_2": {
+        "code_name": "atax_atax_Pipeline_lprd_1_lprd_2",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_17_label_18": {
+        "code_name": "backprop_backprop_Pipeline_label_17_label_18",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node2": {
+        "code_name": "bicg_bicg_node2",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_228": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_228",
+        "module_inst_list": []
+    },
+    "aes256_encrypt_ecb": {
+        "code_name": "aes256_encrypt_ecb",
+        "module_inst_list": []
+    },
+    "syrk_buff_C_out_RAM_AUTO_1R1W": {
+        "code_name": "syrk_buff_C_out_RAM_AUTO_1R1W",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_222": {
+        "code_name": "backprop_backprop_Pipeline_label_222",
+        "module_inst_list": []
+    },
+    "needwun": {
+        "code_name": "needwun",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_32_33_1_Pipeline_up_weight_loop4": {
+        "code_name": "backprop_update_weights_32_33_1_Pipeline_up_weight_loop4",
+        "module_inst_list": []
+    },
+    "forward_dataflow_parent_loop_proc173": {
+        "code_name": "forward_dataflow_parent_loop_proc173",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_14359_1_v11492_RAM_T2P_BRAM_1R1W_memcore": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_14359_1_v11492_RAM_T2P_BRAM_1R1W_memcore",
+        "module_inst_list": []
+    },
+    "atax_atax_node0_Pipeline_label_110": {
+        "code_name": "atax_atax_node0_Pipeline_label_110",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node1_Pipeline_label_221": {
+        "code_name": "bicg_bicg_node1_Pipeline_label_221",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_1_label_212": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_1_label_212",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_37_38_1_Pipeline_VITIS_LOOP_126_1_up_weight_loop1": {
+        "code_name": "backprop_update_weights_37_38_1_Pipeline_VITIS_LOOP_126_1_up_weight_loop1",
+        "module_inst_list": []
+    },
+    "backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_VITIS_LOOP_26_1": {
+        "code_name": "backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_VITIS_LOOP_26_1",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_26": {
+        "code_name": "backprop_backprop_Pipeline_label_26",
+        "module_inst_list": []
+    },
+    "backprop_matrix_vector_product_with_bias_second_layer_58_59_1_Pipeline_VITIS_LOOP_26_1": {
+        "code_name": "backprop_matrix_vector_product_with_bias_second_layer_58_59_1_Pipeline_VITIS_LOOP_26_1",
+        "module_inst_list": []
+    },
+    "bicg_bicg_Pipeline_lp1_lp2": {
+        "code_name": "bicg_bicg_Pipeline_lp1_lp2",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_541": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_541",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_368": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_368",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_10_label_11": {
+        "code_name": "backprop_backprop_Pipeline_label_10_label_11",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_261": {
+        "code_name": "backprop_backprop_Pipeline_label_261",
+        "module_inst_list": []
+    },
+    "k2mm_k2mm_Pipeline_lpwr_1_lpwr_2": {
+        "code_name": "k2mm_k2mm_Pipeline_lpwr_1_lpwr_2",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_165_1_Loop_VITIS_LOOP_28_1_proc": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_165_1_Loop_VITIS_LOOP_28_1_proc",
+        "module_inst_list": []
+    },
+    "sha_stream_sha_transform_Pipeline_trans_lp4": {
+        "code_name": "sha_stream_sha_transform_Pipeline_trans_lp4",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_27": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_27",
+        "module_inst_list": []
+    },
+    "syr2k_syr2k_Pipeline_lp7_lp8": {
+        "code_name": "syr2k_syr2k_Pipeline_lp7_lp8",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_4102": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_4102",
+        "module_inst_list": []
+    },
+    "fft1D_512_fft1D_512_Pipeline_loop4": {
+        "code_name": "fft1D_512_fft1D_512_Pipeline_loop4",
+        "module_inst_list": []
+    },
+    "aes256_encrypt_ecb_aes_expandEncKey_sbox_0_RAM_1P_BRAM_1R1W": {
+        "code_name": "aes256_encrypt_ecb_aes_expandEncKey_sbox_0_RAM_1P_BRAM_1R1W",
+        "module_inst_list": []
+    },
+    "backprop_matrix_vector_product_with_bias_input_layer_35_36_1_Pipeline_VITIS_LOOP_26_1": {
+        "code_name": "backprop_matrix_vector_product_with_bias_input_layer_35_36_1_Pipeline_VITIS_LOOP_26_1",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_257": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_257",
+        "module_inst_list": []
+    },
+    "ms_mergesort_ms_mergesort_Pipeline_mergesort_label2": {
+        "code_name": "ms_mergesort_ms_mergesort_Pipeline_mergesort_label2",
+        "module_inst_list": []
+    },
+    "atax_atax_node0_Pipeline_label_0": {
+        "code_name": "atax_atax_node0_Pipeline_label_0",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_1": {
+        "code_name": "backprop_backprop_Pipeline_label_1",
+        "module_inst_list": []
+    },
+    "atax_atax_node1_Pipeline_label_2": {
+        "code_name": "atax_atax_node1_Pipeline_label_2",
+        "module_inst_list": []
+    },
+    "kernel_2mm_mac_muladd_8ns_5ns_5ns_12_4_1_DSP48_0": {
+        "code_name": "kernel_2mm_mac_muladd_8ns_5ns_5ns_12_4_1_DSP48_0",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_362": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_362",
+        "module_inst_list": []
+    },
+    "backprop": {
+        "code_name": "backprop",
+        "module_inst_list": []
+    },
+    "forward_dataflow_parent_loop_proc139": {
+        "code_name": "forward_dataflow_parent_loop_proc139",
+        "module_inst_list": []
+    },
+    "backprop_delta_weights3_RAM_AUTO_1R1W": {
+        "code_name": "backprop_delta_weights3_RAM_AUTO_1R1W",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_213": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_213",
+        "module_inst_list": []
+    },
+    "stencil_stencil_Pipeline_stencil_label2": {
+        "code_name": "stencil_stencil_Pipeline_stencil_label2",
+        "module_inst_list": []
+    },
+    "sha_stream": {
+        "code_name": "sha_stream",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_451": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_451",
+        "module_inst_list": []
+    },
+    "forward_urem_5ns_4ns_5_9_seq_1": {
+        "code_name": "forward_urem_5ns_4ns_5_9_seq_1",
+        "module_inst_list": []
+    },
+    "mvt": {
+        "code_name": "mvt",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_221": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_221",
+        "module_inst_list": []
+    },
+    "main_graph_v11507_RAM_S2P_BRAM_1R1W_memcore": {
+        "code_name": "main_graph_v11507_RAM_S2P_BRAM_1R1W_memcore",
+        "module_inst_list": []
+    },
+    "aes256_encrypt_ecb_aes_expandEncKey_Pipeline_exp1": {
+        "code_name": "aes256_encrypt_ecb_aes_expandEncKey_Pipeline_exp1",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_484": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_484",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_14": {
+        "code_name": "backprop_backprop_Pipeline_label_14",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_25": {
+        "code_name": "backprop_backprop_Pipeline_label_25",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_37_38_1_Pipeline_up_weight_loop6": {
+        "code_name": "backprop_update_weights_37_38_1_Pipeline_up_weight_loop6",
+        "module_inst_list": []
+    },
+    "forward_start_for_forward_node58_U0": {
+        "code_name": "forward_start_for_forward_node58_U0",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_5199_1_Loop_VITIS_LOOP_5164_1_proc151": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_5199_1_Loop_VITIS_LOOP_5164_1_proc151",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_2_label_3": {
+        "code_name": "backprop_backprop_Pipeline_label_2_label_3",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node2_Pipeline_label_420": {
+        "code_name": "bicg_bicg_node2_Pipeline_label_420",
+        "module_inst_list": []
+    },
+    "k3mm_k3mm_Pipeline_lp1_lp2_lp3": {
+        "code_name": "k3mm_k3mm_Pipeline_lp1_lp2_lp3",
+        "module_inst_list": []
+    },
+    "fft1D_512_fft1D_512_Pipeline_loop3": {
+        "code_name": "fft1D_512_fft1D_512_Pipeline_loop3",
+        "module_inst_list": []
+    },
+    "syrk_syrk_Pipeline_lpwr_1_lpwr_2": {
+        "code_name": "syrk_syrk_Pipeline_lpwr_1_lpwr_2",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_523": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_523",
+        "module_inst_list": []
+    },
+    "forward_forward_node37": {
+        "code_name": "forward_forward_node37",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_329": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_329",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_VITIS_LOOP_11_2": {
+        "code_name": "backprop_backprop_Pipeline_VITIS_LOOP_11_2",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_49": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_49",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_37_38_1_Pipeline_up_weight_loop4": {
+        "code_name": "backprop_update_weights_37_38_1_Pipeline_up_weight_loop4",
+        "module_inst_list": []
+    },
+    "backprop_urem_9ns_8ns_9_13_seq_1": {
+        "code_name": "backprop_urem_9ns_8ns_9_13_seq_1",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_561": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_561",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_267": {
+        "code_name": "backprop_backprop_Pipeline_label_267",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_424": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_424",
+        "module_inst_list": []
+    },
+    "stencil3d_stencil3d_Pipeline_row_bound_height": {
+        "code_name": "stencil3d_stencil3d_Pipeline_row_bound_height",
+        "module_inst_list": []
+    },
+    "k2mm_buff_C_RAM_AUTO_1R1W": {
+        "code_name": "k2mm_buff_C_RAM_AUTO_1R1W",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_8": {
+        "code_name": "backprop_backprop_Pipeline_label_8",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_264": {
+        "code_name": "backprop_backprop_Pipeline_label_264",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_25_label_26": {
+        "code_name": "backprop_backprop_Pipeline_label_25_label_26",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_VITIS_LOOP_18_11": {
+        "code_name": "backprop_backprop_Pipeline_VITIS_LOOP_18_11",
+        "module_inst_list": []
+    },
+    "fft1D_512_fft1D_512_Pipeline_loop10": {
+        "code_name": "fft1D_512_fft1D_512_Pipeline_loop10",
+        "module_inst_list": []
+    },
+    "mvt_mvt_Pipeline_lp1_lp2": {
+        "code_name": "mvt_mvt_Pipeline_lp1_lp2",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_5118_1_v3984_RAM_T2P_BRAM_1R1W_memcore": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_5118_1_v3984_RAM_T2P_BRAM_1R1W_memcore",
+        "module_inst_list": []
+    },
+    "atax_atax_node1_Pipeline_label_3": {
+        "code_name": "atax_atax_node1_Pipeline_label_3",
+        "module_inst_list": []
+    },
+    "backprop_get_oracle_activations1_64_65_1_Pipeline_activations1_loop": {
+        "code_name": "backprop_get_oracle_activations1_64_65_1_Pipeline_activations1_loop",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_559": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_559",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_4_label_5": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_4_label_5",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_294": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_294",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_55": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_55",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_211": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_211",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_220": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_220",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_21_label_22": {
+        "code_name": "backprop_backprop_Pipeline_label_21_label_22",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_335": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_335",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_6_label_7": {
+        "code_name": "backprop_backprop_Pipeline_label_6_label_7",
+        "module_inst_list": []
+    },
+    "fft1D_512_smem_RAM_AUTO_1R1W": {
+        "code_name": "fft1D_512_smem_RAM_AUTO_1R1W",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_268": {
+        "code_name": "backprop_backprop_Pipeline_label_268",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_76": {
+        "code_name": "backprop_backprop_Pipeline_label_76",
+        "module_inst_list": []
+    },
+    "main_graph_v35_RAM_S2P_BRAM_1R1W": {
+        "code_name": "main_graph_v35_RAM_S2P_BRAM_1R1W",
+        "module_inst_list": []
+    },
+    "atax_atax_node1_Pipeline_label_35": {
+        "code_name": "atax_atax_node1_Pipeline_label_35",
+        "module_inst_list": []
+    },
+    "kernel_2mm_ama_addmuladd_8ns_7ns_6ns_14ns_14_4_1": {
+        "code_name": "kernel_2mm_ama_addmuladd_8ns_7ns_6ns_14ns_14_4_1",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_2185_1_Loop_VITIS_LOOP_1283_1_proc_Pipeline_VITIS_LO": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_2185_1_Loop_VITIS_LOOP_1283_1_proc_Pipeline_VITIS_LO",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_341": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_341",
+        "module_inst_list": []
+    },
+    "backprop_v8_RAM_T2P_BRAM_1R1W": {
+        "code_name": "backprop_v8_RAM_T2P_BRAM_1R1W",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_12331_1_Loop_VITIS_LOOP_10999_1_proc_Pipeline_VITIS_s": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_12331_1_Loop_VITIS_LOOP_10999_1_proc_Pipeline_VITIS_s",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_2": {
+        "code_name": "backprop_backprop_Pipeline_label_2",
+        "module_inst_list": []
+    },
+    "forward_urem_17ns_4ns_3_21_seq_1": {
+        "code_name": "forward_urem_17ns_4ns_3_21_seq_1",
+        "module_inst_list": []
+    },
+    "kernel_bicg_mac_muladd_8ns_6ns_6ns_13_4_1": {
+        "code_name": "kernel_bicg_mac_muladd_8ns_6ns_6ns_13_4_1",
+        "module_inst_list": []
+    },
+    "syr2k_syr2k_Pipeline_lprd_1_lprd_2": {
+        "code_name": "syr2k_syr2k_Pipeline_lprd_1_lprd_2",
+        "module_inst_list": []
+    },
+    "forward_start_for_forward_node130_U0": {
+        "code_name": "forward_start_for_forward_node130_U0",
+        "module_inst_list": []
+    },
+    "atax_atax_node0_Pipeline_label_16": {
+        "code_name": "atax_atax_node0_Pipeline_label_16",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_15": {
+        "code_name": "backprop_backprop_Pipeline_label_15",
+        "module_inst_list": []
+    },
+    "atax_atax_node1_Pipeline_label_39": {
+        "code_name": "atax_atax_node1_Pipeline_label_39",
+        "module_inst_list": []
+    },
+    "gesummv_gesummv_Pipeline_lpwr": {
+        "code_name": "gesummv_gesummv_Pipeline_lpwr",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node1_Pipeline_label_2": {
+        "code_name": "bicg_bicg_node1_Pipeline_label_2",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_32": {
+        "code_name": "backprop_backprop_Pipeline_label_32",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_1_label_28": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_1_label_28",
+        "module_inst_list": []
+    },
+    "needwun_needwun_Pipeline_fill_out_fill_in": {
+        "code_name": "needwun_needwun_Pipeline_fill_out_fill_in",
+        "module_inst_list": []
+    },
+    "backprop_get_oracle_activations2_1": {
+        "code_name": "backprop_get_oracle_activations2_1",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_5": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_5",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_activations1_loop": {
+        "code_name": "backprop_backprop_Pipeline_activations1_loop",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_2610": {
+        "code_name": "backprop_backprop_Pipeline_label_2610",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_1_label_25": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_1_label_25",
+        "module_inst_list": []
+    },
+    "main_graph_main_graph_Pipeline_VITIS_LOOP_1289_293": {
+        "code_name": "main_graph_main_graph_Pipeline_VITIS_LOOP_1289_293",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_4": {
+        "code_name": "backprop_backprop_Pipeline_label_4",
+        "module_inst_list": []
+    },
+    "kernel_atax_kernel_atax_node0": {
+        "code_name": "kernel_atax_kernel_atax_node0",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_237": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_237",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_216": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_216",
+        "module_inst_list": []
+    },
+    "viterbi_llike_1_RAM_AUTO_1R1W": {
+        "code_name": "viterbi_llike_1_RAM_AUTO_1R1W",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_520": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_520",
+        "module_inst_list": []
+    },
+    "mvt_mvt_Pipeline_lp3_lp4": {
+        "code_name": "mvt_mvt_Pipeline_lp3_lp4",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_553": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_553",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_548": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_548",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_243": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_243",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_58": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_58",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node1_Pipeline_label_26": {
+        "code_name": "bicg_bicg_node1_Pipeline_label_26",
+        "module_inst_list": []
+    },
+    "kernel_2mm_ama_addmuladd_8ns_4ns_7ns_15ns_15_4_1": {
+        "code_name": "kernel_2mm_ama_addmuladd_8ns_4ns_7ns_15ns_15_4_1",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_264": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_264",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node1_Pipeline_label_222": {
+        "code_name": "bicg_bicg_node1_Pipeline_label_222",
+        "module_inst_list": []
+    },
+    "bicg_bicg_Pipeline_lpwr": {
+        "code_name": "bicg_bicg_Pipeline_lpwr",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_VITIS_LOOP_93_1_delta_matrix_weights2_loop": {
+        "code_name": "backprop_backprop_Pipeline_VITIS_LOOP_93_1_delta_matrix_weights2_loop",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_551": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_551",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_529": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_529",
+        "module_inst_list": []
+    },
+    "main_graph_main_graph_Pipeline_VITIS_LOOP_664_90_VITIS_LOOP_665_91_VITIS_LOOP_666_92": {
+        "code_name": "main_graph_main_graph_Pipeline_VITIS_LOOP_664_90_VITIS_LOOP_665_91_VITIS_LOOP_666_92",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_347": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_347",
+        "module_inst_list": []
+    },
+    "ss_sort_ss_sort_Pipeline_update_1_update_21": {
+        "code_name": "ss_sort_ss_sort_Pipeline_update_1_update_21",
+        "module_inst_list": []
+    },
+    "forward_fifo_w6_d2_S_x6_ShiftReg": {
+        "code_name": "forward_fifo_w6_d2_S_x6_ShiftReg",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_377": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_377",
+        "module_inst_list": []
+    },
+    "stencil3d_stencil3d_Pipeline_loop_height_loop_col_loop_row": {
+        "code_name": "stencil3d_stencil3d_Pipeline_loop_height_loop_col_loop_row",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_499": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_499",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_18619_1_Loop_VITIS_LOOP_18564_1_proc12245": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_18619_1_Loop_VITIS_LOOP_18564_1_proc12245",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_VITIS_LOOP_26_1": {
+        "code_name": "backprop_backprop_Pipeline_VITIS_LOOP_26_1",
+        "module_inst_list": []
+    },
+    "backprop_get_delta_matrix_weights2": {
+        "code_name": "backprop_get_delta_matrix_weights2",
+        "module_inst_list": []
+    },
+    "aes256_encrypt_ecb_aes256_encrypt_ecb_Pipeline_mix": {
+        "code_name": "aes256_encrypt_ecb_aes256_encrypt_ecb_Pipeline_mix",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_1_Pipeline_VITIS_LOOP_152_3_up_weight_loop5": {
+        "code_name": "backprop_update_weights_1_Pipeline_VITIS_LOOP_152_3_up_weight_loop5",
+        "module_inst_list": []
+    },
+    "main_graph_main_graph_Pipeline_VITIS_LOOP_575_82_VITIS_LOOP_576_83_VITIS_LOOP_577_84": {
+        "code_name": "main_graph_main_graph_Pipeline_VITIS_LOOP_575_82_VITIS_LOOP_576_83_VITIS_LOOP_577_84",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_380": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_380",
+        "module_inst_list": []
+    },
+    "main_graph_main_graph_Pipeline_VITIS_LOOP_1112_243_VITIS_LOOP_1113_244_VITIS_LOOP_1114_245_s": {
+        "code_name": "main_graph_main_graph_Pipeline_VITIS_LOOP_1112_243_VITIS_LOOP_1113_244_VITIS_LOOP_1114_245_s",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_45_46_1_Pipeline_VITIS_LOOP_152_3": {
+        "code_name": "backprop_update_weights_45_46_1_Pipeline_VITIS_LOOP_152_3",
+        "module_inst_list": []
+    },
+    "fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K1_ROM_1P_LUTRAM_1R": {
+        "code_name": "fft1D_512_sin_or_cos_double_s_fourth_order_double_sin_cos_K1_ROM_1P_LUTRAM_1R",
+        "module_inst_list": []
+    },
+    "atax_atax_Pipeline_label_0_label_1": {
+        "code_name": "atax_atax_Pipeline_label_0_label_1",
+        "module_inst_list": []
+    },
+    "backprop_urem_9ns_8ns_9_13_1": {
+        "code_name": "backprop_urem_9ns_8ns_9_13_1",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_7043_1_Loop_VITIS_LOOP_6058_1_proc109": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_7043_1_Loop_VITIS_LOOP_6058_1_proc109",
+        "module_inst_list": []
+    },
+    "backprop_urem_7ns_3ns_2_11_seq_1": {
+        "code_name": "backprop_urem_7ns_3ns_2_11_seq_1",
+        "module_inst_list": []
+    },
+    "aes256_encrypt_ecb_aes256_encrypt_ecb_Pipeline_sub": {
+        "code_name": "aes256_encrypt_ecb_aes256_encrypt_ecb_Pipeline_sub",
+        "module_inst_list": []
+    },
+    "kernel_atax_kernel_atax_node1": {
+        "code_name": "kernel_atax_kernel_atax_node1",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_332": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_332",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_266": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_266",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node1_Pipeline_label_232": {
+        "code_name": "bicg_bicg_node1_Pipeline_label_232",
+        "module_inst_list": []
+    },
+    "kernel_3mm_kernel_3mm_node1": {
+        "code_name": "kernel_3mm_kernel_3mm_node1",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node2_Pipeline_label_44": {
+        "code_name": "bicg_bicg_node2_Pipeline_label_44",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node1_Pipeline_label_230": {
+        "code_name": "bicg_bicg_node1_Pipeline_label_230",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_460": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_460",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_6846_1_Loop_VITIS_LOOP_6767_1_proc": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_6846_1_Loop_VITIS_LOOP_6767_1_proc",
+        "module_inst_list": []
+    },
+    "aes256_encrypt_ecb_aes_expandEncKey_sbox_6_RAM_1P_BRAM_1R1W": {
+        "code_name": "aes256_encrypt_ecb_aes_expandEncKey_sbox_6_RAM_1P_BRAM_1R1W",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node2_Pipeline_label_42": {
+        "code_name": "bicg_bicg_node2_Pipeline_label_42",
+        "module_inst_list": []
+    },
+    "kernel_3mm_kernel_3mm_node0": {
+        "code_name": "kernel_3mm_kernel_3mm_node0",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_29": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_29",
+        "module_inst_list": []
+    },
+    "main_graph_main_graph_Pipeline_VITIS_LOOP_538_103_VITIS_LOOP_539_104_VITIS_LOOP_540_105": {
+        "code_name": "main_graph_main_graph_Pipeline_VITIS_LOOP_538_103_VITIS_LOOP_539_104_VITIS_LOOP_540_105",
+        "module_inst_list": []
+    },
+    "kernel_2mm_ama_addmuladd_8ns_6ns_7ns_15ns_15_4_1": {
+        "code_name": "kernel_2mm_ama_addmuladd_8ns_6ns_7ns_15ns_15_4_1",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_522": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_522",
+        "module_inst_list": []
+    },
+    "syrk_buff_B_RAM_AUTO_1R1W": {
+        "code_name": "syrk_buff_B_RAM_AUTO_1R1W",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_1_label_2": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_1_label_2",
+        "module_inst_list": []
+    },
+    "forward_dataflow_parent_loop_proc60": {
+        "code_name": "forward_dataflow_parent_loop_proc60",
+        "module_inst_list": []
+    },
+    "fft1D_512_mul_170s_53ns_170_5_1": {
+        "code_name": "fft1D_512_mul_170s_53ns_170_5_1",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_22": {
+        "code_name": "backprop_backprop_Pipeline_label_22",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_224": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_224",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_1_Pipeline_VITIS_LOOP_126_1_up_weight_loop1": {
+        "code_name": "backprop_update_weights_1_Pipeline_VITIS_LOOP_126_1_up_weight_loop1",
+        "module_inst_list": []
+    },
+    "syr2k_syr2k_Pipeline_lp7": {
+        "code_name": "syr2k_syr2k_Pipeline_lp7",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_412": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_412",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node0": {
+        "code_name": "bicg_bicg_node0",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_276": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_276",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_277": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_277",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_282": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_282",
+        "module_inst_list": []
+    },
+    "atax_atax_node1_Pipeline_label_37": {
+        "code_name": "atax_atax_node1_Pipeline_label_37",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_365": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_365",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_4165_1_v3354_RAM_T2P_BRAM_1R1W_memcore": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_4165_1_v3354_RAM_T2P_BRAM_1R1W_memcore",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_550": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_550",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_14520_1_Loop_VITIS_LOOP_14401_1_proc112": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_14520_1_Loop_VITIS_LOOP_14401_1_proc112",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_19896_1_Loop_VITIS_LOOP_19825_1_proc42": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_19896_1_Loop_VITIS_LOOP_19825_1_proc42",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_26": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_26",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_221": {
+        "code_name": "backprop_backprop_Pipeline_label_221",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_3869_1_Loop_VITIS_LOOP_3838_1_proc": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_3869_1_Loop_VITIS_LOOP_3838_1_proc",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_VITIS_LOOP_55_1_mvp_product_loop1": {
+        "code_name": "backprop_backprop_Pipeline_VITIS_LOOP_55_1_mvp_product_loop1",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_320": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_320",
+        "module_inst_list": []
+    },
+    "main_graph_main_graph_Pipeline_VITIS_LOOP_793_127_VITIS_LOOP_794_128_VITIS_LOOP_795_129": {
+        "code_name": "main_graph_main_graph_Pipeline_VITIS_LOOP_793_127_VITIS_LOOP_794_128_VITIS_LOOP_795_129",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_VITIS_LOOP_297_33": {
+        "code_name": "backprop_backprop_Pipeline_VITIS_LOOP_297_33",
+        "module_inst_list": []
+    },
+    "sha_stream_sha_transform_Pipeline_trans_lp2": {
+        "code_name": "sha_stream_sha_transform_Pipeline_trans_lp2",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_265": {
+        "code_name": "backprop_backprop_Pipeline_label_265",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_250": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_250",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_37_38_1_Pipeline_VITIS_LOOP_184_6": {
+        "code_name": "backprop_update_weights_37_38_1_Pipeline_VITIS_LOOP_184_6",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node2_Pipeline_label_431": {
+        "code_name": "bicg_bicg_node2_Pipeline_label_431",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_VITIS_LOOP_44_1": {
+        "code_name": "backprop_backprop_Pipeline_VITIS_LOOP_44_1",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_68_69_1_Pipeline_up_weight_loop9": {
+        "code_name": "backprop_update_weights_68_69_1_Pipeline_up_weight_loop9",
+        "module_inst_list": []
+    },
+    "bbgemm": {
+        "code_name": "bbgemm",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_415": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_415",
+        "module_inst_list": []
+    },
+    "syrk_syrk_Pipeline_lprd_1_lprd_2": {
+        "code_name": "syrk_syrk_Pipeline_lprd_1_lprd_2",
+        "module_inst_list": []
+    },
+    "bicg_bicg_node2_Pipeline_label_433": {
+        "code_name": "bicg_bicg_node2_Pipeline_label_433",
+        "module_inst_list": []
+    },
+    "main_graph_main_graph_Pipeline_VITIS_LOOP_467_82_VITIS_LOOP_468_83_VITIS_LOOP_469_84_VITIS_s": {
+        "code_name": "main_graph_main_graph_Pipeline_VITIS_LOOP_467_82_VITIS_LOOP_468_83_VITIS_LOOP_469_84_VITIS_s",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_46": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_46",
+        "module_inst_list": []
+    },
+    "kernel_3mm_kernel_3mm_node2": {
+        "code_name": "kernel_3mm_kernel_3mm_node2",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_14362_1_Loop_VITIS_LOOP_14065_1_proc54_Pipeline_VITI": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_14362_1_Loop_VITIS_LOOP_14065_1_proc54_Pipeline_VITI",
+        "module_inst_list": []
+    },
+    "stencil3d": {
+        "code_name": "stencil3d",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_14528_1_Loop_VITIS_LOOP_14501_1_proc49": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_14528_1_Loop_VITIS_LOOP_14501_1_proc49",
+        "module_inst_list": []
+    },
+    "forward_start_for_forward_node33_U0": {
+        "code_name": "forward_start_for_forward_node33_U0",
+        "module_inst_list": []
+    },
+    "mvt_mvt_Pipeline_lprd_1_lprd_2": {
+        "code_name": "mvt_mvt_Pipeline_lprd_1_lprd_2",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_14520_1_Loop_VITIS_LOOP_14481_1_proc_Pipeline_VITIS_s": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_14520_1_Loop_VITIS_LOOP_14481_1_proc_Pipeline_VITIS_s",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_57": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_57",
+        "module_inst_list": []
+    },
+    "syr2k_syr2k_Pipeline_lpwr_1_lpwr_2": {
+        "code_name": "syr2k_syr2k_Pipeline_lpwr_1_lpwr_2",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_20934_1_Loop_VITIS_LOOP_20541_1_proc34_Pipeline_VITI": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_20934_1_Loop_VITIS_LOOP_20541_1_proc34_Pipeline_VITI",
+        "module_inst_list": []
+    },
+    "stencil3d_stencil3d_Pipeline_loop_row": {
+        "code_name": "stencil3d_stencil3d_Pipeline_loop_row",
+        "module_inst_list": []
+    },
+    "ms_mergesort": {
+        "code_name": "ms_mergesort",
+        "module_inst_list": []
+    },
+    "needwun_needwun_Pipeline_fill_in": {
+        "code_name": "needwun_needwun_Pipeline_fill_in",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_514": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_514",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_5374_1_Loop_VITIS_LOOP_5203_1_proc49_Pipeline_VITIS_s": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_5374_1_Loop_VITIS_LOOP_5203_1_proc49_Pipeline_VITIS_s",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_4579_1_Loop_VITIS_LOOP_4535_1_proc160": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_4579_1_Loop_VITIS_LOOP_4535_1_proc160",
+        "module_inst_list": []
+    },
+    "main_graph_main_graph_Pipeline_VITIS_LOOP_1243_253_VITIS_LOOP_1244_254_VITIS_LOOP_1245_255": {
+        "code_name": "main_graph_main_graph_Pipeline_VITIS_LOOP_1243_253_VITIS_LOOP_1244_254_VITIS_LOOP_1245_255",
+        "module_inst_list": []
+    },
+    "ss_sort_ss_sort_Pipeline_hist_11": {
+        "code_name": "ss_sort_ss_sort_Pipeline_hist_11",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_511": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_511",
+        "module_inst_list": []
+    },
+    "aes256_encrypt_ecb_aes256_encrypt_ecb_Pipeline_ecb2": {
+        "code_name": "aes256_encrypt_ecb_aes256_encrypt_ecb_Pipeline_ecb2",
+        "module_inst_list": []
+    },
+    "forward_ama_addmuladd_9ns_5ns_10ns_10ns_19_4_1_DSP48_0": {
+        "code_name": "forward_ama_addmuladd_9ns_5ns_10ns_10ns_19_4_1_DSP48_0",
+        "module_inst_list": []
+    },
+    "backprop_matrix_vector_product_with_bias_input_layer_35_36_1_Pipeline_mvp_product_input_l": {
+        "code_name": "backprop_matrix_vector_product_with_bias_input_layer_35_36_1_Pipeline_mvp_product_input_l",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_6": {
+        "code_name": "backprop_backprop_Pipeline_label_6",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_32_33_1_Pipeline_up_weight_loop9": {
+        "code_name": "backprop_update_weights_32_33_1_Pipeline_up_weight_loop9",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_518": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_518",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_353": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_353",
+        "module_inst_list": []
+    },
+    "aes256_encrypt_ecb_aes_subBytes_Pipeline_alog": {
+        "code_name": "aes256_encrypt_ecb_aes_subBytes_Pipeline_alog",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_19060_1": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_19060_1",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_68_69_1_Pipeline_VITIS_LOOP_184_6": {
+        "code_name": "backprop_update_weights_68_69_1_Pipeline_VITIS_LOOP_184_6",
+        "module_inst_list": []
+    },
+    "syrk_syrk_Pipeline_lp1_lp2_lp3": {
+        "code_name": "syrk_syrk_Pipeline_lp1_lp2_lp3",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_389": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_389",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_15568_1_Loop_VITIS_LOOP_15359_1_proc71": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_15568_1_Loop_VITIS_LOOP_15359_1_proc71",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_6026_1_Loop_VITIS_LOOP_5864_1_proc133": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_6026_1_Loop_VITIS_LOOP_5864_1_proc133",
+        "module_inst_list": []
+    },
+    "atax_buff_A_RAM_AUTO_1R1W": {
+        "code_name": "atax_buff_A_RAM_AUTO_1R1W",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_223": {
+        "code_name": "backprop_backprop_Pipeline_label_223",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_VITIS_LOOP_26_12": {
+        "code_name": "backprop_backprop_Pipeline_VITIS_LOOP_26_12",
+        "module_inst_list": []
+    },
+    "aes256_encrypt_ecb_aes256_encrypt_ecb_Pipeline_cpkey": {
+        "code_name": "aes256_encrypt_ecb_aes256_encrypt_ecb_Pipeline_cpkey",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_mvp_product_loop2": {
+        "code_name": "backprop_backprop_Pipeline_mvp_product_loop2",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_433": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_433",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_214": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_214",
+        "module_inst_list": []
+    },
+    "ss_sort_ss_sort_Pipeline_hist_1_hist_2": {
+        "code_name": "ss_sort_ss_sort_Pipeline_hist_1_hist_2",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_371": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_371",
+        "module_inst_list": []
+    },
+    "ss_sort_ss_sort_Pipeline_hist_1_hist_21": {
+        "code_name": "ss_sort_ss_sort_Pipeline_hist_1_hist_21",
+        "module_inst_list": []
+    },
+    "backprop_urem_8ns_4ns_3_12_1": {
+        "code_name": "backprop_urem_8ns_4ns_3_12_1",
+        "module_inst_list": []
+    },
+    "backprop_update_weights_68_69_1_Pipeline_VITIS_LOOP_140_2_up_weight_loop3": {
+        "code_name": "backprop_update_weights_68_69_1_Pipeline_VITIS_LOOP_140_2_up_weight_loop3",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_19896_1_Loop_VITIS_LOOP_19859_1_proc43_Pipeline_VITI": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_19896_1_Loop_VITIS_LOOP_19859_1_proc43_Pipeline_VITI",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_VITIS_LOOP_202_20": {
+        "code_name": "backprop_backprop_Pipeline_VITIS_LOOP_202_20",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node0_Pipeline_label_219": {
+        "code_name": "kernel_2mm_kernel_2mm_node0_Pipeline_label_219",
+        "module_inst_list": []
+    },
+    "backprop_matrix_vector_product_with_bias_input_layer_56_57_1_Pipeline_VITIS_LOOP_26_1": {
+        "code_name": "backprop_matrix_vector_product_with_bias_input_layer_56_57_1_Pipeline_VITIS_LOOP_26_1",
+        "module_inst_list": []
+    },
+    "atax_atax_node1_Pipeline_label_33": {
+        "code_name": "atax_atax_node1_Pipeline_label_33",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_label_10": {
+        "code_name": "backprop_backprop_Pipeline_label_10",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_14333_1_Loop_VITIS_LOOP_12975_1_proc": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_14333_1_Loop_VITIS_LOOP_12975_1_proc",
+        "module_inst_list": []
+    },
+    "kernel_2mm_ama_addmuladd_8ns_5ns_8ns_8ns_16_4_1": {
+        "code_name": "kernel_2mm_ama_addmuladd_8ns_5ns_8ns_8ns_16_4_1",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_11446_1_Loop_VITIS_LOOP_11355_1_proc_Pipeline_VITIS_s": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_11446_1_Loop_VITIS_LOOP_11355_1_proc_Pipeline_VITIS_s",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_3116": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_3116",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_527": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_527",
+        "module_inst_list": []
+    },
+    "SgdLR_sw_SgdLR_sw_Pipeline_label_457": {
+        "code_name": "SgdLR_sw_SgdLR_sw_Pipeline_label_457",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_11563_1_Loop_VITIS_LOOP_11394_1_proc64": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_11563_1_Loop_VITIS_LOOP_11394_1_proc64",
+        "module_inst_list": []
+    },
+    "backprop_backprop_Pipeline_VITIS_LOOP_18_13": {
+        "code_name": "backprop_backprop_Pipeline_VITIS_LOOP_18_13",
+        "module_inst_list": []
+    },
+    "forward_dataflow_in_loop_VITIS_LOOP_14528_1_Loop_VITIS_LOOP_14415_1_proc50": {
+        "code_name": "forward_dataflow_in_loop_VITIS_LOOP_14528_1_Loop_VITIS_LOOP_14415_1_proc50",
+        "module_inst_list": []
+    },
+    "backprop_matrix_vector_product_with_bias_second_layer_58_59_1": {
+        "code_name": "backprop_matrix_vector_product_with_bias_second_layer_58_59_1",
+        "module_inst_list": []
+    },
+    "kernel_2mm_kernel_2mm_node1_Pipeline_label_513": {
+        "code_name": "kernel_2mm_kernel_2mm_node1_Pipeline_label_513",
+        "module_inst_list": []
+    }
+}

@@ -1,0 +1,350 @@
+
+module forward_dataflow_in_loop_VITIS_LOOP_512_1_Loop_VITIS_LOOP_222_1_proc66 (ap_clk,ap_rst,ap_start,ap_done,ap_continue,ap_idle,ap_ready,v9041_3_address0,v9041_3_ce0,v9041_3_we0,v9041_3_d0,v9041_2_address0,v9041_2_ce0,v9041_2_we0,v9041_2_d0,v9041_1_address0,v9041_1_ce0,v9041_1_we0,v9041_1_d0,v9041_0_address0,v9041_0_ce0,v9041_0_we0,v9041_0_d0,v244_3_i_address0,v244_3_i_ce0,v244_3_i_q0,p_read,v244_2_i_address0,v244_2_i_ce0,v244_2_i_q0,v244_1_i_address0,v244_1_i_ce0,v244_1_i_q0,v244_i_address0,v244_i_ce0,v244_i_q0);  
+parameter    ap_ST_fsm_pp0_stage0 = 1'd1;
+input   ap_clk;
+input   ap_rst;
+input   ap_start;
+output   ap_done;
+input   ap_continue;
+output   ap_idle;
+output   ap_ready;
+output  [9:0] v9041_3_address0;
+output   v9041_3_ce0;
+output   v9041_3_we0;
+output  [7:0] v9041_3_d0;
+output  [9:0] v9041_2_address0;
+output   v9041_2_ce0;
+output   v9041_2_we0;
+output  [7:0] v9041_2_d0;
+output  [9:0] v9041_1_address0;
+output   v9041_1_ce0;
+output   v9041_1_we0;
+output  [7:0] v9041_1_d0;
+output  [9:0] v9041_0_address0;
+output   v9041_0_ce0;
+output   v9041_0_we0;
+output  [7:0] v9041_0_d0;
+output  [2:0] v244_3_i_address0;
+output   v244_3_i_ce0;
+input  [7:0] v244_3_i_q0;
+input  [14:0] p_read;
+output  [2:0] v244_2_i_address0;
+output   v244_2_i_ce0;
+input  [7:0] v244_2_i_q0;
+output  [2:0] v244_1_i_address0;
+output   v244_1_i_ce0;
+input  [7:0] v244_1_i_q0;
+output  [2:0] v244_i_address0;
+output   v244_i_ce0;
+input  [7:0] v244_i_q0;
+reg ap_idle;
+(* fsm_encoding = "none" *) reg   [0:0] ap_CS_fsm;
+wire    ap_CS_fsm_pp0_stage0;
+wire    ap_enable_reg_pp0_iter0;
+reg    ap_enable_reg_pp0_iter1;
+reg    ap_idle_pp0;
+reg    ap_done_reg;
+reg    ap_block_state1_pp0_stage0_iter0;
+reg    ap_block_pp0_stage0_subdone;
+wire   [0:0] tmp_fu_250_p3;
+reg    ap_condition_exit_pp0_iter0_stage0;
+wire    ap_loop_exit_ready;
+reg    ap_ready_int;
+wire   [11:0] rem_i_fu_202_p3;
+reg   [11:0] rem_i_reg_308;
+reg    ap_block_pp0_stage0_11001;
+wire   [9:0] shl_ln_fu_210_p3;
+reg   [9:0] shl_ln_reg_313;
+reg   [5:0] v8345_load_reg_318;
+wire   [3:0] lshr_ln_fu_226_p4;
+reg   [3:0] lshr_ln_reg_323;
+wire   [63:0] zext_ln222_2_fu_236_p1;
+wire    ap_block_pp0_stage0;
+wire   [63:0] zext_ln225_fu_279_p1;
+wire   [63:0] zext_ln227_fu_294_p1;
+reg   [5:0] v8345_fu_80;
+wire   [5:0] v83_fu_244_p2;
+wire    ap_loop_init;
+reg   [5:0] ap_sig_allocacmp_v8345_load;
+reg    v244_3_i_ce0_local;
+reg    v244_2_i_ce0_local;
+reg    v244_1_i_ce0_local;
+reg    v244_i_ce0_local;
+reg    v9041_0_we0_local;
+reg    v9041_0_ce0_local;
+reg    v9041_1_we0_local;
+reg    v9041_1_ce0_local;
+reg    v9041_2_we0_local;
+reg    v9041_2_ce0_local;
+reg    v9041_3_we0_local;
+reg    v9041_3_ce0_local;
+wire   [6:0] empty_fu_198_p1;
+wire   [11:0] zext_ln222_fu_263_p1;
+wire   [9:0] zext_ln222_1_fu_266_p1;
+wire   [9:0] add_ln225_1_fu_274_p2;
+wire   [11:0] add_ln225_fu_269_p2;
+wire   [9:0] lshr_ln8_fu_284_p4;
+wire    ap_continue_int;
+reg    ap_done_int;
+reg    ap_loop_exit_ready_pp0_iter1_reg;
+reg   [0:0] ap_NS_fsm;
+wire    ap_enable_pp0;
+wire    ap_start_int;
+wire    ap_ready_sig;
+wire    ap_done_sig;
+reg    ap_condition_146;
+wire    ap_ce_reg;
+initial begin
+#0 ap_CS_fsm = 1'd1;
+#0 ap_enable_reg_pp0_iter1 = 1'b0;
+#0 ap_done_reg = 1'b0;
+#0 v8345_fu_80 = 6'd0;
+end
+forward_flow_control_loop_pipe flow_control_loop_pipe_U(.ap_clk(ap_clk),.ap_rst(ap_rst),.ap_start(ap_start),.ap_ready(ap_ready_sig),.ap_done(ap_done_sig),.ap_start_int(ap_start_int),.ap_loop_init(ap_loop_init),.ap_ready_int(ap_ready_int),.ap_loop_exit_ready(ap_condition_exit_pp0_iter0_stage0),.ap_loop_exit_done(ap_done_int),.ap_continue_int(ap_continue_int),.ap_done_int(ap_done_int),.ap_continue(ap_continue));
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        ap_CS_fsm <= ap_ST_fsm_pp0_stage0;
+    end else begin
+        ap_CS_fsm <= ap_NS_fsm;
+    end
+end
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        ap_done_reg <= 1'b0;
+    end else begin
+        if ((ap_continue_int == 1'b1)) begin
+            ap_done_reg <= 1'b0;
+        end else if (((1'b0 == ap_block_pp0_stage0_subdone) & (ap_loop_exit_ready_pp0_iter1_reg == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+            ap_done_reg <= 1'b1;
+        end
+    end
+end
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        ap_enable_reg_pp0_iter1 <= 1'b0;
+    end else begin
+        if (((1'b0 == ap_block_pp0_stage0_subdone) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+            ap_enable_reg_pp0_iter1 <= ap_start_int;
+        end
+    end
+end
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_pp0_stage0)) begin
+        if (((ap_loop_exit_ready == 1'b0) & (1'b0 == ap_block_pp0_stage0_subdone))) begin
+            ap_loop_exit_ready_pp0_iter1_reg <= 1'b0;
+        end else if ((1'b0 == ap_block_pp0_stage0_11001)) begin
+            ap_loop_exit_ready_pp0_iter1_reg <= ap_loop_exit_ready;
+        end
+    end
+end
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_condition_146)) begin
+        v8345_fu_80 <= v83_fu_244_p2;
+    end
+end
+always @ (posedge ap_clk) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        lshr_ln_reg_323 <= {{ap_sig_allocacmp_v8345_load[5:2]}};
+        rem_i_reg_308[11 : 5] <= rem_i_fu_202_p3[11 : 5];
+        shl_ln_reg_313[9 : 3] <= shl_ln_fu_210_p3[9 : 3];
+        v8345_load_reg_318 <= ap_sig_allocacmp_v8345_load;
+    end
+end
+always @ (*) begin
+    if (((tmp_fu_250_p3 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        ap_condition_exit_pp0_iter0_stage0 = 1'b1;
+    end else begin
+        ap_condition_exit_pp0_iter0_stage0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_subdone) & (ap_loop_exit_ready_pp0_iter1_reg == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        ap_done_int = 1'b1;
+    end else begin
+        ap_done_int = ap_done_reg;
+    end
+end
+always @ (*) begin
+    if (((ap_idle_pp0 == 1'b1) & (ap_start_int == 1'b0) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        ap_idle = 1'b1;
+    end else begin
+        ap_idle = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((ap_enable_reg_pp0_iter1 == 1'b0) & (ap_enable_reg_pp0_iter0 == 1'b0))) begin
+        ap_idle_pp0 = 1'b1;
+    end else begin
+        ap_idle_pp0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_subdone) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        ap_ready_int = 1'b1;
+    end else begin
+        ap_ready_int = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0) & (ap_loop_init == 1'b1))) begin
+        ap_sig_allocacmp_v8345_load = 6'd0;
+    end else begin
+        ap_sig_allocacmp_v8345_load = v8345_fu_80;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        v244_1_i_ce0_local = 1'b1;
+    end else begin
+        v244_1_i_ce0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        v244_2_i_ce0_local = 1'b1;
+    end else begin
+        v244_2_i_ce0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        v244_3_i_ce0_local = 1'b1;
+    end else begin
+        v244_3_i_ce0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        v244_i_ce0_local = 1'b1;
+    end else begin
+        v244_i_ce0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        v9041_0_ce0_local = 1'b1;
+    end else begin
+        v9041_0_ce0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        v9041_0_we0_local = 1'b1;
+    end else begin
+        v9041_0_we0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        v9041_1_ce0_local = 1'b1;
+    end else begin
+        v9041_1_ce0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        v9041_1_we0_local = 1'b1;
+    end else begin
+        v9041_1_we0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        v9041_2_ce0_local = 1'b1;
+    end else begin
+        v9041_2_ce0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        v9041_2_we0_local = 1'b1;
+    end else begin
+        v9041_2_we0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        v9041_3_ce0_local = 1'b1;
+    end else begin
+        v9041_3_ce0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        v9041_3_we0_local = 1'b1;
+    end else begin
+        v9041_3_we0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    case (ap_CS_fsm)
+        ap_ST_fsm_pp0_stage0 : begin
+            ap_NS_fsm = ap_ST_fsm_pp0_stage0;
+        end
+        default : begin
+            ap_NS_fsm = 'bx;
+        end
+    endcase
+end
+assign add_ln225_1_fu_274_p2 = (shl_ln_reg_313 + zext_ln222_1_fu_266_p1);
+assign add_ln225_fu_269_p2 = (rem_i_reg_308 + zext_ln222_fu_263_p1);
+assign ap_CS_fsm_pp0_stage0 = ap_CS_fsm[32'd0];
+assign ap_block_pp0_stage0 = ~(1'b1 == 1'b1);
+always @ (*) begin
+    ap_block_pp0_stage0_11001 = ((ap_done_reg == 1'b1) | ((ap_start_int == 1'b1) & (1'b1 == ap_block_state1_pp0_stage0_iter0)));
+end
+always @ (*) begin
+    ap_block_pp0_stage0_subdone = ((ap_done_reg == 1'b1) | ((ap_start_int == 1'b1) & (1'b1 == ap_block_state1_pp0_stage0_iter0)));
+end
+always @ (*) begin
+    ap_block_state1_pp0_stage0_iter0 = (ap_done_reg == 1'b1);
+end
+always @ (*) begin
+    ap_condition_146 = ((1'b0 == ap_block_pp0_stage0_11001) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0));
+end
+assign ap_done = ap_done_sig;
+assign ap_enable_pp0 = (ap_idle_pp0 ^ 1'b1);
+assign ap_enable_reg_pp0_iter0 = ap_start_int;
+assign ap_loop_exit_ready = ap_condition_exit_pp0_iter0_stage0;
+assign ap_ready = ap_ready_sig;
+assign empty_fu_198_p1 = p_read[6:0];
+assign lshr_ln8_fu_284_p4 = {{add_ln225_fu_269_p2[11:2]}};
+assign lshr_ln_fu_226_p4 = {{ap_sig_allocacmp_v8345_load[5:2]}};
+assign rem_i_fu_202_p3 = {{empty_fu_198_p1}, {5'd0}};
+assign shl_ln_fu_210_p3 = {{empty_fu_198_p1}, {3'd0}};
+assign tmp_fu_250_p3 = v83_fu_244_p2[32'd5];
+assign v244_1_i_address0 = zext_ln222_2_fu_236_p1;
+assign v244_1_i_ce0 = v244_1_i_ce0_local;
+assign v244_2_i_address0 = zext_ln222_2_fu_236_p1;
+assign v244_2_i_ce0 = v244_2_i_ce0_local;
+assign v244_3_i_address0 = zext_ln222_2_fu_236_p1;
+assign v244_3_i_ce0 = v244_3_i_ce0_local;
+assign v244_i_address0 = zext_ln222_2_fu_236_p1;
+assign v244_i_ce0 = v244_i_ce0_local;
+assign v83_fu_244_p2 = (ap_sig_allocacmp_v8345_load + 6'd4);
+assign v9041_0_address0 = zext_ln225_fu_279_p1;
+assign v9041_0_ce0 = v9041_0_ce0_local;
+assign v9041_0_d0 = v244_3_i_q0;
+assign v9041_0_we0 = v9041_0_we0_local;
+assign v9041_1_address0 = zext_ln227_fu_294_p1;
+assign v9041_1_ce0 = v9041_1_ce0_local;
+assign v9041_1_d0 = v244_2_i_q0;
+assign v9041_1_we0 = v9041_1_we0_local;
+assign v9041_2_address0 = zext_ln227_fu_294_p1;
+assign v9041_2_ce0 = v9041_2_ce0_local;
+assign v9041_2_d0 = v244_1_i_q0;
+assign v9041_2_we0 = v9041_2_we0_local;
+assign v9041_3_address0 = zext_ln227_fu_294_p1;
+assign v9041_3_ce0 = v9041_3_ce0_local;
+assign v9041_3_d0 = v244_i_q0;
+assign v9041_3_we0 = v9041_3_we0_local;
+assign zext_ln222_1_fu_266_p1 = lshr_ln_reg_323;
+assign zext_ln222_2_fu_236_p1 = lshr_ln_fu_226_p4;
+assign zext_ln222_fu_263_p1 = v8345_load_reg_318;
+assign zext_ln225_fu_279_p1 = add_ln225_1_fu_274_p2;
+assign zext_ln227_fu_294_p1 = lshr_ln8_fu_284_p4;
+always @ (posedge ap_clk) begin
+    rem_i_reg_308[4:0] <= 5'b00000;
+    shl_ln_reg_313[2:0] <= 3'b000;
+end
+endmodule 

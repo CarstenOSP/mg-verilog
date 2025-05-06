@@ -1,0 +1,1149 @@
+
+module backprop_matrix_vector_product_with_bias_output_layer_60_61_1 (ap_clk,ap_rst,ap_start,ap_done,ap_idle,ap_ready,biases3_address0,biases3_ce0,biases3_q0,weights3_0_address0,weights3_0_ce0,weights3_0_q0,weights3_0_address1,weights3_0_ce1,weights3_0_q1,weights3_1_address0,weights3_1_ce0,weights3_1_q0,weights3_1_address1,weights3_1_ce1,weights3_1_q1,weights3_2_address0,weights3_2_ce0,weights3_2_q0,weights3_2_address1,weights3_2_ce1,weights3_2_q1,weights3_3_address0,weights3_3_ce0,weights3_3_q0,weights3_3_address1,weights3_3_ce1,weights3_3_q1,activations_0_i,activations_0_o,activations_0_o_ap_vld,activations_1_i,activations_1_o,activations_1_o_ap_vld,activations_2_i,activations_2_o,activations_2_o_ap_vld,input_activations_0_address0,input_activations_0_ce0,input_activations_0_q0,input_activations_0_address1,input_activations_0_ce1,input_activations_0_q1,input_activations_1_address0,input_activations_1_ce0,input_activations_1_q0,input_activations_1_address1,input_activations_1_ce1,input_activations_1_q1,input_activations_2_address0,input_activations_2_ce0,input_activations_2_q0,input_activations_2_address1,input_activations_2_ce1,input_activations_2_q1,input_activations_3_address0,input_activations_3_ce0,input_activations_3_q0,input_activations_3_address1,input_activations_3_ce1,input_activations_3_q1,grp_fu_3064_p_din0,grp_fu_3064_p_din1,grp_fu_3064_p_opcode,grp_fu_3064_p_dout0,grp_fu_3064_p_ce,grp_fu_3068_p_din0,grp_fu_3068_p_din1,grp_fu_3068_p_opcode,grp_fu_3068_p_dout0,grp_fu_3068_p_ce,grp_fu_3072_p_din0,grp_fu_3072_p_din1,grp_fu_3072_p_opcode,grp_fu_3072_p_dout0,grp_fu_3072_p_ce,grp_fu_3076_p_din0,grp_fu_3076_p_din1,grp_fu_3076_p_opcode,grp_fu_3076_p_dout0,grp_fu_3076_p_ce,grp_fu_3080_p_din0,grp_fu_3080_p_din1,grp_fu_3080_p_opcode,grp_fu_3080_p_dout0,grp_fu_3080_p_ce,grp_fu_3084_p_din0,grp_fu_3084_p_din1,grp_fu_3084_p_opcode,grp_fu_3084_p_dout0,grp_fu_3084_p_ce,grp_fu_3088_p_din0,grp_fu_3088_p_din1,grp_fu_3088_p_opcode,grp_fu_3088_p_dout0,grp_fu_3088_p_ce,grp_fu_3092_p_din0,grp_fu_3092_p_din1,grp_fu_3092_p_opcode,grp_fu_3092_p_dout0,grp_fu_3092_p_ce,grp_fu_3096_p_din0,grp_fu_3096_p_din1,grp_fu_3096_p_dout0,grp_fu_3096_p_ce,grp_fu_3100_p_din0,grp_fu_3100_p_din1,grp_fu_3100_p_dout0,grp_fu_3100_p_ce,grp_fu_3104_p_din0,grp_fu_3104_p_din1,grp_fu_3104_p_dout0,grp_fu_3104_p_ce,grp_fu_3108_p_din0,grp_fu_3108_p_din1,grp_fu_3108_p_dout0,grp_fu_3108_p_ce,grp_fu_3112_p_din0,grp_fu_3112_p_din1,grp_fu_3112_p_dout0,grp_fu_3112_p_ce,grp_fu_3116_p_din0,grp_fu_3116_p_din1,grp_fu_3116_p_dout0,grp_fu_3116_p_ce,grp_fu_3120_p_din0,grp_fu_3120_p_din1,grp_fu_3120_p_dout0,grp_fu_3120_p_ce,grp_fu_3124_p_din0,grp_fu_3124_p_din1,grp_fu_3124_p_dout0,grp_fu_3124_p_ce);  
+parameter    ap_ST_fsm_state1 = 12'd1;
+parameter    ap_ST_fsm_state2 = 12'd2;
+parameter    ap_ST_fsm_state3 = 12'd4;
+parameter    ap_ST_fsm_state4 = 12'd8;
+parameter    ap_ST_fsm_state5 = 12'd16;
+parameter    ap_ST_fsm_state6 = 12'd32;
+parameter    ap_ST_fsm_state7 = 12'd64;
+parameter    ap_ST_fsm_state8 = 12'd128;
+parameter    ap_ST_fsm_state9 = 12'd256;
+parameter    ap_ST_fsm_state10 = 12'd512;
+parameter    ap_ST_fsm_state11 = 12'd1024;
+parameter    ap_ST_fsm_state12 = 12'd2048;
+input   ap_clk;
+input   ap_rst;
+input   ap_start;
+output   ap_done;
+output   ap_idle;
+output   ap_ready;
+output  [1:0] biases3_address0;
+output   biases3_ce0;
+input  [63:0] biases3_q0;
+output  [5:0] weights3_0_address0;
+output   weights3_0_ce0;
+input  [63:0] weights3_0_q0;
+output  [5:0] weights3_0_address1;
+output   weights3_0_ce1;
+input  [63:0] weights3_0_q1;
+output  [5:0] weights3_1_address0;
+output   weights3_1_ce0;
+input  [63:0] weights3_1_q0;
+output  [5:0] weights3_1_address1;
+output   weights3_1_ce1;
+input  [63:0] weights3_1_q1;
+output  [5:0] weights3_2_address0;
+output   weights3_2_ce0;
+input  [63:0] weights3_2_q0;
+output  [5:0] weights3_2_address1;
+output   weights3_2_ce1;
+input  [63:0] weights3_2_q1;
+output  [5:0] weights3_3_address0;
+output   weights3_3_ce0;
+input  [63:0] weights3_3_q0;
+output  [5:0] weights3_3_address1;
+output   weights3_3_ce1;
+input  [63:0] weights3_3_q1;
+input  [63:0] activations_0_i;
+output  [63:0] activations_0_o;
+output   activations_0_o_ap_vld;
+input  [63:0] activations_1_i;
+output  [63:0] activations_1_o;
+output   activations_1_o_ap_vld;
+input  [63:0] activations_2_i;
+output  [63:0] activations_2_o;
+output   activations_2_o_ap_vld;
+output  [3:0] input_activations_0_address0;
+output   input_activations_0_ce0;
+input  [63:0] input_activations_0_q0;
+output  [3:0] input_activations_0_address1;
+output   input_activations_0_ce1;
+input  [63:0] input_activations_0_q1;
+output  [3:0] input_activations_1_address0;
+output   input_activations_1_ce0;
+input  [63:0] input_activations_1_q0;
+output  [3:0] input_activations_1_address1;
+output   input_activations_1_ce1;
+input  [63:0] input_activations_1_q1;
+output  [3:0] input_activations_2_address0;
+output   input_activations_2_ce0;
+input  [63:0] input_activations_2_q0;
+output  [3:0] input_activations_2_address1;
+output   input_activations_2_ce1;
+input  [63:0] input_activations_2_q1;
+output  [3:0] input_activations_3_address0;
+output   input_activations_3_ce0;
+input  [63:0] input_activations_3_q0;
+output  [3:0] input_activations_3_address1;
+output   input_activations_3_ce1;
+input  [63:0] input_activations_3_q1;
+output  [63:0] grp_fu_3064_p_din0;
+output  [63:0] grp_fu_3064_p_din1;
+output  [0:0] grp_fu_3064_p_opcode;
+input  [63:0] grp_fu_3064_p_dout0;
+output   grp_fu_3064_p_ce;
+output  [63:0] grp_fu_3068_p_din0;
+output  [63:0] grp_fu_3068_p_din1;
+output  [0:0] grp_fu_3068_p_opcode;
+input  [63:0] grp_fu_3068_p_dout0;
+output   grp_fu_3068_p_ce;
+output  [63:0] grp_fu_3072_p_din0;
+output  [63:0] grp_fu_3072_p_din1;
+output  [0:0] grp_fu_3072_p_opcode;
+input  [63:0] grp_fu_3072_p_dout0;
+output   grp_fu_3072_p_ce;
+output  [63:0] grp_fu_3076_p_din0;
+output  [63:0] grp_fu_3076_p_din1;
+output  [0:0] grp_fu_3076_p_opcode;
+input  [63:0] grp_fu_3076_p_dout0;
+output   grp_fu_3076_p_ce;
+output  [63:0] grp_fu_3080_p_din0;
+output  [63:0] grp_fu_3080_p_din1;
+output  [0:0] grp_fu_3080_p_opcode;
+input  [63:0] grp_fu_3080_p_dout0;
+output   grp_fu_3080_p_ce;
+output  [63:0] grp_fu_3084_p_din0;
+output  [63:0] grp_fu_3084_p_din1;
+output  [0:0] grp_fu_3084_p_opcode;
+input  [63:0] grp_fu_3084_p_dout0;
+output   grp_fu_3084_p_ce;
+output  [63:0] grp_fu_3088_p_din0;
+output  [63:0] grp_fu_3088_p_din1;
+output  [1:0] grp_fu_3088_p_opcode;
+input  [63:0] grp_fu_3088_p_dout0;
+output   grp_fu_3088_p_ce;
+output  [63:0] grp_fu_3092_p_din0;
+output  [63:0] grp_fu_3092_p_din1;
+output  [1:0] grp_fu_3092_p_opcode;
+input  [63:0] grp_fu_3092_p_dout0;
+output   grp_fu_3092_p_ce;
+output  [63:0] grp_fu_3096_p_din0;
+output  [63:0] grp_fu_3096_p_din1;
+input  [63:0] grp_fu_3096_p_dout0;
+output   grp_fu_3096_p_ce;
+output  [63:0] grp_fu_3100_p_din0;
+output  [63:0] grp_fu_3100_p_din1;
+input  [63:0] grp_fu_3100_p_dout0;
+output   grp_fu_3100_p_ce;
+output  [63:0] grp_fu_3104_p_din0;
+output  [63:0] grp_fu_3104_p_din1;
+input  [63:0] grp_fu_3104_p_dout0;
+output   grp_fu_3104_p_ce;
+output  [63:0] grp_fu_3108_p_din0;
+output  [63:0] grp_fu_3108_p_din1;
+input  [63:0] grp_fu_3108_p_dout0;
+output   grp_fu_3108_p_ce;
+output  [63:0] grp_fu_3112_p_din0;
+output  [63:0] grp_fu_3112_p_din1;
+input  [63:0] grp_fu_3112_p_dout0;
+output   grp_fu_3112_p_ce;
+output  [63:0] grp_fu_3116_p_din0;
+output  [63:0] grp_fu_3116_p_din1;
+input  [63:0] grp_fu_3116_p_dout0;
+output   grp_fu_3116_p_ce;
+output  [63:0] grp_fu_3120_p_din0;
+output  [63:0] grp_fu_3120_p_din1;
+input  [63:0] grp_fu_3120_p_dout0;
+output   grp_fu_3120_p_ce;
+output  [63:0] grp_fu_3124_p_din0;
+output  [63:0] grp_fu_3124_p_din1;
+input  [63:0] grp_fu_3124_p_dout0;
+output   grp_fu_3124_p_ce;
+reg ap_done;
+reg ap_idle;
+reg ap_ready;
+reg[63:0] activations_0_o;
+reg activations_0_o_ap_vld;
+reg[63:0] activations_1_o;
+reg activations_1_o_ap_vld;
+reg[63:0] activations_2_o;
+reg activations_2_o_ap_vld;
+(* fsm_encoding = "none" *) reg   [11:0] ap_CS_fsm;
+wire    ap_CS_fsm_state1;
+reg   [63:0] input_activations_0_load_reg_824;
+wire    ap_CS_fsm_state2;
+reg   [63:0] input_activations_1_load_reg_829;
+reg   [63:0] input_activations_2_load_reg_834;
+reg   [63:0] input_activations_3_load_reg_839;
+reg   [63:0] input_activations_0_load_16_reg_844;
+reg   [63:0] input_activations_1_load_16_reg_849;
+reg   [63:0] input_activations_2_load_16_reg_854;
+reg   [63:0] input_activations_3_load_16_reg_859;
+reg   [63:0] input_activations_0_load_17_reg_904;
+wire    ap_CS_fsm_state3;
+reg   [63:0] input_activations_1_load_17_reg_909;
+reg   [63:0] input_activations_2_load_17_reg_914;
+reg   [63:0] input_activations_3_load_17_reg_919;
+reg   [63:0] input_activations_0_load_18_reg_924;
+reg   [63:0] input_activations_1_load_18_reg_929;
+reg   [63:0] input_activations_2_load_18_reg_934;
+reg   [63:0] input_activations_3_load_18_reg_939;
+reg   [63:0] input_activations_0_load_19_reg_984;
+wire    ap_CS_fsm_state4;
+reg   [63:0] input_activations_1_load_19_reg_989;
+reg   [63:0] input_activations_2_load_19_reg_994;
+reg   [63:0] input_activations_3_load_19_reg_999;
+reg   [63:0] input_activations_0_load_20_reg_1004;
+reg   [63:0] input_activations_1_load_20_reg_1009;
+reg   [63:0] input_activations_2_load_20_reg_1014;
+reg   [63:0] input_activations_3_load_20_reg_1019;
+reg   [63:0] input_activations_0_load_21_reg_1064;
+wire    ap_CS_fsm_state5;
+reg   [63:0] input_activations_1_load_21_reg_1069;
+reg   [63:0] input_activations_2_load_21_reg_1074;
+reg   [63:0] input_activations_3_load_21_reg_1079;
+reg   [63:0] input_activations_0_load_22_reg_1084;
+reg   [63:0] input_activations_1_load_22_reg_1089;
+reg   [63:0] input_activations_2_load_22_reg_1094;
+reg   [63:0] input_activations_3_load_22_reg_1099;
+reg   [63:0] input_activations_0_load_23_reg_1144;
+wire    ap_CS_fsm_state6;
+reg   [63:0] input_activations_1_load_23_reg_1149;
+reg   [63:0] input_activations_2_load_23_reg_1154;
+reg   [63:0] input_activations_3_load_23_reg_1159;
+reg   [63:0] input_activations_0_load_24_reg_1164;
+reg   [63:0] input_activations_1_load_24_reg_1169;
+reg   [63:0] input_activations_2_load_24_reg_1174;
+reg   [63:0] input_activations_3_load_24_reg_1179;
+reg   [63:0] input_activations_0_load_25_reg_1224;
+wire    ap_CS_fsm_state7;
+reg   [63:0] input_activations_1_load_25_reg_1229;
+reg   [63:0] input_activations_2_load_25_reg_1234;
+reg   [63:0] input_activations_3_load_25_reg_1239;
+reg   [63:0] input_activations_0_load_26_reg_1244;
+reg   [63:0] input_activations_1_load_26_reg_1249;
+reg   [63:0] input_activations_2_load_26_reg_1254;
+reg   [63:0] input_activations_3_load_26_reg_1259;
+reg   [63:0] input_activations_0_load_27_reg_1304;
+wire    ap_CS_fsm_state8;
+reg   [63:0] input_activations_1_load_27_reg_1309;
+reg   [63:0] input_activations_2_load_27_reg_1314;
+reg   [63:0] input_activations_3_load_27_reg_1319;
+reg   [63:0] input_activations_0_load_28_reg_1324;
+reg   [63:0] input_activations_1_load_28_reg_1329;
+reg   [63:0] input_activations_2_load_28_reg_1334;
+reg   [63:0] input_activations_3_load_28_reg_1339;
+reg   [63:0] input_activations_0_load_29_reg_1384;
+wire    ap_CS_fsm_state9;
+reg   [63:0] input_activations_1_load_29_reg_1389;
+reg   [63:0] input_activations_2_load_29_reg_1394;
+reg   [63:0] input_activations_3_load_29_reg_1399;
+reg   [63:0] input_activations_0_load_30_reg_1404;
+reg   [63:0] input_activations_1_load_30_reg_1409;
+reg   [63:0] input_activations_2_load_30_reg_1414;
+reg   [63:0] input_activations_3_load_30_reg_1419;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_start;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_done;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_idle;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_ready;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_0;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_0_ap_vld;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_2;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_2_ap_vld;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_1;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_1_ap_vld;
+wire   [5:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_0_address0;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_0_ce0;
+wire   [5:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_0_address1;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_0_ce1;
+wire   [5:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_1_address0;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_1_ce0;
+wire   [5:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_1_address1;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_1_ce1;
+wire   [5:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_2_address0;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_2_ce0;
+wire   [5:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_2_address1;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_2_ce1;
+wire   [5:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_3_address0;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_3_ce0;
+wire   [5:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_3_address1;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_3_ce1;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1424_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1424_p_din1;
+wire   [0:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1424_p_opcode;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1424_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1428_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1428_p_din1;
+wire   [0:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1428_p_opcode;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1428_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1432_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1432_p_din1;
+wire   [0:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1432_p_opcode;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1432_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1436_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1436_p_din1;
+wire   [0:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1436_p_opcode;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1436_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1440_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1440_p_din1;
+wire   [0:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1440_p_opcode;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1440_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1444_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1444_p_din1;
+wire   [0:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1444_p_opcode;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1444_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1448_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1448_p_din1;
+wire   [1:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1448_p_opcode;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1448_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1452_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1452_p_din1;
+wire   [1:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1452_p_opcode;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1452_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1456_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1456_p_din1;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1456_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1460_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1460_p_din1;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1460_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1464_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1464_p_din1;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1464_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1468_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1468_p_din1;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1468_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1472_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1472_p_din1;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1472_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1476_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1476_p_din1;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1476_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1480_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1480_p_din1;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1480_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1484_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1484_p_din1;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1484_p_ce;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_start;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_done;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_idle;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_ready;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_0_o;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_0_o_ap_vld;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_2_o;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_2_o_ap_vld;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_1_o;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_1_o_ap_vld;
+wire   [1:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_biases3_address0;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_biases3_ce0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_grp_fu_1424_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_grp_fu_1424_p_din1;
+wire   [0:0] grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_grp_fu_1424_p_opcode;
+wire    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_grp_fu_1424_p_ce;
+reg    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_start_reg;
+wire    ap_CS_fsm_state10;
+reg    grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_start_reg;
+wire    ap_CS_fsm_state11;
+wire    ap_CS_fsm_state12;
+reg    input_activations_0_ce1_local;
+reg   [3:0] input_activations_0_address1_local;
+reg    input_activations_0_ce0_local;
+reg   [3:0] input_activations_0_address0_local;
+reg    input_activations_1_ce1_local;
+reg   [3:0] input_activations_1_address1_local;
+reg    input_activations_1_ce0_local;
+reg   [3:0] input_activations_1_address0_local;
+reg    input_activations_2_ce1_local;
+reg   [3:0] input_activations_2_address1_local;
+reg    input_activations_2_ce0_local;
+reg   [3:0] input_activations_2_address0_local;
+reg    input_activations_3_ce1_local;
+reg   [3:0] input_activations_3_address1_local;
+reg    input_activations_3_ce0_local;
+reg   [3:0] input_activations_3_address0_local;
+reg   [63:0] grp_fu_1424_p0;
+reg   [63:0] grp_fu_1424_p1;
+reg   [1:0] grp_fu_1424_opcode;
+reg    grp_fu_1424_ce;
+reg    grp_fu_1428_ce;
+reg    grp_fu_1432_ce;
+reg    grp_fu_1436_ce;
+reg    grp_fu_1440_ce;
+reg    grp_fu_1444_ce;
+reg    grp_fu_1448_ce;
+reg    grp_fu_1452_ce;
+reg    grp_fu_1456_ce;
+reg    grp_fu_1460_ce;
+reg    grp_fu_1464_ce;
+reg    grp_fu_1468_ce;
+reg    grp_fu_1472_ce;
+reg    grp_fu_1476_ce;
+reg    grp_fu_1480_ce;
+reg    grp_fu_1484_ce;
+reg   [11:0] ap_NS_fsm;
+reg    ap_ST_fsm_state1_blk;
+wire    ap_ST_fsm_state2_blk;
+wire    ap_ST_fsm_state3_blk;
+wire    ap_ST_fsm_state4_blk;
+wire    ap_ST_fsm_state5_blk;
+wire    ap_ST_fsm_state6_blk;
+wire    ap_ST_fsm_state7_blk;
+wire    ap_ST_fsm_state8_blk;
+wire    ap_ST_fsm_state9_blk;
+reg    ap_ST_fsm_state10_blk;
+wire    ap_ST_fsm_state11_blk;
+reg    ap_ST_fsm_state12_blk;
+wire    ap_ce_reg;
+initial begin
+#0 ap_CS_fsm = 12'd1;
+#0 grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_start_reg = 1'b0;
+#0 grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_start_reg = 1'b0;
+end
+backprop_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1 grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682(.ap_clk(ap_clk),.ap_rst(ap_rst),.ap_start(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_start),.ap_done(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_done),.ap_idle(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_idle),.ap_ready(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_ready),.activations_0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_0),.activations_0_ap_vld(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_0_ap_vld),.activations_2(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_2),.activations_2_ap_vld(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_2_ap_vld),.activations_1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_1),.activations_1_ap_vld(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_1_ap_vld),.weights3_0_address0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_0_address0),.weights3_0_ce0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_0_ce0),.weights3_0_q0(weights3_0_q0),.weights3_0_address1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_0_address1),.weights3_0_ce1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_0_ce1),.weights3_0_q1(weights3_0_q1),.input_activations_0_load(input_activations_0_load_reg_824),.weights3_1_address0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_1_address0),.weights3_1_ce0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_1_ce0),.weights3_1_q0(weights3_1_q0),.weights3_1_address1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_1_address1),.weights3_1_ce1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_1_ce1),.weights3_1_q1(weights3_1_q1),.input_activations_1_load(input_activations_1_load_reg_829),.weights3_2_address0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_2_address0),.weights3_2_ce0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_2_ce0),.weights3_2_q0(weights3_2_q0),.weights3_2_address1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_2_address1),.weights3_2_ce1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_2_ce1),.weights3_2_q1(weights3_2_q1),.input_activations_2_load(input_activations_2_load_reg_834),.weights3_3_address0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_3_address0),.weights3_3_ce0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_3_ce0),.weights3_3_q0(weights3_3_q0),.weights3_3_address1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_3_address1),.weights3_3_ce1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_3_ce1),.weights3_3_q1(weights3_3_q1),.input_activations_3_load(input_activations_3_load_reg_839),.input_activations_0_load_16(input_activations_0_load_16_reg_844),.input_activations_1_load_16(input_activations_1_load_16_reg_849),.input_activations_2_load_16(input_activations_2_load_16_reg_854),.input_activations_3_load_16(input_activations_3_load_16_reg_859),.input_activations_0_load_17(input_activations_0_load_17_reg_904),.input_activations_1_load_17(input_activations_1_load_17_reg_909),.input_activations_2_load_17(input_activations_2_load_17_reg_914),.input_activations_3_load_17(input_activations_3_load_17_reg_919),.input_activations_0_load_18(input_activations_0_load_18_reg_924),.input_activations_1_load_18(input_activations_1_load_18_reg_929),.input_activations_2_load_18(input_activations_2_load_18_reg_934),.input_activations_3_load_18(input_activations_3_load_18_reg_939),.input_activations_0_load_19(input_activations_0_load_19_reg_984),.input_activations_1_load_19(input_activations_1_load_19_reg_989),.input_activations_2_load_19(input_activations_2_load_19_reg_994),.input_activations_3_load_19(input_activations_3_load_19_reg_999),.input_activations_0_load_20(input_activations_0_load_20_reg_1004),.input_activations_1_load_20(input_activations_1_load_20_reg_1009),.input_activations_2_load_20(input_activations_2_load_20_reg_1014),.input_activations_3_load_20(input_activations_3_load_20_reg_1019),.input_activations_0_load_21(input_activations_0_load_21_reg_1064),.input_activations_1_load_21(input_activations_1_load_21_reg_1069),.input_activations_2_load_21(input_activations_2_load_21_reg_1074),.input_activations_3_load_21(input_activations_3_load_21_reg_1079),.input_activations_0_load_22(input_activations_0_load_22_reg_1084),.input_activations_1_load_22(input_activations_1_load_22_reg_1089),.input_activations_2_load_22(input_activations_2_load_22_reg_1094),.input_activations_3_load_22(input_activations_3_load_22_reg_1099),.input_activations_0_load_23(input_activations_0_load_23_reg_1144),.input_activations_1_load_23(input_activations_1_load_23_reg_1149),.input_activations_2_load_23(input_activations_2_load_23_reg_1154),.input_activations_3_load_23(input_activations_3_load_23_reg_1159),.input_activations_0_load_24(input_activations_0_load_24_reg_1164),.input_activations_1_load_24(input_activations_1_load_24_reg_1169),.input_activations_2_load_24(input_activations_2_load_24_reg_1174),.input_activations_3_load_24(input_activations_3_load_24_reg_1179),.input_activations_0_load_25(input_activations_0_load_25_reg_1224),.input_activations_1_load_25(input_activations_1_load_25_reg_1229),.input_activations_2_load_25(input_activations_2_load_25_reg_1234),.input_activations_3_load_25(input_activations_3_load_25_reg_1239),.input_activations_0_load_26(input_activations_0_load_26_reg_1244),.input_activations_1_load_26(input_activations_1_load_26_reg_1249),.input_activations_2_load_26(input_activations_2_load_26_reg_1254),.input_activations_3_load_26(input_activations_3_load_26_reg_1259),.input_activations_0_load_27(input_activations_0_load_27_reg_1304),.input_activations_1_load_27(input_activations_1_load_27_reg_1309),.input_activations_2_load_27(input_activations_2_load_27_reg_1314),.input_activations_3_load_27(input_activations_3_load_27_reg_1319),.input_activations_0_load_28(input_activations_0_load_28_reg_1324),.input_activations_1_load_28(input_activations_1_load_28_reg_1329),.input_activations_2_load_28(input_activations_2_load_28_reg_1334),.input_activations_3_load_28(input_activations_3_load_28_reg_1339),.input_activations_0_load_29(input_activations_0_load_29_reg_1384),.input_activations_1_load_29(input_activations_1_load_29_reg_1389),.input_activations_2_load_29(input_activations_2_load_29_reg_1394),.input_activations_3_load_29(input_activations_3_load_29_reg_1399),.input_activations_0_load_30(input_activations_0_load_30_reg_1404),.input_activations_1_load_30(input_activations_1_load_30_reg_1409),.input_activations_2_load_30(input_activations_2_load_30_reg_1414),.input_activations_3_load_30(input_activations_3_load_30_reg_1419),.grp_fu_1424_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1424_p_din0),.grp_fu_1424_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1424_p_din1),.grp_fu_1424_p_opcode(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1424_p_opcode),.grp_fu_1424_p_dout0(grp_fu_3064_p_dout0),.grp_fu_1424_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1424_p_ce),.grp_fu_1428_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1428_p_din0),.grp_fu_1428_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1428_p_din1),.grp_fu_1428_p_opcode(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1428_p_opcode),.grp_fu_1428_p_dout0(grp_fu_3068_p_dout0),.grp_fu_1428_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1428_p_ce),.grp_fu_1432_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1432_p_din0),.grp_fu_1432_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1432_p_din1),.grp_fu_1432_p_opcode(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1432_p_opcode),.grp_fu_1432_p_dout0(grp_fu_3072_p_dout0),.grp_fu_1432_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1432_p_ce),.grp_fu_1436_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1436_p_din0),.grp_fu_1436_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1436_p_din1),.grp_fu_1436_p_opcode(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1436_p_opcode),.grp_fu_1436_p_dout0(grp_fu_3076_p_dout0),.grp_fu_1436_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1436_p_ce),.grp_fu_1440_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1440_p_din0),.grp_fu_1440_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1440_p_din1),.grp_fu_1440_p_opcode(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1440_p_opcode),.grp_fu_1440_p_dout0(grp_fu_3080_p_dout0),.grp_fu_1440_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1440_p_ce),.grp_fu_1444_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1444_p_din0),.grp_fu_1444_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1444_p_din1),.grp_fu_1444_p_opcode(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1444_p_opcode),.grp_fu_1444_p_dout0(grp_fu_3084_p_dout0),.grp_fu_1444_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1444_p_ce),.grp_fu_1448_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1448_p_din0),.grp_fu_1448_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1448_p_din1),.grp_fu_1448_p_opcode(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1448_p_opcode),.grp_fu_1448_p_dout0(grp_fu_3088_p_dout0),.grp_fu_1448_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1448_p_ce),.grp_fu_1452_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1452_p_din0),.grp_fu_1452_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1452_p_din1),.grp_fu_1452_p_opcode(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1452_p_opcode),.grp_fu_1452_p_dout0(grp_fu_3092_p_dout0),.grp_fu_1452_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1452_p_ce),.grp_fu_1456_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1456_p_din0),.grp_fu_1456_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1456_p_din1),.grp_fu_1456_p_dout0(grp_fu_3096_p_dout0),.grp_fu_1456_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1456_p_ce),.grp_fu_1460_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1460_p_din0),.grp_fu_1460_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1460_p_din1),.grp_fu_1460_p_dout0(grp_fu_3100_p_dout0),.grp_fu_1460_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1460_p_ce),.grp_fu_1464_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1464_p_din0),.grp_fu_1464_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1464_p_din1),.grp_fu_1464_p_dout0(grp_fu_3104_p_dout0),.grp_fu_1464_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1464_p_ce),.grp_fu_1468_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1468_p_din0),.grp_fu_1468_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1468_p_din1),.grp_fu_1468_p_dout0(grp_fu_3108_p_dout0),.grp_fu_1468_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1468_p_ce),.grp_fu_1472_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1472_p_din0),.grp_fu_1472_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1472_p_din1),.grp_fu_1472_p_dout0(grp_fu_3112_p_dout0),.grp_fu_1472_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1472_p_ce),.grp_fu_1476_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1476_p_din0),.grp_fu_1476_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1476_p_din1),.grp_fu_1476_p_dout0(grp_fu_3116_p_dout0),.grp_fu_1476_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1476_p_ce),.grp_fu_1480_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1480_p_din0),.grp_fu_1480_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1480_p_din1),.grp_fu_1480_p_dout0(grp_fu_3120_p_dout0),.grp_fu_1480_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1480_p_ce),.grp_fu_1484_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1484_p_din0),.grp_fu_1484_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1484_p_din1),.grp_fu_1484_p_dout0(grp_fu_3124_p_dout0),.grp_fu_1484_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1484_p_ce));
+backprop_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1 grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772(.ap_clk(ap_clk),.ap_rst(ap_rst),.ap_start(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_start),.ap_done(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_done),.ap_idle(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_idle),.ap_ready(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_ready),.activations_0_i(activations_0_i),.activations_0_o(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_0_o),.activations_0_o_ap_vld(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_0_o_ap_vld),.activations_2_i(activations_2_i),.activations_2_o(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_2_o),.activations_2_o_ap_vld(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_2_o_ap_vld),.activations_1_i(activations_1_i),.activations_1_o(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_1_o),.activations_1_o_ap_vld(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_1_o_ap_vld),.biases3_address0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_biases3_address0),.biases3_ce0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_biases3_ce0),.biases3_q0(biases3_q0),.grp_fu_1424_p_din0(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_grp_fu_1424_p_din0),.grp_fu_1424_p_din1(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_grp_fu_1424_p_din1),.grp_fu_1424_p_opcode(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_grp_fu_1424_p_opcode),.grp_fu_1424_p_dout0(grp_fu_3064_p_dout0),.grp_fu_1424_p_ce(grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_grp_fu_1424_p_ce));
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        ap_CS_fsm <= ap_ST_fsm_state1;
+    end else begin
+        ap_CS_fsm <= ap_NS_fsm;
+    end
+end
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_start_reg <= 1'b0;
+    end else begin
+        if ((1'b1 == ap_CS_fsm_state11)) begin
+            grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_start_reg <= 1'b1;
+        end else if ((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_ready == 1'b1)) begin
+            grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_start_reg <= 1'b0;
+        end
+    end
+end
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_start_reg <= 1'b0;
+    end else begin
+        if ((1'b1 == ap_CS_fsm_state9)) begin
+            grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_start_reg <= 1'b1;
+        end else if ((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_ready == 1'b1)) begin
+            grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_start_reg <= 1'b0;
+        end
+    end
+end
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        input_activations_0_load_16_reg_844 <= input_activations_0_q0;
+        input_activations_0_load_reg_824 <= input_activations_0_q1;
+        input_activations_1_load_16_reg_849 <= input_activations_1_q0;
+        input_activations_1_load_reg_829 <= input_activations_1_q1;
+        input_activations_2_load_16_reg_854 <= input_activations_2_q0;
+        input_activations_2_load_reg_834 <= input_activations_2_q1;
+        input_activations_3_load_16_reg_859 <= input_activations_3_q0;
+        input_activations_3_load_reg_839 <= input_activations_3_q1;
+    end
+end
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        input_activations_0_load_17_reg_904 <= input_activations_0_q1;
+        input_activations_0_load_18_reg_924 <= input_activations_0_q0;
+        input_activations_1_load_17_reg_909 <= input_activations_1_q1;
+        input_activations_1_load_18_reg_929 <= input_activations_1_q0;
+        input_activations_2_load_17_reg_914 <= input_activations_2_q1;
+        input_activations_2_load_18_reg_934 <= input_activations_2_q0;
+        input_activations_3_load_17_reg_919 <= input_activations_3_q1;
+        input_activations_3_load_18_reg_939 <= input_activations_3_q0;
+    end
+end
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        input_activations_0_load_19_reg_984 <= input_activations_0_q1;
+        input_activations_0_load_20_reg_1004 <= input_activations_0_q0;
+        input_activations_1_load_19_reg_989 <= input_activations_1_q1;
+        input_activations_1_load_20_reg_1009 <= input_activations_1_q0;
+        input_activations_2_load_19_reg_994 <= input_activations_2_q1;
+        input_activations_2_load_20_reg_1014 <= input_activations_2_q0;
+        input_activations_3_load_19_reg_999 <= input_activations_3_q1;
+        input_activations_3_load_20_reg_1019 <= input_activations_3_q0;
+    end
+end
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        input_activations_0_load_21_reg_1064 <= input_activations_0_q1;
+        input_activations_0_load_22_reg_1084 <= input_activations_0_q0;
+        input_activations_1_load_21_reg_1069 <= input_activations_1_q1;
+        input_activations_1_load_22_reg_1089 <= input_activations_1_q0;
+        input_activations_2_load_21_reg_1074 <= input_activations_2_q1;
+        input_activations_2_load_22_reg_1094 <= input_activations_2_q0;
+        input_activations_3_load_21_reg_1079 <= input_activations_3_q1;
+        input_activations_3_load_22_reg_1099 <= input_activations_3_q0;
+    end
+end
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state6)) begin
+        input_activations_0_load_23_reg_1144 <= input_activations_0_q1;
+        input_activations_0_load_24_reg_1164 <= input_activations_0_q0;
+        input_activations_1_load_23_reg_1149 <= input_activations_1_q1;
+        input_activations_1_load_24_reg_1169 <= input_activations_1_q0;
+        input_activations_2_load_23_reg_1154 <= input_activations_2_q1;
+        input_activations_2_load_24_reg_1174 <= input_activations_2_q0;
+        input_activations_3_load_23_reg_1159 <= input_activations_3_q1;
+        input_activations_3_load_24_reg_1179 <= input_activations_3_q0;
+    end
+end
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        input_activations_0_load_25_reg_1224 <= input_activations_0_q1;
+        input_activations_0_load_26_reg_1244 <= input_activations_0_q0;
+        input_activations_1_load_25_reg_1229 <= input_activations_1_q1;
+        input_activations_1_load_26_reg_1249 <= input_activations_1_q0;
+        input_activations_2_load_25_reg_1234 <= input_activations_2_q1;
+        input_activations_2_load_26_reg_1254 <= input_activations_2_q0;
+        input_activations_3_load_25_reg_1239 <= input_activations_3_q1;
+        input_activations_3_load_26_reg_1259 <= input_activations_3_q0;
+    end
+end
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state8)) begin
+        input_activations_0_load_27_reg_1304 <= input_activations_0_q1;
+        input_activations_0_load_28_reg_1324 <= input_activations_0_q0;
+        input_activations_1_load_27_reg_1309 <= input_activations_1_q1;
+        input_activations_1_load_28_reg_1329 <= input_activations_1_q0;
+        input_activations_2_load_27_reg_1314 <= input_activations_2_q1;
+        input_activations_2_load_28_reg_1334 <= input_activations_2_q0;
+        input_activations_3_load_27_reg_1319 <= input_activations_3_q1;
+        input_activations_3_load_28_reg_1339 <= input_activations_3_q0;
+    end
+end
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state9)) begin
+        input_activations_0_load_29_reg_1384 <= input_activations_0_q1;
+        input_activations_0_load_30_reg_1404 <= input_activations_0_q0;
+        input_activations_1_load_29_reg_1389 <= input_activations_1_q1;
+        input_activations_1_load_30_reg_1409 <= input_activations_1_q0;
+        input_activations_2_load_29_reg_1394 <= input_activations_2_q1;
+        input_activations_2_load_30_reg_1414 <= input_activations_2_q0;
+        input_activations_3_load_29_reg_1399 <= input_activations_3_q1;
+        input_activations_3_load_30_reg_1419 <= input_activations_3_q0;
+    end
+end
+always @ (*) begin
+    if (((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_0_o_ap_vld == 1'b1) & (1'b1 == ap_CS_fsm_state12))) begin
+        activations_0_o = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_0_o;
+    end else if (((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_0_ap_vld == 1'b1) & (1'b1 == ap_CS_fsm_state10))) begin
+        activations_0_o = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_0;
+    end else begin
+        activations_0_o = activations_0_i;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state12)) begin
+        activations_0_o_ap_vld = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_0_o_ap_vld;
+    end else if ((1'b1 == ap_CS_fsm_state10)) begin
+        activations_0_o_ap_vld = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_0_ap_vld;
+    end else begin
+        activations_0_o_ap_vld = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_1_o_ap_vld == 1'b1) & (1'b1 == ap_CS_fsm_state12))) begin
+        activations_1_o = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_1_o;
+    end else if (((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_1_ap_vld == 1'b1) & (1'b1 == ap_CS_fsm_state10))) begin
+        activations_1_o = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_1;
+    end else begin
+        activations_1_o = activations_1_i;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state12)) begin
+        activations_1_o_ap_vld = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_1_o_ap_vld;
+    end else if ((1'b1 == ap_CS_fsm_state10)) begin
+        activations_1_o_ap_vld = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_1_ap_vld;
+    end else begin
+        activations_1_o_ap_vld = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_2_o_ap_vld == 1'b1) & (1'b1 == ap_CS_fsm_state12))) begin
+        activations_2_o = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_2_o;
+    end else if (((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_2_ap_vld == 1'b1) & (1'b1 == ap_CS_fsm_state10))) begin
+        activations_2_o = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_2;
+    end else begin
+        activations_2_o = activations_2_i;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state12)) begin
+        activations_2_o_ap_vld = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_activations_2_o_ap_vld;
+    end else if ((1'b1 == ap_CS_fsm_state10)) begin
+        activations_2_o_ap_vld = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_activations_2_ap_vld;
+    end else begin
+        activations_2_o_ap_vld = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_done == 1'b0)) begin
+        ap_ST_fsm_state10_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state10_blk = 1'b0;
+    end
+end
+assign ap_ST_fsm_state11_blk = 1'b0;
+always @ (*) begin
+    if ((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_done == 1'b0)) begin
+        ap_ST_fsm_state12_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state12_blk = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((ap_start == 1'b0)) begin
+        ap_ST_fsm_state1_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state1_blk = 1'b0;
+    end
+end
+assign ap_ST_fsm_state2_blk = 1'b0;
+assign ap_ST_fsm_state3_blk = 1'b0;
+assign ap_ST_fsm_state4_blk = 1'b0;
+assign ap_ST_fsm_state5_blk = 1'b0;
+assign ap_ST_fsm_state6_blk = 1'b0;
+assign ap_ST_fsm_state7_blk = 1'b0;
+assign ap_ST_fsm_state8_blk = 1'b0;
+assign ap_ST_fsm_state9_blk = 1'b0;
+always @ (*) begin
+    if ((((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state12)) | ((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0)))) begin
+        ap_done = 1'b1;
+    end else begin
+        ap_done = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0))) begin
+        ap_idle = 1'b1;
+    end else begin
+        ap_idle = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state12))) begin
+        ap_ready = 1'b1;
+    end else begin
+        ap_ready = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state12)) begin
+        grp_fu_1424_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_grp_fu_1424_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1424_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1424_p_ce;
+    end else begin
+        grp_fu_1424_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state12)) begin
+        grp_fu_1424_opcode = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_grp_fu_1424_p_opcode;
+    end else if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1424_opcode = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1424_p_opcode;
+    end else begin
+        grp_fu_1424_opcode = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state12)) begin
+        grp_fu_1424_p0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_grp_fu_1424_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1424_p0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1424_p_din0;
+    end else begin
+        grp_fu_1424_p0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state12)) begin
+        grp_fu_1424_p1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_grp_fu_1424_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1424_p1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1424_p_din1;
+    end else begin
+        grp_fu_1424_p1 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1428_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1428_p_ce;
+    end else begin
+        grp_fu_1428_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1432_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1432_p_ce;
+    end else begin
+        grp_fu_1432_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1436_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1436_p_ce;
+    end else begin
+        grp_fu_1436_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1440_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1440_p_ce;
+    end else begin
+        grp_fu_1440_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1444_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1444_p_ce;
+    end else begin
+        grp_fu_1444_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1448_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1448_p_ce;
+    end else begin
+        grp_fu_1448_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1452_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1452_p_ce;
+    end else begin
+        grp_fu_1452_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1456_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1456_p_ce;
+    end else begin
+        grp_fu_1456_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1460_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1460_p_ce;
+    end else begin
+        grp_fu_1460_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1464_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1464_p_ce;
+    end else begin
+        grp_fu_1464_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1468_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1468_p_ce;
+    end else begin
+        grp_fu_1468_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1472_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1472_p_ce;
+    end else begin
+        grp_fu_1472_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1476_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1476_p_ce;
+    end else begin
+        grp_fu_1476_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1480_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1480_p_ce;
+    end else begin
+        grp_fu_1480_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state10)) begin
+        grp_fu_1484_ce = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1484_p_ce;
+    end else begin
+        grp_fu_1484_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state8)) begin
+        input_activations_0_address0_local = 64'd15;
+    end else if ((1'b1 == ap_CS_fsm_state7)) begin
+        input_activations_0_address0_local = 64'd13;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        input_activations_0_address0_local = 64'd11;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        input_activations_0_address0_local = 64'd9;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        input_activations_0_address0_local = 64'd7;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        input_activations_0_address0_local = 64'd5;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        input_activations_0_address0_local = 64'd3;
+    end else if ((1'b1 == ap_CS_fsm_state1)) begin
+        input_activations_0_address0_local = 64'd1;
+    end else begin
+        input_activations_0_address0_local = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state8)) begin
+        input_activations_0_address1_local = 64'd14;
+    end else if ((1'b1 == ap_CS_fsm_state7)) begin
+        input_activations_0_address1_local = 64'd12;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        input_activations_0_address1_local = 64'd10;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        input_activations_0_address1_local = 64'd8;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        input_activations_0_address1_local = 64'd6;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        input_activations_0_address1_local = 64'd4;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        input_activations_0_address1_local = 64'd2;
+    end else if ((1'b1 == ap_CS_fsm_state1)) begin
+        input_activations_0_address1_local = 64'd0;
+    end else begin
+        input_activations_0_address1_local = 'bx;
+    end
+end
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7) | (1'b1 == ap_CS_fsm_state6) | (1'b1 == ap_CS_fsm_state5) | (1'b1 == ap_CS_fsm_state4) | (1'b1 == ap_CS_fsm_state3) | (1'b1 == ap_CS_fsm_state2) | ((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
+        input_activations_0_ce0_local = 1'b1;
+    end else begin
+        input_activations_0_ce0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7) | (1'b1 == ap_CS_fsm_state6) | (1'b1 == ap_CS_fsm_state5) | (1'b1 == ap_CS_fsm_state4) | (1'b1 == ap_CS_fsm_state3) | (1'b1 == ap_CS_fsm_state2) | ((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
+        input_activations_0_ce1_local = 1'b1;
+    end else begin
+        input_activations_0_ce1_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state8)) begin
+        input_activations_1_address0_local = 64'd15;
+    end else if ((1'b1 == ap_CS_fsm_state7)) begin
+        input_activations_1_address0_local = 64'd13;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        input_activations_1_address0_local = 64'd11;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        input_activations_1_address0_local = 64'd9;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        input_activations_1_address0_local = 64'd7;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        input_activations_1_address0_local = 64'd5;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        input_activations_1_address0_local = 64'd3;
+    end else if ((1'b1 == ap_CS_fsm_state1)) begin
+        input_activations_1_address0_local = 64'd1;
+    end else begin
+        input_activations_1_address0_local = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state8)) begin
+        input_activations_1_address1_local = 64'd14;
+    end else if ((1'b1 == ap_CS_fsm_state7)) begin
+        input_activations_1_address1_local = 64'd12;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        input_activations_1_address1_local = 64'd10;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        input_activations_1_address1_local = 64'd8;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        input_activations_1_address1_local = 64'd6;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        input_activations_1_address1_local = 64'd4;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        input_activations_1_address1_local = 64'd2;
+    end else if ((1'b1 == ap_CS_fsm_state1)) begin
+        input_activations_1_address1_local = 64'd0;
+    end else begin
+        input_activations_1_address1_local = 'bx;
+    end
+end
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7) | (1'b1 == ap_CS_fsm_state6) | (1'b1 == ap_CS_fsm_state5) | (1'b1 == ap_CS_fsm_state4) | (1'b1 == ap_CS_fsm_state3) | (1'b1 == ap_CS_fsm_state2) | ((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
+        input_activations_1_ce0_local = 1'b1;
+    end else begin
+        input_activations_1_ce0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7) | (1'b1 == ap_CS_fsm_state6) | (1'b1 == ap_CS_fsm_state5) | (1'b1 == ap_CS_fsm_state4) | (1'b1 == ap_CS_fsm_state3) | (1'b1 == ap_CS_fsm_state2) | ((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
+        input_activations_1_ce1_local = 1'b1;
+    end else begin
+        input_activations_1_ce1_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state8)) begin
+        input_activations_2_address0_local = 64'd15;
+    end else if ((1'b1 == ap_CS_fsm_state7)) begin
+        input_activations_2_address0_local = 64'd13;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        input_activations_2_address0_local = 64'd11;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        input_activations_2_address0_local = 64'd9;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        input_activations_2_address0_local = 64'd7;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        input_activations_2_address0_local = 64'd5;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        input_activations_2_address0_local = 64'd3;
+    end else if ((1'b1 == ap_CS_fsm_state1)) begin
+        input_activations_2_address0_local = 64'd1;
+    end else begin
+        input_activations_2_address0_local = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state8)) begin
+        input_activations_2_address1_local = 64'd14;
+    end else if ((1'b1 == ap_CS_fsm_state7)) begin
+        input_activations_2_address1_local = 64'd12;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        input_activations_2_address1_local = 64'd10;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        input_activations_2_address1_local = 64'd8;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        input_activations_2_address1_local = 64'd6;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        input_activations_2_address1_local = 64'd4;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        input_activations_2_address1_local = 64'd2;
+    end else if ((1'b1 == ap_CS_fsm_state1)) begin
+        input_activations_2_address1_local = 64'd0;
+    end else begin
+        input_activations_2_address1_local = 'bx;
+    end
+end
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7) | (1'b1 == ap_CS_fsm_state6) | (1'b1 == ap_CS_fsm_state5) | (1'b1 == ap_CS_fsm_state4) | (1'b1 == ap_CS_fsm_state3) | (1'b1 == ap_CS_fsm_state2) | ((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
+        input_activations_2_ce0_local = 1'b1;
+    end else begin
+        input_activations_2_ce0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7) | (1'b1 == ap_CS_fsm_state6) | (1'b1 == ap_CS_fsm_state5) | (1'b1 == ap_CS_fsm_state4) | (1'b1 == ap_CS_fsm_state3) | (1'b1 == ap_CS_fsm_state2) | ((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
+        input_activations_2_ce1_local = 1'b1;
+    end else begin
+        input_activations_2_ce1_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state8)) begin
+        input_activations_3_address0_local = 64'd15;
+    end else if ((1'b1 == ap_CS_fsm_state7)) begin
+        input_activations_3_address0_local = 64'd13;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        input_activations_3_address0_local = 64'd11;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        input_activations_3_address0_local = 64'd9;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        input_activations_3_address0_local = 64'd7;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        input_activations_3_address0_local = 64'd5;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        input_activations_3_address0_local = 64'd3;
+    end else if ((1'b1 == ap_CS_fsm_state1)) begin
+        input_activations_3_address0_local = 64'd1;
+    end else begin
+        input_activations_3_address0_local = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state8)) begin
+        input_activations_3_address1_local = 64'd14;
+    end else if ((1'b1 == ap_CS_fsm_state7)) begin
+        input_activations_3_address1_local = 64'd12;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        input_activations_3_address1_local = 64'd10;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        input_activations_3_address1_local = 64'd8;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        input_activations_3_address1_local = 64'd6;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        input_activations_3_address1_local = 64'd4;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        input_activations_3_address1_local = 64'd2;
+    end else if ((1'b1 == ap_CS_fsm_state1)) begin
+        input_activations_3_address1_local = 64'd0;
+    end else begin
+        input_activations_3_address1_local = 'bx;
+    end
+end
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7) | (1'b1 == ap_CS_fsm_state6) | (1'b1 == ap_CS_fsm_state5) | (1'b1 == ap_CS_fsm_state4) | (1'b1 == ap_CS_fsm_state3) | (1'b1 == ap_CS_fsm_state2) | ((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
+        input_activations_3_ce0_local = 1'b1;
+    end else begin
+        input_activations_3_ce0_local = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7) | (1'b1 == ap_CS_fsm_state6) | (1'b1 == ap_CS_fsm_state5) | (1'b1 == ap_CS_fsm_state4) | (1'b1 == ap_CS_fsm_state3) | (1'b1 == ap_CS_fsm_state2) | ((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
+        input_activations_3_ce1_local = 1'b1;
+    end else begin
+        input_activations_3_ce1_local = 1'b0;
+    end
+end
+always @ (*) begin
+    case (ap_CS_fsm)
+        ap_ST_fsm_state1 : begin
+            if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state2;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end
+        end
+        ap_ST_fsm_state2 : begin
+            ap_NS_fsm = ap_ST_fsm_state3;
+        end
+        ap_ST_fsm_state3 : begin
+            ap_NS_fsm = ap_ST_fsm_state4;
+        end
+        ap_ST_fsm_state4 : begin
+            ap_NS_fsm = ap_ST_fsm_state5;
+        end
+        ap_ST_fsm_state5 : begin
+            ap_NS_fsm = ap_ST_fsm_state6;
+        end
+        ap_ST_fsm_state6 : begin
+            ap_NS_fsm = ap_ST_fsm_state7;
+        end
+        ap_ST_fsm_state7 : begin
+            ap_NS_fsm = ap_ST_fsm_state8;
+        end
+        ap_ST_fsm_state8 : begin
+            ap_NS_fsm = ap_ST_fsm_state9;
+        end
+        ap_ST_fsm_state9 : begin
+            ap_NS_fsm = ap_ST_fsm_state10;
+        end
+        ap_ST_fsm_state10 : begin
+            if (((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state10))) begin
+                ap_NS_fsm = ap_ST_fsm_state11;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state10;
+            end
+        end
+        ap_ST_fsm_state11 : begin
+            ap_NS_fsm = ap_ST_fsm_state12;
+        end
+        ap_ST_fsm_state12 : begin
+            if (((grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state12))) begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state12;
+            end
+        end
+        default : begin
+            ap_NS_fsm = 'bx;
+        end
+    endcase
+end
+assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
+assign ap_CS_fsm_state10 = ap_CS_fsm[32'd9];
+assign ap_CS_fsm_state11 = ap_CS_fsm[32'd10];
+assign ap_CS_fsm_state12 = ap_CS_fsm[32'd11];
+assign ap_CS_fsm_state2 = ap_CS_fsm[32'd1];
+assign ap_CS_fsm_state3 = ap_CS_fsm[32'd2];
+assign ap_CS_fsm_state4 = ap_CS_fsm[32'd3];
+assign ap_CS_fsm_state5 = ap_CS_fsm[32'd4];
+assign ap_CS_fsm_state6 = ap_CS_fsm[32'd5];
+assign ap_CS_fsm_state7 = ap_CS_fsm[32'd6];
+assign ap_CS_fsm_state8 = ap_CS_fsm[32'd7];
+assign ap_CS_fsm_state9 = ap_CS_fsm[32'd8];
+assign biases3_address0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_biases3_address0;
+assign biases3_ce0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_biases3_ce0;
+assign grp_fu_3064_p_ce = grp_fu_1424_ce;
+assign grp_fu_3064_p_din0 = grp_fu_1424_p0;
+assign grp_fu_3064_p_din1 = grp_fu_1424_p1;
+assign grp_fu_3064_p_opcode = grp_fu_1424_opcode;
+assign grp_fu_3068_p_ce = grp_fu_1428_ce;
+assign grp_fu_3068_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1428_p_din0;
+assign grp_fu_3068_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1428_p_din1;
+assign grp_fu_3068_p_opcode = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1428_p_opcode;
+assign grp_fu_3072_p_ce = grp_fu_1432_ce;
+assign grp_fu_3072_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1432_p_din0;
+assign grp_fu_3072_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1432_p_din1;
+assign grp_fu_3072_p_opcode = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1432_p_opcode;
+assign grp_fu_3076_p_ce = grp_fu_1436_ce;
+assign grp_fu_3076_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1436_p_din0;
+assign grp_fu_3076_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1436_p_din1;
+assign grp_fu_3076_p_opcode = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1436_p_opcode;
+assign grp_fu_3080_p_ce = grp_fu_1440_ce;
+assign grp_fu_3080_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1440_p_din0;
+assign grp_fu_3080_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1440_p_din1;
+assign grp_fu_3080_p_opcode = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1440_p_opcode;
+assign grp_fu_3084_p_ce = grp_fu_1444_ce;
+assign grp_fu_3084_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1444_p_din0;
+assign grp_fu_3084_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1444_p_din1;
+assign grp_fu_3084_p_opcode = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1444_p_opcode;
+assign grp_fu_3088_p_ce = grp_fu_1448_ce;
+assign grp_fu_3088_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1448_p_din0;
+assign grp_fu_3088_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1448_p_din1;
+assign grp_fu_3088_p_opcode = 2'd0;
+assign grp_fu_3092_p_ce = grp_fu_1452_ce;
+assign grp_fu_3092_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1452_p_din0;
+assign grp_fu_3092_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1452_p_din1;
+assign grp_fu_3092_p_opcode = 2'd0;
+assign grp_fu_3096_p_ce = grp_fu_1456_ce;
+assign grp_fu_3096_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1456_p_din0;
+assign grp_fu_3096_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1456_p_din1;
+assign grp_fu_3100_p_ce = grp_fu_1460_ce;
+assign grp_fu_3100_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1460_p_din0;
+assign grp_fu_3100_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1460_p_din1;
+assign grp_fu_3104_p_ce = grp_fu_1464_ce;
+assign grp_fu_3104_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1464_p_din0;
+assign grp_fu_3104_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1464_p_din1;
+assign grp_fu_3108_p_ce = grp_fu_1468_ce;
+assign grp_fu_3108_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1468_p_din0;
+assign grp_fu_3108_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1468_p_din1;
+assign grp_fu_3112_p_ce = grp_fu_1472_ce;
+assign grp_fu_3112_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1472_p_din0;
+assign grp_fu_3112_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1472_p_din1;
+assign grp_fu_3116_p_ce = grp_fu_1476_ce;
+assign grp_fu_3116_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1476_p_din0;
+assign grp_fu_3116_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1476_p_din1;
+assign grp_fu_3120_p_ce = grp_fu_1480_ce;
+assign grp_fu_3120_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1480_p_din0;
+assign grp_fu_3120_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1480_p_din1;
+assign grp_fu_3124_p_ce = grp_fu_1484_ce;
+assign grp_fu_3124_p_din0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1484_p_din0;
+assign grp_fu_3124_p_din1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_grp_fu_1484_p_din1;
+assign grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_start = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_26_1_fu_772_ap_start_reg;
+assign grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_start = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_ap_start_reg;
+assign input_activations_0_address0 = input_activations_0_address0_local;
+assign input_activations_0_address1 = input_activations_0_address1_local;
+assign input_activations_0_ce0 = input_activations_0_ce0_local;
+assign input_activations_0_ce1 = input_activations_0_ce1_local;
+assign input_activations_1_address0 = input_activations_1_address0_local;
+assign input_activations_1_address1 = input_activations_1_address1_local;
+assign input_activations_1_ce0 = input_activations_1_ce0_local;
+assign input_activations_1_ce1 = input_activations_1_ce1_local;
+assign input_activations_2_address0 = input_activations_2_address0_local;
+assign input_activations_2_address1 = input_activations_2_address1_local;
+assign input_activations_2_ce0 = input_activations_2_ce0_local;
+assign input_activations_2_ce1 = input_activations_2_ce1_local;
+assign input_activations_3_address0 = input_activations_3_address0_local;
+assign input_activations_3_address1 = input_activations_3_address1_local;
+assign input_activations_3_ce0 = input_activations_3_ce0_local;
+assign input_activations_3_ce1 = input_activations_3_ce1_local;
+assign weights3_0_address0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_0_address0;
+assign weights3_0_address1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_0_address1;
+assign weights3_0_ce0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_0_ce0;
+assign weights3_0_ce1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_0_ce1;
+assign weights3_1_address0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_1_address0;
+assign weights3_1_address1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_1_address1;
+assign weights3_1_ce0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_1_ce0;
+assign weights3_1_ce1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_1_ce1;
+assign weights3_2_address0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_2_address0;
+assign weights3_2_address1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_2_address1;
+assign weights3_2_ce0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_2_ce0;
+assign weights3_2_ce1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_2_ce1;
+assign weights3_3_address0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_3_address0;
+assign weights3_3_address1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_3_address1;
+assign weights3_3_ce0 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_3_ce0;
+assign weights3_3_ce1 = grp_matrix_vector_product_with_bias_output_layer_60_61_1_Pipeline_VITIS_LOOP_55_1_fu_682_weights3_3_ce1;
+endmodule 
