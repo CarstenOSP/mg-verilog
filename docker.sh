@@ -7,7 +7,7 @@ CONTAINER=$(docker container ls -a --filter name="^${CONTAINER_NAME}$" --format 
 if [ "$CONTAINER" != "$CONTAINER_NAME" ]; then
     echo "Creating new container"
     docker create -it \
-    -v $(pwd)/mg-verilog:/mg-verilog \
+    -v $(pwd):/mg-verilog \
     -w /mg-verilog \
     --name ${CONTAINER_NAME} ${IMAGE_NAME}
     docker start -a ${CONTAINER_NAME}
