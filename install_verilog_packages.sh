@@ -6,6 +6,6 @@
 # cd ..
 
 pip install -e verilog_eval
-cd model_eval_qlora/
-mkdir data
-cd .. 
+# cd model_eval_qlora/
+# mkdir data
+# cd .. 
