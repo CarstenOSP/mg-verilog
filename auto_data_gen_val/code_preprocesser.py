@@ -74,7 +74,7 @@ class CodePreprocesser:
     
     def create_code_assets(self):
         #separate the comments and code and create corresponding csv files
-        with Pool(processes=48) as p:
+        with Pool(processes=20) as p:
             list(tqdm(p.imap_unordered(f_create_code_assets(self), self.code_files), total=len(self.code_files)))
         # map(f_create_code_assets(self), self.code_files)
 

@@ -45,6 +45,7 @@ class CodeRepoDocumentor:
         self.skip_rag_db = skip_rag_db
         self.skip_supplement_summary = skip_supplement_summary
         if code_metadata_file is not None:
+            print("Should happen!!")
             self.code_metadata_file = code_metadata_file
             self.code_metadata = json.load(open(self.code_metadata_file, "r"))
 

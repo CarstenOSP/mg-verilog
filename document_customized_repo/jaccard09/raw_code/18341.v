@@ -1,0 +1,790 @@
+module backprop_matrix_vector_product_with_bias_second_layer_1 (ap_clk,ap_rst,ap_start,ap_done,ap_idle,ap_ready,biases2_address0,biases2_ce0,biases2_q0,weights2_address0,weights2_ce0,weights2_q0,weights2_address1,weights2_ce1,weights2_q1,activations_0_address0,activations_0_ce0,activations_0_we0,activations_0_d0,activations_0_address1,activations_0_ce1,activations_0_q1,activations_1_address0,activations_1_ce0,activations_1_we0,activations_1_d0,activations_1_address1,activations_1_ce1,activations_1_q1,activations_2_address0,activations_2_ce0,activations_2_we0,activations_2_d0,activations_2_address1,activations_2_ce1,activations_2_q1,activations_3_address0,activations_3_ce0,activations_3_we0,activations_3_d0,activations_3_address1,activations_3_ce1,activations_3_q1,activations_4_address0,activations_4_ce0,activations_4_we0,activations_4_d0,activations_4_address1,activations_4_ce1,activations_4_q1,activations_5_address0,activations_5_ce0,activations_5_we0,activations_5_d0,activations_5_address1,activations_5_ce1,activations_5_q1,activations_6_address0,activations_6_ce0,activations_6_we0,activations_6_d0,activations_6_address1,activations_6_ce1,activations_6_q1,activations_7_address0,activations_7_ce0,activations_7_we0,activations_7_d0,activations_7_address1,activations_7_ce1,activations_7_q1,input_activations_address0,input_activations_ce0,input_activations_q0,input_activations_address1,input_activations_ce1,input_activations_q1,grp_fu_3239_p_din0,grp_fu_3239_p_din1,grp_fu_3239_p_opcode,grp_fu_3239_p_dout0,grp_fu_3239_p_ce,grp_fu_3247_p_din0,grp_fu_3247_p_din1,grp_fu_3247_p_dout0,grp_fu_3247_p_ce); 
+parameter    ap_ST_fsm_state1 = 4'd1;
+parameter    ap_ST_fsm_state2 = 4'd2;
+parameter    ap_ST_fsm_state3 = 4'd4;
+parameter    ap_ST_fsm_state4 = 4'd8;
+input   ap_clk;
+input   ap_rst;
+input   ap_start;
+output   ap_done;
+output   ap_idle;
+output   ap_ready;
+output  [5:0] biases2_address0;
+output   biases2_ce0;
+input  [63:0] biases2_q0;
+output  [11:0] weights2_address0;
+output   weights2_ce0;
+input  [63:0] weights2_q0;
+output  [11:0] weights2_address1;
+output   weights2_ce1;
+input  [63:0] weights2_q1;
+output  [2:0] activations_0_address0;
+output   activations_0_ce0;
+output   activations_0_we0;
+output  [63:0] activations_0_d0;
+output  [2:0] activations_0_address1;
+output   activations_0_ce1;
+input  [63:0] activations_0_q1;
+output  [2:0] activations_1_address0;
+output   activations_1_ce0;
+output   activations_1_we0;
+output  [63:0] activations_1_d0;
+output  [2:0] activations_1_address1;
+output   activations_1_ce1;
+input  [63:0] activations_1_q1;
+output  [2:0] activations_2_address0;
+output   activations_2_ce0;
+output   activations_2_we0;
+output  [63:0] activations_2_d0;
+output  [2:0] activations_2_address1;
+output   activations_2_ce1;
+input  [63:0] activations_2_q1;
+output  [2:0] activations_3_address0;
+output   activations_3_ce0;
+output   activations_3_we0;
+output  [63:0] activations_3_d0;
+output  [2:0] activations_3_address1;
+output   activations_3_ce1;
+input  [63:0] activations_3_q1;
+output  [2:0] activations_4_address0;
+output   activations_4_ce0;
+output   activations_4_we0;
+output  [63:0] activations_4_d0;
+output  [2:0] activations_4_address1;
+output   activations_4_ce1;
+input  [63:0] activations_4_q1;
+output  [2:0] activations_5_address0;
+output   activations_5_ce0;
+output   activations_5_we0;
+output  [63:0] activations_5_d0;
+output  [2:0] activations_5_address1;
+output   activations_5_ce1;
+input  [63:0] activations_5_q1;
+output  [2:0] activations_6_address0;
+output   activations_6_ce0;
+output   activations_6_we0;
+output  [63:0] activations_6_d0;
+output  [2:0] activations_6_address1;
+output   activations_6_ce1;
+input  [63:0] activations_6_q1;
+output  [2:0] activations_7_address0;
+output   activations_7_ce0;
+output   activations_7_we0;
+output  [63:0] activations_7_d0;
+output  [2:0] activations_7_address1;
+output   activations_7_ce1;
+input  [63:0] activations_7_q1;
+output  [5:0] input_activations_address0;
+output   input_activations_ce0;
+input  [63:0] input_activations_q0;
+output  [5:0] input_activations_address1;
+output   input_activations_ce1;
+input  [63:0] input_activations_q1;
+output  [63:0] grp_fu_3239_p_din0;
+output  [63:0] grp_fu_3239_p_din1;
+output  [0:0] grp_fu_3239_p_opcode;
+input  [63:0] grp_fu_3239_p_dout0;
+output   grp_fu_3239_p_ce;
+output  [63:0] grp_fu_3247_p_din0;
+output  [63:0] grp_fu_3247_p_din1;
+input  [63:0] grp_fu_3247_p_dout0;
+output   grp_fu_3247_p_ce;
+reg ap_done;
+reg ap_idle;
+reg ap_ready;
+reg[2:0] activations_0_address0;
+reg activations_0_ce0;
+reg activations_0_we0;
+reg[63:0] activations_0_d0;
+reg activations_0_ce1;
+reg[2:0] activations_1_address0;
+reg activations_1_ce0;
+reg activations_1_we0;
+reg[63:0] activations_1_d0;
+reg activations_1_ce1;
+reg[2:0] activations_2_address0;
+reg activations_2_ce0;
+reg activations_2_we0;
+reg[63:0] activations_2_d0;
+reg activations_2_ce1;
+reg[2:0] activations_3_address0;
+reg activations_3_ce0;
+reg activations_3_we0;
+reg[63:0] activations_3_d0;
+reg activations_3_ce1;
+reg[2:0] activations_4_address0;
+reg activations_4_ce0;
+reg activations_4_we0;
+reg[63:0] activations_4_d0;
+reg activations_4_ce1;
+reg[2:0] activations_5_address0;
+reg activations_5_ce0;
+reg activations_5_we0;
+reg[63:0] activations_5_d0;
+reg activations_5_ce1;
+reg[2:0] activations_6_address0;
+reg activations_6_ce0;
+reg activations_6_we0;
+reg[63:0] activations_6_d0;
+reg activations_6_ce1;
+reg[2:0] activations_7_address0;
+reg activations_7_ce0;
+reg activations_7_we0;
+reg[63:0] activations_7_d0;
+reg activations_7_ce1;
+(* fsm_encoding = "none" *) reg   [3:0] ap_CS_fsm;
+wire    ap_CS_fsm_state1;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_start;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_done;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_idle;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_ready;
+wire   [11:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_weights2_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_weights2_ce0;
+wire   [11:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_weights2_address1;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_weights2_ce1;
+wire   [5:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_input_activations_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_input_activations_ce0;
+wire   [5:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_input_activations_address1;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_input_activations_ce1;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_0_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_0_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_0_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_0_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_1_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_1_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_1_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_1_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_2_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_2_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_2_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_2_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_3_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_3_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_3_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_3_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_4_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_4_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_4_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_4_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_5_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_5_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_5_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_5_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_6_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_6_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_6_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_6_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_7_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_7_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_7_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_7_d0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_82_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_82_p_din1;
+wire   [0:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_82_p_opcode;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_82_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_86_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_86_p_din1;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_86_p_ce;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_start;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_done;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_idle;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_ready;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_address1;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_ce1;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_address1;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_ce1;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_address1;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_ce1;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_address1;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_ce1;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_address1;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_ce1;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_address1;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_ce1;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_address1;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_ce1;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_d0;
+wire   [2:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_address1;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_ce1;
+wire   [5:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_biases2_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_biases2_ce0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_grp_fu_82_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_grp_fu_82_p_din1;
+wire   [0:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_grp_fu_82_p_opcode;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_grp_fu_82_p_ce;
+reg    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_start_reg;
+wire    ap_CS_fsm_state2;
+reg    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_start_reg;
+wire    ap_CS_fsm_state3;
+wire    ap_CS_fsm_state4;
+reg   [63:0] grp_fu_82_p0;
+reg   [63:0] grp_fu_82_p1;
+reg   [1:0] grp_fu_82_opcode;
+reg    grp_fu_82_ce;
+reg    grp_fu_86_ce;
+reg   [3:0] ap_NS_fsm;
+reg    ap_ST_fsm_state1_blk;
+reg    ap_ST_fsm_state2_blk;
+wire    ap_ST_fsm_state3_blk;
+reg    ap_ST_fsm_state4_blk;
+wire    ap_ce_reg;
+initial begin
+#0 ap_CS_fsm = 4'd1;
+#0 grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_start_reg = 1'b0;
+#0 grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_start_reg = 1'b0;
+end
+backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36(.ap_clk(ap_clk),.ap_rst(ap_rst),.ap_start(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_start),.ap_done(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_done),.ap_idle(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_idle),.ap_ready(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_ready),.weights2_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_weights2_address0),.weights2_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_weights2_ce0),.weights2_q0(weights2_q0),.weights2_address1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_weights2_address1),.weights2_ce1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_weights2_ce1),.weights2_q1(weights2_q1),.input_activations_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_input_activations_address0),.input_activations_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_input_activations_ce0),.input_activations_q0(input_activations_q0),.input_activations_address1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_input_activations_address1),.input_activations_ce1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_input_activations_ce1),.input_activations_q1(input_activations_q1),.activations_0_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_0_address0),.activations_0_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_0_ce0),.activations_0_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_0_we0),.activations_0_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_0_d0),.activations_1_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_1_address0),.activations_1_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_1_ce0),.activations_1_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_1_we0),.activations_1_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_1_d0),.activations_2_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_2_address0),.activations_2_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_2_ce0),.activations_2_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_2_we0),.activations_2_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_2_d0),.activations_3_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_3_address0),.activations_3_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_3_ce0),.activations_3_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_3_we0),.activations_3_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_3_d0),.activations_4_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_4_address0),.activations_4_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_4_ce0),.activations_4_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_4_we0),.activations_4_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_4_d0),.activations_5_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_5_address0),.activations_5_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_5_ce0),.activations_5_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_5_we0),.activations_5_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_5_d0),.activations_6_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_6_address0),.activations_6_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_6_ce0),.activations_6_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_6_we0),.activations_6_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_6_d0),.activations_7_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_7_address0),.activations_7_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_7_ce0),.activations_7_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_7_we0),.activations_7_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_7_d0),.grp_fu_82_p_din0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_82_p_din0),.grp_fu_82_p_din1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_82_p_din1),.grp_fu_82_p_opcode(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_82_p_opcode),.grp_fu_82_p_dout0(grp_fu_3239_p_dout0),.grp_fu_82_p_ce(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_82_p_ce),.grp_fu_86_p_din0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_86_p_din0),.grp_fu_86_p_din1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_86_p_din1),.grp_fu_86_p_dout0(grp_fu_3247_p_dout0),.grp_fu_86_p_ce(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_86_p_ce));
+backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1 grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60(.ap_clk(ap_clk),.ap_rst(ap_rst),.ap_start(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_start),.ap_done(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_done),.ap_idle(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_idle),.ap_ready(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_ready),.activations_7_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_address0),.activations_7_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_ce0),.activations_7_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_we0),.activations_7_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_d0),.activations_7_address1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_address1),.activations_7_ce1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_ce1),.activations_7_q1(activations_7_q1),.activations_6_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_address0),.activations_6_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_ce0),.activations_6_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_we0),.activations_6_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_d0),.activations_6_address1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_address1),.activations_6_ce1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_ce1),.activations_6_q1(activations_6_q1),.activations_5_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_address0),.activations_5_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_ce0),.activations_5_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_we0),.activations_5_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_d0),.activations_5_address1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_address1),.activations_5_ce1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_ce1),.activations_5_q1(activations_5_q1),.activations_4_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_address0),.activations_4_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_ce0),.activations_4_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_we0),.activations_4_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_d0),.activations_4_address1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_address1),.activations_4_ce1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_ce1),.activations_4_q1(activations_4_q1),.activations_3_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_address0),.activations_3_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_ce0),.activations_3_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_we0),.activations_3_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_d0),.activations_3_address1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_address1),.activations_3_ce1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_ce1),.activations_3_q1(activations_3_q1),.activations_2_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_address0),.activations_2_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_ce0),.activations_2_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_we0),.activations_2_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_d0),.activations_2_address1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_address1),.activations_2_ce1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_ce1),.activations_2_q1(activations_2_q1),.activations_1_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_address0),.activations_1_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_ce0),.activations_1_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_we0),.activations_1_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_d0),.activations_1_address1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_address1),.activations_1_ce1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_ce1),.activations_1_q1(activations_1_q1),.activations_0_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_address0),.activations_0_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_ce0),.activations_0_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_we0),.activations_0_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_d0),.activations_0_address1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_address1),.activations_0_ce1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_ce1),.activations_0_q1(activations_0_q1),.biases2_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_biases2_address0),.biases2_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_biases2_ce0),.biases2_q0(biases2_q0),.grp_fu_82_p_din0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_grp_fu_82_p_din0),.grp_fu_82_p_din1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_grp_fu_82_p_din1),.grp_fu_82_p_opcode(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_grp_fu_82_p_opcode),.grp_fu_82_p_dout0(grp_fu_3239_p_dout0),.grp_fu_82_p_ce(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_grp_fu_82_p_ce));
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        ap_CS_fsm <= ap_ST_fsm_state1;
+    end else begin
+        ap_CS_fsm <= ap_NS_fsm;
+    end
+end
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_start_reg <= 1'b0;
+    end else begin
+        if ((1'b1 == ap_CS_fsm_state3)) begin
+            grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_start_reg <= 1'b1;
+        end else if ((grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_ready == 1'b1)) begin
+            grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_start_reg <= 1'b0;
+        end
+    end
+end
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_start_reg <= 1'b0;
+    end else begin
+        if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
+            grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_start_reg <= 1'b1;
+        end else if ((grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_ready == 1'b1)) begin
+            grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_start_reg <= 1'b0;
+        end
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_0_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_address0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_0_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_0_address0;
+    end else begin
+        activations_0_address0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_0_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_0_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_0_ce0;
+    end else begin
+        activations_0_ce0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_0_ce1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_ce1;
+    end else begin
+        activations_0_ce1 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_0_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_d0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_0_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_0_d0;
+    end else begin
+        activations_0_d0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_0_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_we0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_0_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_0_we0;
+    end else begin
+        activations_0_we0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_1_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_address0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_1_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_1_address0;
+    end else begin
+        activations_1_address0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_1_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_1_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_1_ce0;
+    end else begin
+        activations_1_ce0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_1_ce1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_ce1;
+    end else begin
+        activations_1_ce1 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_1_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_d0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_1_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_1_d0;
+    end else begin
+        activations_1_d0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_1_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_we0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_1_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_1_we0;
+    end else begin
+        activations_1_we0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_2_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_address0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_2_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_2_address0;
+    end else begin
+        activations_2_address0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_2_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_2_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_2_ce0;
+    end else begin
+        activations_2_ce0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_2_ce1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_ce1;
+    end else begin
+        activations_2_ce1 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_2_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_d0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_2_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_2_d0;
+    end else begin
+        activations_2_d0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_2_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_we0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_2_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_2_we0;
+    end else begin
+        activations_2_we0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_3_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_address0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_3_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_3_address0;
+    end else begin
+        activations_3_address0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_3_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_3_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_3_ce0;
+    end else begin
+        activations_3_ce0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_3_ce1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_ce1;
+    end else begin
+        activations_3_ce1 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_3_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_d0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_3_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_3_d0;
+    end else begin
+        activations_3_d0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_3_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_we0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_3_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_3_we0;
+    end else begin
+        activations_3_we0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_4_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_address0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_4_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_4_address0;
+    end else begin
+        activations_4_address0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_4_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_4_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_4_ce0;
+    end else begin
+        activations_4_ce0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_4_ce1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_ce1;
+    end else begin
+        activations_4_ce1 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_4_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_d0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_4_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_4_d0;
+    end else begin
+        activations_4_d0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_4_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_we0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_4_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_4_we0;
+    end else begin
+        activations_4_we0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_5_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_address0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_5_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_5_address0;
+    end else begin
+        activations_5_address0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_5_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_5_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_5_ce0;
+    end else begin
+        activations_5_ce0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_5_ce1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_ce1;
+    end else begin
+        activations_5_ce1 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_5_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_d0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_5_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_5_d0;
+    end else begin
+        activations_5_d0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_5_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_we0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_5_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_5_we0;
+    end else begin
+        activations_5_we0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_6_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_address0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_6_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_6_address0;
+    end else begin
+        activations_6_address0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_6_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_6_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_6_ce0;
+    end else begin
+        activations_6_ce0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_6_ce1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_ce1;
+    end else begin
+        activations_6_ce1 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_6_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_d0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_6_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_6_d0;
+    end else begin
+        activations_6_d0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_6_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_we0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_6_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_6_we0;
+    end else begin
+        activations_6_we0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_7_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_address0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_7_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_7_address0;
+    end else begin
+        activations_7_address0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_7_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_7_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_7_ce0;
+    end else begin
+        activations_7_ce0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_7_ce1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_ce1;
+    end else begin
+        activations_7_ce1 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_7_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_d0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_7_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_7_d0;
+    end else begin
+        activations_7_d0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations_7_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_we0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        activations_7_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_activations_7_we0;
+    end else begin
+        activations_7_we0 = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((ap_start == 1'b0)) begin
+        ap_ST_fsm_state1_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state1_blk = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_done == 1'b0)) begin
+        ap_ST_fsm_state2_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state2_blk = 1'b0;
+    end
+end
+assign ap_ST_fsm_state3_blk = 1'b0;
+always @ (*) begin
+    if ((grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_done == 1'b0)) begin
+        ap_ST_fsm_state4_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state4_blk = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((((1'b1 == ap_CS_fsm_state4) & (grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_done == 1'b1)) | ((ap_start == 1'b0) & (1'b1 == ap_CS_fsm_state1)))) begin
+        ap_done = 1'b1;
+    end else begin
+        ap_done = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((ap_start == 1'b0) & (1'b1 == ap_CS_fsm_state1))) begin
+        ap_idle = 1'b1;
+    end else begin
+        ap_idle = 1'b0;
+    end
+end
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state4) & (grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_done == 1'b1))) begin
+        ap_ready = 1'b1;
+    end else begin
+        ap_ready = 1'b0;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        grp_fu_82_ce = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_grp_fu_82_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        grp_fu_82_ce = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_82_p_ce;
+    end else begin
+        grp_fu_82_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        grp_fu_82_opcode = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_grp_fu_82_p_opcode;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        grp_fu_82_opcode = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_82_p_opcode;
+    end else begin
+        grp_fu_82_opcode = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        grp_fu_82_p0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_grp_fu_82_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        grp_fu_82_p0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_82_p_din0;
+    end else begin
+        grp_fu_82_p0 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        grp_fu_82_p1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_grp_fu_82_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        grp_fu_82_p1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_82_p_din1;
+    end else begin
+        grp_fu_82_p1 = 'bx;
+    end
+end
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        grp_fu_86_ce = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_86_p_ce;
+    end else begin
+        grp_fu_86_ce = 1'b1;
+    end
+end
+always @ (*) begin
+    case (ap_CS_fsm)
+        ap_ST_fsm_state1 : begin
+            if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
+                ap_NS_fsm = ap_ST_fsm_state2;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end
+        end
+        ap_ST_fsm_state2 : begin
+            if (((1'b1 == ap_CS_fsm_state2) & (grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_done == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state3;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state2;
+            end
+        end
+        ap_ST_fsm_state3 : begin
+            ap_NS_fsm = ap_ST_fsm_state4;
+        end
+        ap_ST_fsm_state4 : begin
+            if (((1'b1 == ap_CS_fsm_state4) & (grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_done == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state4;
+            end
+        end
+        default : begin
+            ap_NS_fsm = 'bx;
+        end
+    endcase
+end
+assign activations_0_address1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_0_address1;
+assign activations_1_address1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_1_address1;
+assign activations_2_address1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_2_address1;
+assign activations_3_address1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_3_address1;
+assign activations_4_address1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_4_address1;
+assign activations_5_address1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_5_address1;
+assign activations_6_address1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_6_address1;
+assign activations_7_address1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_activations_7_address1;
+assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
+assign ap_CS_fsm_state2 = ap_CS_fsm[32'd1];
+assign ap_CS_fsm_state3 = ap_CS_fsm[32'd2];
+assign ap_CS_fsm_state4 = ap_CS_fsm[32'd3];
+assign biases2_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_biases2_address0;
+assign biases2_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_biases2_ce0;
+assign grp_fu_3239_p_ce = grp_fu_82_ce;
+assign grp_fu_3239_p_din0 = grp_fu_82_p0;
+assign grp_fu_3239_p_din1 = grp_fu_82_p1;
+assign grp_fu_3239_p_opcode = grp_fu_82_opcode;
+assign grp_fu_3247_p_ce = grp_fu_86_ce;
+assign grp_fu_3247_p_din0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_86_p_din0;
+assign grp_fu_3247_p_din1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_grp_fu_86_p_din1;
+assign grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_start = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_26_1_fu_60_ap_start_reg;
+assign grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_start = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_ap_start_reg;
+assign input_activations_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_input_activations_address0;
+assign input_activations_address1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_input_activations_address1;
+assign input_activations_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_input_activations_ce0;
+assign input_activations_ce1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_input_activations_ce1;
+assign weights2_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_weights2_address0;
+assign weights2_address1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_weights2_address1;
+assign weights2_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_weights2_ce0;
+assign weights2_ce1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_VITIS_LOOP_44_1_mvp_prod_fu_36_weights2_ce1;
+endmodule 
