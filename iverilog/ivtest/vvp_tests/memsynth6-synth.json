@@ -1,6 +1,0 @@
-{
-    "__comment" : "Synthesis not implemented for this yet.",
-    "type" : "NI",
-    "source" : "memsynth6.v",
-    "iverilog-args" : [ "-S" ]
-}

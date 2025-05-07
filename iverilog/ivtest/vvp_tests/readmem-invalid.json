@@ -1,5 +1,0 @@
-{
-    "type" : "EF",
-    "source" : "readmem-invalid.v",
-    "gold" : "readmem-invalid"
-}

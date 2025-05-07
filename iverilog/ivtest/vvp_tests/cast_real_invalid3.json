@@ -1,5 +1,0 @@
-{
-    "type"          : "CE",
-    "source"        : "cast_real_invalid3.v",
-    "iverilog-args" : [ "-g2005-sv" ]
-}

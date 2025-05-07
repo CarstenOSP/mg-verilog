@@ -1,0 +1,21 @@
+content,line_number
+Determines the number of internal reduction levels based on the input width.,1
+Defines the power-of-two aligned internal width for the priority encoder.,2
+Pads the input vector to reach the nearest power-of-two boundary for uniform processing.,3
+Holds stage-level validity signals for each reduction layer.,4
+Holds partial encoding bits for each stage.,5
+Declares generate-time variables used to create loops during synthesis.,7
+Creates a loop to process pairs of bits in the first reduction stage.,8
+Determines if the pair of bits is nonzero to mark validity.,9
+Checks the configuration to apply LSB as highest priority if enabled.,10
+Generates the encoded output by inverting the lower bit for LSB priority.,11
+Uses the upper bit of the pair when LSB priority is not selected.,13
+Iterates through each hierarchy level to merge partial results.,16
+Sub-loops across compressed data chunks at the current level.,17
+Updates the validity by combining signals from the previous level’s pairs.,18
+Conditionally modifies the encoding approach for LSB priority.,19
+"Merges the partial encoding from the appropriate half, assigning the leading bit based on which half is valid for LSB priority.",20
+"Merges the partial encoding from the opposite half, setting the leading bit to indicate which half is valid in the non-LSB priority path.",22
+Provides the final validity output from the last pipeline stage.,27
+Captures the final encoded index from the last pipeline stage.,28
+Generates a one-hot output from the encoded index.,29

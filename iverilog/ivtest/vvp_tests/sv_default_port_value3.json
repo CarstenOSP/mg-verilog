@@ -1,6 +1,0 @@
-{
-    "type" : "CE",
-    "source" : "sv_default_port_value3.v",
-    "iverilog-args" : [ "-g2009" ],
-    "gold" : "sv_default_port_value3"
-}

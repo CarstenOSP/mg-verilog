@@ -1,6 +1,0 @@
-
-{
-    "type" : "normal",
-    "source" : "br_gh99c.v",
-    "iverilog-args" : [ "-gverilog-ams" ]
-}

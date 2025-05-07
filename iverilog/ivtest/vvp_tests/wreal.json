@@ -1,6 +1,0 @@
-
-{
-    "type" : "normal",
-    "source" : "wreal.v",
-    "iverilog-args" : [ "-gverilog-ams" ]
-}
