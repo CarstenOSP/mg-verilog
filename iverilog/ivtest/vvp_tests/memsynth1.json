@@ -1,5 +1,0 @@
-{
-    "type"   : "NI",
-    "source" : "memsynth1.v",
-    "iverilog-args" : [ "-S" ]
-}

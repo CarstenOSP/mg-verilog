@@ -1,0 +1,69 @@
+Below is a high-level explanation of the “priority_encoder” module’s functionality, focusing on how the design locates and encodes the “highest-priority” set bit (bit equal to 1) among its inputs. It is intended to serve as the only specification necessary for an experienced hardware designer to implement the same functionality in a single top-level module with the same interface.
+
+-------------------------------------------------------------------------------
+1) MODULE INTERFACE AND PARAMETERS
+-------------------------------------------------------------------------------
+• Module Name: priority_encoder
+• Parameter WIDTH (integer, ≥ 1): Specifies the width of the input vector “input_unencoded.” This is the number of bits the encoder must examine.
+• Parameter LSB_HIGH_PRIORITY (integer, 0 or 1): 
+  – 0 indicates the most significant ‘1’ bit has higher priority (MSB priority).
+  – 1 indicates the least significant ‘1’ bit has higher priority (LSB priority).
+
+Ports (all combinational I/O):
+• input_unencoded [WIDTH-1:0] : (Input) A WIDTH-bit vector whose bits may be 0 or 1 in any pattern. The encoder will find which bit has priority if any are active.
+• output_valid (1 bit)        : (Output) Indicates whether at least one bit of “input_unencoded” is set to 1. 
+  – 1 = “There is a set bit somewhere.”  
+  – 0 = “No bits are set; the input is all zeros.”
+• output_encoded [$clog2(WIDTH)-1:0] : (Output) The binary index identifying the position of the highest-priority set bit. If output_valid=0, this value is undefined in typical implementations but will still drive some binary value.
+• output_unencoded [WIDTH-1:0]       : (Output) A one-hot representation of the location of the highest-priority set bit. Exactly one output bit is 1 if valid, and the rest are 0.
+
+Constraints/Behavior:
+• Each output signal is purely combinationally determined by “input_unencoded” and the priority setting (LSB_HIGH_PRIORITY). There is no clock or sequential pipeline in this design.
+• The design automatically computes the correct number of bits in “output_encoded” by using $clog2(WIDTH).
+• The design supports any WIDTH ≥ 1. Internally, if WIDTH is not a power of two, the module pads the input to the nearest power-of-two size to ease the hierarchy of combining pairs.
+
+-------------------------------------------------------------------------------
+2) OVERALL ENCODER FUNCTION
+-------------------------------------------------------------------------------
+The primary goal is to select which input bit is considered “active” according to the priority scheme, and to provide three forms of output:
+1. A valid indicator: output_valid
+2. A binary-encoded index: output_encoded
+3. A one-hot vector: output_unencoded
+
+At a high level, the encoder works in multiple stages:
+• Stage 0 (the “first stage”): 
+  – Breaks the input into 2-bit chunks (pairs). 
+  – For each pair, it decides two things: 
+    (a) Is there at least one ‘1’ in that pair? (This becomes a “valid” signal for that pair.)  
+    (b) If valid, which bit’s index (0 vs. 1 in the pair) gets chosen for partial encoding? This depends on LSB_HIGH_PRIORITY.  
+• Stage 1, 2, …, up to “LEVELS-1”: 
+  – Successively merge pairs of partial results from the previous stage. 
+  – Each merge step again decides whether the combined pair is valid and which half of the pair to pick if one or both are valid.  
+• Final Outputs: 
+  – output_valid is set high if any valid signals ultimately survive in the top-most compression level. 
+  – output_encoded is the final aggregated “partial encoding” from the highest stage. 
+  – output_unencoded is formed by one-hot decoding that final encoded value.
+
+Because the design methodically halves the input size at each level (merging 2 bits, then 4, then 8, etc.), it takes approximately log₂(WIDTH) levels (or simply 1 level if WIDTH ≤ 2) to process the entire input vector into a single final result.
+
+-------------------------------------------------------------------------------
+3) DETAILED FUNCTIONAL STEPS
+-------------------------------------------------------------------------------
+
+A. POWER-OF-TWO ALIGNMENT AND PADDING
+-------------------------------------
+1. The module first calculates:
+     LEVELS = (WIDTH > 2)? $clog2(WIDTH) : 1
+   so there is always at least one stage.  
+2. It then defines W = 2**LEVELS, which is the nearest power-of-two size ≥ WIDTH.  
+3. The vector “input_padded” is formed by zero-extending “input_unencoded” to width W:
+     input_padded = { (W-WIDTH){1'b0} , input_unencoded }
+   This simplifies pairwise merging because each stage can treat W as a power-of-two length.
+
+B. FIRST STAGE OF ENCODING (Stage 0)
+------------------------------------
+• The design divides “input_padded” into pairs of bits: (2 bits per pair).  
+• For pair n, the lines are:
+  – stage_valid[0][n] = OR of the two bits in the pair. This is 1 if either bit is 1.  
+  – stage_enc[0][n]   = the partial encoded bit for that pair, determined differently depending on LSB_HIGH_PRIORITY:  
+    ° If LSB_HIGH_PRIORITY=1, we choose the LSB side if

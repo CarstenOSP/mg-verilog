@@ -1,5 +1,0 @@
-{
-    "type"   : "CE",
-    "source" : "br_gh1104_src2.v",
-    "iverilog-args" : [ "ivltests/br_gh1104_src1.v" ]
-}

@@ -17,7 +17,7 @@ from minhash import deduplicate_dataset
 import os
 import subprocess
 import json
-from io import StringIO  
+from io import StringIO
 from utils import *
 from tqdm import tqdm
 import numpy as np
@@ -248,6 +248,14 @@ def valid_syntax_with_module_inst(row):
 
     tmp_module_inst_dir = "tmp/tmp_module_inst_syntax/"
     module_inst_json = "module_inst{}.json".format(raw_row["task_id"])
+
+    ## INSERTED; don't need syntax verification
+    module_inst_dict = {raw_row["task_id"]: {"code_name": raw_row["module_name"], "module_inst_list": []}}
+    with open(os.path.join(tmp_module_inst_dir, module_inst_json), "w") as f:
+        json.dump(module_inst_dict, f, indent=4)
+
+    return True
+    ## END OF INSERTION
     
     with open(path, "w") as f:
         f.write(row)

@@ -1,5 +1,6 @@
 import os
 import sys
+from multiprocess import Pool
 from dotenv import load_dotenv
 load_dotenv()
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)),os.environ.get("CHATBOT_BACKEND_DIR"),os.environ.get("SRC_DIR")))
@@ -27,6 +28,15 @@ def folder_create(folder_name):
             os.makedirs(folder_name)
         else:
             print("Leave the directory as it is.")
+
+
+def f_create_code_assets(preprocessor):
+    def f(code_file):
+        src_code_file = os.path.join(preprocessor.store_src_code_dir, code_file)
+        csv_code_file = os.path.join(preprocessor.csv_code_dir, code_file.split(".")[0] + ".csv")
+        csv_comment_file = os.path.join(preprocessor.csv_comment_dir, code_file.split(".")[0] + ".csv")
+        convert_raw_src_code_to_csv(src_code_file, csv_code_file, csv_comment_file, discard_original_comment = preprocessor.discard_original_comment)
+    return f
 
 
 class CodePreprocesser:
@@ -64,11 +74,9 @@ class CodePreprocesser:
     
     def create_code_assets(self):
         #separate the comments and code and create corresponding csv files
-        for code_file in tqdm(self.code_files, total=len(self.code_files), desc="Creating code assets"):
-            src_code_file = os.path.join(self.store_src_code_dir, code_file)
-            csv_code_file = os.path.join(self.csv_code_dir, code_file.split(".")[0] + ".csv")
-            csv_comment_file = os.path.join(self.csv_comment_dir, code_file.split(".")[0] + ".csv")
-            convert_raw_src_code_to_csv(src_code_file, csv_code_file, csv_comment_file, discard_original_comment = self.discard_original_comment)
+        with Pool(processes=48) as p:
+            list(tqdm(p.imap_unordered(f_create_code_assets(self), self.code_files), total=len(self.code_files)))
+        # map(f_create_code_assets(self), self.code_files)
 
     def pre_process_routines(self, dst_dir, discard_original_comment = True, rtl = True):
         for file in os.listdir(dst_dir):

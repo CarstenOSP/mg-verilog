@@ -1,0 +1,52 @@
+content,line_number
+"Defines the priority encoder module with parameterizable input width and priority scheme, providing valid, encoded, and one-hot outputs.
+",0
+"Calculates the number of encoding stages, ensuring at least one stage even if the width is small.
+",1
+"Computes the input width aligned to the next power of two, used for the internal hierarchy.
+",2
+"Pads the input to match the power-of-two size to simplify hierarchical encoding.
+",3
+"Declares a multi-dimensional array of valid signals, one per stage of the encoding hierarchy.
+",4
+"Holds partial encoding results for each level of the hierarchy.
+",5
+no_comment,6
+no_comment,7
+"Defines the loop to process pairs of input bits in the first stage.
+",8
+"Checks if any bit in the pair is set, indicating a valid input for the first stage.
+",9
+"Switches encoding logic if the least significant bit is given higher priority.
+",10
+"Computes the partial encoding bit as the inversion of the LSB when LSB is prioritized.
+",11
+no_comment,12
+"Uses the higher-order bit for partial encoding when LSB is not prioritized.
+",13
+no_comment,14
+no_comment,15
+"Begins the multi-level loop for hierarchical compression stages.
+",16
+"Iterates over pairs for the current compression level, combining them into fewer outputs.
+",17
+"Aggregates valid signals from two adjacent positions at the previous stage to produce a single valid for the current level.
+",18
+"Branches the subsequent encoding logic based on the LSB high priority setting.
+",19
+"Appends an extra bit indicating which half is active when LSB priority is set, selecting the sub-encoded value accordingly.
+",20
+no_comment,21
+"Appends an extra bit in the opposite sense when LSB priority is not set, selecting the appropriate sub-encoded value.
+",22
+no_comment,23
+no_comment,24
+no_comment,25
+no_comment,26
+"Utilizes the final stage's valid signal for the overall design.
+",27
+"Retrieves the encoded index from the final stage as the design output.
+",28
+"Generates a one-hot signal based on the final encoded index.
+",29
+no_comment,30

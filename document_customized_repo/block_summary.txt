@@ -1,0 +1,8 @@
+Block 0: This section calculates how many hierarchical stages are needed for encoding, always ensuring at least one. It then finds and stores the power-of-two size that exceeds or equals the original width, and pads the input bits with zeros to match that size. Arrays are declared to hold “valid” signals and partial encoding results for each stage. A generate loop then inspects each pair of padded input bits to determine whether at least one bit in the pair is active, marking those pairs as valid for further processing in the subsequent encoding levels.
+
+Block 1: This block first determines how each pair of bits contributes to the initial encoded output based on whether the least significant bit has priority. When least significant bits take priority, the encoded bit is derived from the least significant side of the pair; otherwise, the more significant side is used. After establishing this initial encoding, a multi-level loop progressively combines pairs of signals from the prior stage into single valid outputs for the next stage. At each compression level, it merges the “valid” signals and then applies the selected priority scheme to prepare intermediate encoding results, continuing until all hierarchy levels are processed.
+
+Block 2: 
+
+Block 3: This final line concludes the module definition. It does not introduce any additional logic or outputs; instead, it simply signifies the end of the priority encoder module, ensuring that all preceding declarations and generated structures are fully enclosed within the design.
+
