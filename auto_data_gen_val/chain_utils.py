@@ -545,8 +545,11 @@ class SimpleConverseChain:
                 else:
                     #probably something wrong with api call as no new response is generated
                     response = self.chain_alternative.predict(system_message=system_prompt, human_input=human_input)
-                    response = self.output_parser.parse(response)
-                    return response
+                    try:
+                        response = self.output_parser.parse(response)
+                        return response
+                    except Exception as e:
+                        pass
                 
                 #first try to fix the output parsing
                 try:

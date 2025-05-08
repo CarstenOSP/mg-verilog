@@ -22,11 +22,12 @@ class PydanticOutputParserMessages(BaseOutputParser[T]):
             match = re.search(
                 r"\{.*\}", text.strip(), re.MULTILINE | re.IGNORECASE | re.DOTALL
             )
-            print(text)
             json_str = "{}"
             if match:
                 json_str = match.group()
             json_object = json.loads(json_str, strict=False)
+            print("JSON: " + str(json_object))
+            print("text: " + json_str)
             return self.pydantic_object.parse_obj(json_object).json()
 
         except (json.JSONDecodeError, ValidationError) as e:

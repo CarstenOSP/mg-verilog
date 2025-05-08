@@ -146,6 +146,7 @@ class CodeRepoDocumentor:
                     f.write("\n".join(self.documented_list))
             end_time = time.time()
             print("Time left to finish this repo: {}".format((end_time - start_time) * (len(self.code_preprocesser.code_files) - self.code_preprocesser.code_files.index(code_src))))
+            
     def package_documented_code(self, package_dir):
         #create the package dir
         if not os.path.exists(package_dir):
