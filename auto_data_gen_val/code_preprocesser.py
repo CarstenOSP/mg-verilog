@@ -15,19 +15,11 @@ from utils import *
 
 
 def folder_create(folder_name):
-    if not os.path.exists(folder_name):
-        #recursively create the directory
-        os.makedirs(folder_name)
-    else:
-        #ask the user if they want to delete the directory and create a new one
-        print("The directory {} already exists. Do you want to delete it and create a new one?".format(folder_name))
-        print("Type 'y' for yes and 'n' for no.")
-        answer = input()
-        if answer == "y":
-            shutil.rmtree(folder_name)
-            os.makedirs(folder_name)
-        else:
-            print("Leave the directory as it is.")
+    if os.path.exists(folder_name):
+        # Automatically delete existing directory
+        shutil.rmtree(folder_name)
+    # Create new directory
+    os.makedirs(folder_name)
 
 
 def f_create_code_assets(preprocessor):

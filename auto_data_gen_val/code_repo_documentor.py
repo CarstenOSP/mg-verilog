@@ -57,16 +57,9 @@ class CodeRepoDocumentor:
         self.documented_list = []
         self.documented_list_file = os.path.join(os.environ.get("ASSET_DIR"), os.environ.get("TARGET_LANG"), "documented_list.txt")
         if os.path.exists(self.documented_list_file):
-            #ask if the user wants to remove the documented list
-            print("Do you want to remove the documented list? (y/n)")
-            answer = input()
-            if answer == "y":
-                os.remove(self.documented_list_file)
-                print("Documented list removed")
-            else:
-                with open(self.documented_list_file, "r") as f:
-                    self.documented_list = f.readlines()
-                self.documented_list = [x.strip() for x in self.documented_list]
+            # Always remove existing documented list when running in automated mode
+            os.remove(self.documented_list_file)
+            print(f"Removed existing documented list file: {self.documented_list_file}")
         
         
         #context embedding
