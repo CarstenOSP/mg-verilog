@@ -585,7 +585,7 @@ class CodeDataset:
             self.dump_bookkeeping()
             if self.codes[code]["global_summary_high_level"] is None \
             or force_refresh_global_summary_high_level \
-            or self.codes[code]["global_summary_detaied"] is None \
+            or self.codes[code]["global_summary_detailed"] is None \
             or force_refresh_global_summary_detailed:
                 print("Generating global summary for " + code)
                 if not self.global_summary_chain_from_verilog_eval:
