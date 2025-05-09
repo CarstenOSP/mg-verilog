@@ -41,7 +41,7 @@ echo "Found $VERILOG_FILE_COUNT Verilog files to process"
 
 # Determine number of parallel jobs (adjust as needed for your system)
 NUM_CORES=$(nproc)
-PARALLEL_JOBS=$(( (NUM_CORES > 1 ? NUM_CORES - 1 : 1) > 16 ? 16 : (NUM_CORES > 1 ? NUM_CORES - 1 : 1) ))
+PARALLEL_JOBS=$(( (NUM_CORES > 1 ? NUM_CORES - 1 : 1) > 4 ? 4 : (NUM_CORES > 1 ? NUM_CORES - 1 : 1) ))
 
 echo "Processing files in parallel using $PARALLEL_JOBS processes..."
 
