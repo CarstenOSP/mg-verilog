@@ -3,7 +3,8 @@ FROM --platform=linux/amd64 continuumio/anaconda3
 COPY ./badproxy /etc/apt/apt.conf.d/99fixbadproxy
 RUN apt-get update && apt-get -y upgrade && \
     apt-get -y install build-essential git libffi-dev gcc \
-    autoconf gperf make gcc g++ bison flex graphviz libgraphviz-dev
+    autoconf gperf make gcc g++ bison flex graphviz libgraphviz-dev \
+    parallel
 COPY ./environment.yml /
 RUN PIP_NO_DEPS=1 conda env create -f /environment.yml
 
