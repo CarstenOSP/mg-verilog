@@ -18,6 +18,7 @@ from langchain.memory import VectorStoreRetrieverMemory
 from langchain.vectorstores import Chroma # for the vectorization part
 from langchain.retrievers.multi_vector import MultiVectorRetriever
 from langchain.memory import ConversationBufferMemory, ConversationBufferWindowMemory
+### Azure Endpoint here
 from langchain.chat_models import ChatOpenAI
 from langchain.schema.output_parser import StrOutputParser
 from langchain.output_parsers import PydanticOutputParser
@@ -145,6 +146,7 @@ class Line_comment_format(BaseModel):
     #     return v
 
 def Line_comment_format_fixing_chain(model="o1-2024-12-17", temperature=0.7, max_tokens=128):
+    ### Azure Endpoint here
     llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=10)
     parser = PydanticOutputParserMessages(pydantic_object=Line_comment_format)
     prompt = "Fix the output format:\n{format_instructions}\n\n{doc}\n\n"
@@ -162,6 +164,7 @@ def Line_comment_format_fixing_chain(model="o1-2024-12-17", temperature=0.7, max
     return chain
 
 def summarize_comments_fixing_chain(model="o1-2024-12-17", temperature=0.7, max_tokens=512):
+    ### Azure Endpoint here
     llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=10)
     parser = PydanticOutputParserMessages(pydantic_object=Code_summary_format)
     prompt = "Fix the output format:\n{format_instructions}\n\n{doc}\n\n"
@@ -220,6 +223,7 @@ class Chatbot:
             os.makedirs(convers_store_dir)
         
         self.system_context_embedding = None
+        ## 
         self.embedding_model = "text-embedding-ada-002"
         #cost tracker
         self.cb = cb
@@ -265,6 +269,7 @@ class Chatbot:
         self.converse_vecstore = Chroma(
             persist_directory=self.convers_store_dir,
             collection_name="conversation_history",
+            ### Azure Endpoint here
             embedding_function=OpenAIEmbeddings()
         )
         store = InMemoryStore()

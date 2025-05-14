@@ -29,13 +29,13 @@ import jsonlines
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.storage import InMemoryStore, LocalFileStore
 import uuid
+### Azure Endpoint here
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema.output_parser import StrOutputParser
 from langchain.schema.document import Document
 
-
-
+### Azure Endpoint here
 from langchain.embeddings import OpenAIEmbeddings # for creating embeddings
 from langchain.vectorstores import Chroma, FAISS # for the vectorization part
 from langchain.chains import ChatVectorDBChain # for chatting with the code
@@ -201,6 +201,7 @@ class EmbedTool0:
         self.df_raw["n_tokens"] = self.df_raw.Text.apply(lambda x: len(encoding.encode(x)))
         self.df_raw = self.df_raw[self.df_raw.n_tokens <= self.max_tokens]
         # This may take a few minutes
+        ### Azure Endpoint here
         self.df_raw["embedding"] = self.df_raw.Text.apply(lambda x: get_embedding(x, engine=self.embedding_model))
         # only store the embedding and filename
         self.df_embed = self.df_raw[["Filename", "embedding", "Line_id", "Text"]]
@@ -214,6 +215,7 @@ class EmbedTool0:
     
 # search through the contexts for the most similar ones
 def search_contexts(embedding_model, df, user_query_str, n=3):
+    ### Azure Endpoint here
     user_query_embeding = get_embedding(
         user_query_str,
         engine=embedding_model
@@ -464,6 +466,7 @@ class CodeDataset:
         vectorstore_per_code_small = Chroma(
             persist_directory=os.path.join(self.vectorembedding_dir, code + "_small"),
             collection_name="code_library_small_blocks",
+            ### Azure Endpoint here
             embedding_function=OpenAIEmbeddings()
         )
         return vectorstore_per_code_small
@@ -473,6 +476,7 @@ class CodeDataset:
         vectorstore_per_code_large = Chroma(
             persist_directory=os.path.join(self.vectorembedding_dir, code + "_large"),
             collection_name="code_library_large_blocks",
+            ### Azure Endpoint here
             embedding_function=OpenAIEmbeddings()
         )
         return vectorstore_per_code_large
@@ -490,11 +494,13 @@ class CodeDataset:
         self.vectorstore_global = Chroma(
             persist_directory=os.path.join(self.vectorembedding_dir, "global"),
             collection_name="code_library_summary",
+            ### Azure Endpoint here
             embedding_function=OpenAIEmbeddings()
         )
         self.vectorstore_global_title = Chroma(
             persist_directory=os.path.join(self.vectorembedding_dir, "global_title"),
             collection_name="code_library_title",
+            ### Azure Endpoint here
             embedding_function=OpenAIEmbeddings()
         )
         #TODO: embed memory

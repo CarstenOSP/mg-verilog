@@ -12,6 +12,7 @@ from langchain.schema.output_parser import StrOutputParser
 from langchain.output_parsers import PydanticOutputParser
 from langchain.pydantic_v1 import BaseModel, Field, validator
 
+### Azure Endpoint here
 from langchain.chat_models import ChatOpenAI
 from langchain.llms import OpenAIChat
 
@@ -224,6 +225,7 @@ class Global_summary:
 
 def gen_block_summary_chain(model="llama2", temperature=0.7, max_tokens=1024):
     if "gpt" in model or "o1" in model:
+        ### Azure Endpoint here
         llm = ChatOpenAI(max_retries=4, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40)
     else:
         llm = HuggingFaceTextGenInference(
@@ -259,6 +261,7 @@ def gen_block_summary_chain(model="llama2", temperature=0.7, max_tokens=1024):
 
 def detail_steps_chain(model="llama2", temperature=0.7, max_tokens=256): 
     if "gpt" in model or "o1" in model:
+        ### Azure Endpoint here
         llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40)
     else:
         llm = HuggingFaceTextGenInference(
@@ -308,6 +311,7 @@ class Func_lookup(BaseModel):
 def func_name_lookup_chain(model="llama2", temperature=0.7, max_tokens=128, language="verilog"):
 
     if "gpt" in model or "o1" in model:
+        ### Azure Endpoint here
         cheap_model = ChatOpenAI(max_retries=2, model=model, temperature=temperature, max_completion_tokens=max_tokens,request_timeout=40)
     else:
         cheap_model = HuggingFaceTextGenInference(
@@ -316,6 +320,7 @@ def func_name_lookup_chain(model="llama2", temperature=0.7, max_tokens=128, lang
                         )
 
     # gpt-3.5-turbo or gpt-4-0613
+    ### Azure Endpoint here
     expensive_model = ChatOpenAI(max_retries=0, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40,
                                  model_kwargs={"response_format": { "type": "json_object" }})
 
@@ -418,8 +423,10 @@ class SimpleConverseChain:
 
             if "gpt" in model or "o1" in model:
                 if not self.json_mode:
+                    ### Azure Endpoint here
                     cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40)
                 else:
+                    ### Azure Endpoint here
                     cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40,  
                                              model_kwargs={"response_format": {"type": "json_object"}})
             else:
@@ -432,8 +439,10 @@ class SimpleConverseChain:
                                 # top_p=0.1
                                 )
             if not self.json_mode:
+                ### Azure Endpoint here
                 expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40)
             else:
+                ### Azure Endpoint here
                 expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40,  
                                          model_kwargs={"response_format": { "type": "json_object" }})
 
@@ -476,8 +485,10 @@ class SimpleConverseChain:
 
             if "gpt" in model or "o1" in model:
                 if not self.json_mode:
+                    ### Azure Endpoint here
                     cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40)
                 else:
+                    ### Azure Endpoint here
                     cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p,  
                                              model_kwargs={"response_format": { "type": "json_object" }},
                                              request_timeout=40)
@@ -487,8 +498,10 @@ class SimpleConverseChain:
                                 max_new_tokens=max_tokens
                                 )
             if not self.json_mode:
+                ### Azure Endpoint here
                 expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40)
             else:
+                ### Azure Endpoint here
                 expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens,  
                                          model_kwargs={"response_format": { "type": "json_object" }},
                                          request_timeout=40)
