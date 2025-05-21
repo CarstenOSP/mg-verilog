@@ -13,6 +13,7 @@ from langchain.output_parsers import PydanticOutputParser
 from langchain.pydantic_v1 import BaseModel, Field, validator
 
 ### Azure Endpoint here
+from langchain_openai import AzureChatOpenAI
 from langchain.chat_models import ChatOpenAI
 from langchain.llms import OpenAIChat
 
@@ -226,7 +227,18 @@ class Global_summary:
 def gen_block_summary_chain(model="llama2", temperature=0.7, max_tokens=1024):
     if "gpt" in model or "o1" in model:
         ### Azure Endpoint here
-        llm = ChatOpenAI(max_retries=4, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40)
+        llm = AzureChatOpenAI(
+            azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+            model=model,
+            openai_api_type="azure",
+            openai_api_version="2024-02-15-preview",
+            temperature=temperature,
+            max_tokens=max_tokens,
+            max_retries=4,
+            request_timeout=40,
+            # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+        )
+        # llm = ChatOpenAI(max_retries=4, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40)
     else:
         llm = HuggingFaceTextGenInference(
                         inference_server_url=os.environ.get("LLAMA_INFERENCE_SERVER_URL"),
@@ -262,7 +274,18 @@ def gen_block_summary_chain(model="llama2", temperature=0.7, max_tokens=1024):
 def detail_steps_chain(model="llama2", temperature=0.7, max_tokens=256): 
     if "gpt" in model or "o1" in model:
         ### Azure Endpoint here
-        llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40)
+        llm = AzureChatOpenAI(
+            azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+            model=model,
+            openai_api_type="azure",
+            openai_api_version="2024-02-15-preview",
+            temperature=temperature,
+            max_tokens=max_tokens,
+            max_retries=0,
+            request_timeout=40,
+            # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+        )
+        # llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40)
     else:
         llm = HuggingFaceTextGenInference(
                         inference_server_url=os.environ.get("LLAMA_INFERENCE_SERVER_URL"),
@@ -312,7 +335,18 @@ def func_name_lookup_chain(model="llama2", temperature=0.7, max_tokens=128, lang
 
     if "gpt" in model or "o1" in model:
         ### Azure Endpoint here
-        cheap_model = ChatOpenAI(max_retries=2, model=model, temperature=temperature, max_completion_tokens=max_tokens,request_timeout=40)
+        cheap_model = AzureChatOpenAI(
+            azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+            model=model,
+            openai_api_type="azure",
+            openai_api_version="2024-02-15-preview",
+            temperature=temperature,
+            max_tokens=max_tokens,
+            max_retries=2,
+            request_timeout=40,
+            # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+        )
+        # cheap_model = ChatOpenAI(max_retries=2, model=model, temperature=temperature, max_completion_tokens=max_tokens,request_timeout=40)
     else:
         cheap_model = HuggingFaceTextGenInference(
                         inference_server_url=os.environ.get("LLAMA_INFERENCE_SERVER_URL"),
@@ -321,8 +355,20 @@ def func_name_lookup_chain(model="llama2", temperature=0.7, max_tokens=128, lang
 
     # gpt-3.5-turbo or gpt-4-0613
     ### Azure Endpoint here
-    expensive_model = ChatOpenAI(max_retries=0, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40,
-                                 model_kwargs={"response_format": { "type": "json_object" }})
+    expensive_model = AzureChatOpenAI(
+        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+        model="o1-2024-12-17",
+        openai_api_type="azure",
+        openai_api_version="2024-02-15-preview",
+        temperature=temperature,
+        max_tokens=max_tokens,
+        max_retries=0,
+        request_timeout=40,
+        # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+        model_kwargs={"response_format": { "type": "json_object" }}
+    )    
+    # expensive_model = ChatOpenAI(max_retries=0, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40,
+    #                              model_kwargs={"response_format": { "type": "json_object" }})
 
     parser = PydanticOutputParser(pydantic_object=Func_lookup)
     prompt = ""
@@ -424,11 +470,36 @@ class SimpleConverseChain:
             if "gpt" in model or "o1" in model:
                 if not self.json_mode:
                     ### Azure Endpoint here
-                    cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40)
+                    cheap_model = AzureChatOpenAI(
+                        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+                        model=model,
+                        openai_api_type="azure",
+                        openai_api_version="2024-02-15-preview",
+                        temperature=temperature,
+                        top_p=top_p,
+                        max_tokens=max_tokens,
+                        max_retries=5,
+                        request_timeout=40,
+                        # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+                    )
+                    # cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40)
                 else:
                     ### Azure Endpoint here
-                    cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40,  
-                                             model_kwargs={"response_format": {"type": "json_object"}})
+                    cheap_model = AzureChatOpenAI(
+                        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+                        model=model,
+                        openai_api_type="azure",
+                        openai_api_version="2024-02-15-preview",
+                        temperature=temperature,
+                        top_p=top_p,
+                        max_tokens=max_tokens,
+                        max_retries=5,
+                        request_timeout=40,
+                        # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+                        model_kwargs={"response_format": { "type": "json_object" }}
+                    )
+                    # cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40,  
+                    #                          model_kwargs={"response_format": {"type": "json_object"}})
             else:
                 cheap_model = HuggingFaceTextGenInference(
                                 inference_server_url=os.environ.get("LLAMA_INFERENCE_SERVER_URL"),
@@ -440,11 +511,36 @@ class SimpleConverseChain:
                                 )
             if not self.json_mode:
                 ### Azure Endpoint here
-                expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40)
+                expensive_model = AzureChatOpenAI(
+                    azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+                    model="o1-2024-12-17",
+                    openai_api_type="azure",
+                    openai_api_version="2024-02-15-preview",
+                    temperature=temperature,
+                    top_p=top_p,
+                    max_tokens=max_tokens,
+                    max_retries=5,
+                    request_timeout=40,
+                    # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+                )
+                # expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40)
             else:
                 ### Azure Endpoint here
-                expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40,  
-                                         model_kwargs={"response_format": { "type": "json_object" }})
+                expensive_model = AzureChatOpenAI(
+                    azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+                    model="o1-2024-12-17",
+                    openai_api_type="azure",
+                    openai_api_version="2024-02-15-preview",
+                    temperature=temperature,
+                    top_p=top_p,
+                    max_tokens=max_tokens,
+                    max_retries=5,
+                    request_timeout=40,
+                    # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+                    model_kwargs={"response_format": { "type": "json_object" }}
+                )
+                # expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40,  
+                #                          model_kwargs={"response_format": { "type": "json_object" }})
 
             if "gpt" in model or "o1" in model:
                 #TODO: better to swap to expression format: https://python.langchain.com/docs/expression_language/cookbook/memory
@@ -486,12 +582,37 @@ class SimpleConverseChain:
             if "gpt" in model or "o1" in model:
                 if not self.json_mode:
                     ### Azure Endpoint here
-                    cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40)
+                    cheap_model = AzureChatOpenAI(
+                        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+                        model=model,
+                        openai_api_type="azure",
+                        openai_api_version="2024-02-15-preview",
+                        temperature=temperature,
+                        top_p=top_p,
+                        max_tokens=max_tokens,
+                        max_retries=5,
+                        request_timeout=40,
+                        # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+                    )
+                    # cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p, request_timeout=40)
                 else:
                     ### Azure Endpoint here
-                    cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p,  
-                                             model_kwargs={"response_format": { "type": "json_object" }},
-                                             request_timeout=40)
+                    cheap_model = AzureChatOpenAI(
+                        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+                        model=model,
+                        openai_api_type="azure",
+                        openai_api_version="2024-02-15-preview",
+                        temperature=temperature,
+                        top_p=top_p,
+                        max_tokens=max_tokens,
+                        max_retries=5,
+                        request_timeout=40,
+                        # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+                        model_kwargs={"response_format": { "type": "json_object" }}
+                    )
+                    # cheap_model = ChatOpenAI(max_retries=5, model=model, temperature=temperature, max_completion_tokens=max_tokens, top_p=top_p,  
+                    #                          model_kwargs={"response_format": { "type": "json_object" }},
+                    #                          request_timeout=40)
             else:
                 cheap_model = HuggingFaceTextGenInference(
                                 inference_server_url=os.environ.get("LLAMA_INFERENCE_SERVER_URL"),
@@ -499,12 +620,37 @@ class SimpleConverseChain:
                                 )
             if not self.json_mode:
                 ### Azure Endpoint here
-                expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40)
+                expensive_model = AzureChatOpenAI(
+                    azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+                    model="o1-2024-12-17",
+                    openai_api_type="azure",
+                    openai_api_version="2024-02-15-preview",
+                    temperature=temperature,
+                    top_p=top_p,
+                    max_tokens=max_tokens,
+                    max_retries=5,
+                    request_timeout=40,
+                    # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+                )
+                # expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens, request_timeout=40)
             else:
                 ### Azure Endpoint here
-                expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens,  
-                                         model_kwargs={"response_format": { "type": "json_object" }},
-                                         request_timeout=40)
+                expensive_model = AzureChatOpenAI(
+                    azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+                    model="o1-2024-12-17",
+                    openai_api_type="azure",
+                    openai_api_version="2024-02-15-preview",
+                    temperature=temperature,
+                    top_p=top_p,
+                    max_tokens=max_tokens,
+                    max_retries=5,
+                    request_timeout=40,
+                    # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+                    model_kwargs={"response_format": { "type": "json_object" }}
+                )
+                # expensive_model = ChatOpenAI(max_retries=5, model="o1-2024-12-17", temperature=temperature, max_completion_tokens=max_tokens,  
+                #                          model_kwargs={"response_format": { "type": "json_object" }},
+                #                          request_timeout=40)
                 
             if "gpt" in model or "o1" in model:
                 chat_llm_chain = LLMChain(

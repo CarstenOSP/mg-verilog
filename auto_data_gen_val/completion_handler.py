@@ -19,6 +19,7 @@ from langchain.vectorstores import Chroma # for the vectorization part
 from langchain.retrievers.multi_vector import MultiVectorRetriever
 from langchain.memory import ConversationBufferMemory, ConversationBufferWindowMemory
 ### Azure Endpoint here
+from langchain_openai import AzureChatOpenAI
 from langchain.chat_models import ChatOpenAI
 from langchain.schema.output_parser import StrOutputParser
 from langchain.output_parsers import PydanticOutputParser
@@ -28,6 +29,12 @@ from my_pydantic import PydanticOutputParserMessages
 from langchain.llms import HuggingFaceTextGenInference
 from langchain.schema import SystemMessage, AIMessage, HumanMessage
 
+def get_azure_embeddings():
+    return OpenAIEmbeddings(
+        openai_api_base=f"https://{os.environ.get('AZURE_OPENAI_SERVICE')}.openai.azure.com",
+        openai_api_type='azure',
+        deployment='text-embedding-ada-002',
+    )
 
 def load_system_messages_all_in_one(msg_file, optional_system_messages):
     #check if msg_file is exist
@@ -147,7 +154,18 @@ class Line_comment_format(BaseModel):
 
 def Line_comment_format_fixing_chain(model="o1-2024-12-17", temperature=0.7, max_tokens=128):
     ### Azure Endpoint here
-    llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=10)
+    llm = AzureChatOpenAI(
+        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+        model=model,
+        openai_api_type="azure",
+        openai_api_version="2024-02-15-preview",
+        temperature=temperature,
+        max_tokens=max_tokens,
+        max_retries=0,
+        request_timeout=10,
+        # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+    )
+    # llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=10)
     parser = PydanticOutputParserMessages(pydantic_object=Line_comment_format)
     prompt = "Fix the output format:\n{format_instructions}\n\n{doc}\n\n"
     prompt_template = PromptTemplate(
@@ -165,7 +183,18 @@ def Line_comment_format_fixing_chain(model="o1-2024-12-17", temperature=0.7, max
 
 def summarize_comments_fixing_chain(model="o1-2024-12-17", temperature=0.7, max_tokens=512):
     ### Azure Endpoint here
-    llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=10)
+        llm = AzureChatOpenAI(
+        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+        model=model,
+        openai_api_type="azure",
+        openai_api_version="2024-02-15-preview",
+        temperature=temperature,
+        max_tokens=max_tokens,
+        max_retries=0,
+        request_timeout=10,
+        # openai_api_key="REPLACE WITH YOUR NSTORAGE API KEY", # Add openai_api_key here
+    )
+    # llm = ChatOpenAI(max_retries=0, model=model, temperature=temperature, max_completion_tokens=max_tokens, request_timeout=10)
     parser = PydanticOutputParserMessages(pydantic_object=Code_summary_format)
     prompt = "Fix the output format:\n{format_instructions}\n\n{doc}\n\n"
     prompt_template = PromptTemplate(
@@ -270,7 +299,8 @@ class Chatbot:
             persist_directory=self.convers_store_dir,
             collection_name="conversation_history",
             ### Azure Endpoint here
-            embedding_function=OpenAIEmbeddings()
+            embedding_function=get_azure_embeddings()
+            # embedding_function=OpenAIEmbeddings()
         )
         store = InMemoryStore()
         self.converse_retriever = MultiVectorRetriever(

@@ -57,6 +57,13 @@ from langchain.agents.output_parsers import JSONAgentOutputParser
 from langchain.agents.format_scratchpad import format_log_to_str
 from langchain.agents import AgentExecutor
 
+def get_azure_embeddings():
+    return OpenAIEmbeddings(
+        openai_api_base=f"https://{os.environ.get('AZURE_OPENAI_SERVICE')}.openai.azure.com",
+        openai_api_type='azure',
+        deployment='text-embedding-ada-002',
+    )
+
 
 def process_block_summary(fname):
     #load the block summary from json
@@ -467,7 +474,8 @@ class CodeDataset:
             persist_directory=os.path.join(self.vectorembedding_dir, code + "_small"),
             collection_name="code_library_small_blocks",
             ### Azure Endpoint here
-            embedding_function=OpenAIEmbeddings()
+            embedding_function=get_azure_embeddings()
+            # embedding_function=OpenAIEmbeddings()
         )
         return vectorstore_per_code_small
 
@@ -477,7 +485,8 @@ class CodeDataset:
             persist_directory=os.path.join(self.vectorembedding_dir, code + "_large"),
             collection_name="code_library_large_blocks",
             ### Azure Endpoint here
-            embedding_function=OpenAIEmbeddings()
+            embedding_function=get_azure_embeddings()
+            # embedding_function=OpenAIEmbeddings()
         )
         return vectorstore_per_code_large
 
@@ -495,13 +504,15 @@ class CodeDataset:
             persist_directory=os.path.join(self.vectorembedding_dir, "global"),
             collection_name="code_library_summary",
             ### Azure Endpoint here
-            embedding_function=OpenAIEmbeddings()
+            embedding_function=get_azure_embeddings()
+            # embedding_function=OpenAIEmbeddings()
         )
         self.vectorstore_global_title = Chroma(
             persist_directory=os.path.join(self.vectorembedding_dir, "global_title"),
             collection_name="code_library_title",
             ### Azure Endpoint here
-            embedding_function=OpenAIEmbeddings()
+            embedding_function=get_azure_embeddings()
+            # embedding_function=OpenAIEmbeddings()
         )
         #TODO: embed memory
         self.block_summary_chain = gen_block_summary_chain(model=block_summary_model)
