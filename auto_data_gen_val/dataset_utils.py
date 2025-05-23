@@ -12,7 +12,7 @@ import datetime
 import shutil
 import pandas as pd
 import tiktoken
-from openai.embeddings_utils import get_embedding, cosine_similarity
+# from openai.embeddings_utils import get_embedding, cosine_similarity
 from ast import literal_eval
 import numpy as np
 import re 

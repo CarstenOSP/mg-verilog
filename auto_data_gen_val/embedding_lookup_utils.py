@@ -147,13 +147,26 @@ def validate_global_summary_openai(global_summary, task_id, eval_file, max_trial
                 return True, completion
     return False, completion
 
+# def get_embedding(list_of_text, engine, is_azure):
+#     list_of_text = [text.replace("\n", " ") for text in list_of_text]
+#     client = openai.AzureOpenAI() if is_azure else openai.OpenAI()
+
+#     response = client.embeddings.create(
+#         input = list_of_text,
+#         model = engine
+#     )
+
+#     return [d.embedding for d in response.data]
+
+# def cosine_similarity(a, b):
+#     return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
 class EmbedTool0:
     def __init__(self, fields, system_context_dir, system_context_embedding_dir, system_context_embedding_file):
         # embedding model parameters
-        self.embedding_model = "text-embedding-ada-002"
-        self.embedding_encoding = "cl100k_base"  # this the encoding for text-embedding-ada-002
-        self.max_tokens = 8000  # the maximum for text-embedding-ada-002 is 8191
+        self.embedding_model = "text-embedding-3-large"
+        self.embedding_encoding = "cl100k_base" 
+        self.max_tokens = 8000 
         self.fields = fields # the fields of the csv file
         self.system_context_dir = system_context_dir
         self.system_context_embedding_dir = system_context_embedding_dir
@@ -190,7 +203,6 @@ class EmbedTool0:
                 df = pd.DataFrame(attrs, index=[0])
                 df.to_csv(self.system_context_dir+"/system_context_raw.csv", mode="a", header=False, index=False)
         self.df_raw = pd.read_csv(self.system_context_dir+"/system_context_raw.csv")
-        
 
     def create_embedding(self):
         # if embedding dir does not exist, create it
