@@ -13,8 +13,7 @@ from langchain.output_parsers import PydanticOutputParser
 from langchain.pydantic_v1 import BaseModel, Field, validator
 
 ### Azure Endpoint here
-from langchain_openai import AzureChatOpenAI
-from langchain.chat_models import ChatOpenAI
+from langchain.chat_models import AzureChatOpenAI
 from langchain.llms import OpenAIChat
 
 from langchain.schema import SystemMessage, AIMessage, HumanMessage
@@ -76,7 +75,6 @@ def gpt3_5_request(prompt):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo-1106",
         messages=prompt,
-        temperature=0.7,
         max_tokens=4096
     )
     return response
@@ -89,7 +87,6 @@ def gpt4_request(prompt):
             model="o1-2024-12-17",
             # model="gpt-3.5-turbo",
             messages=prompt,
-            temperature=0.7,
             max_completion_tokens=1024
         )
     except Exception as e:
@@ -101,7 +98,6 @@ def gpt4_request(prompt):
             model="o1-2024-12-17",
             # model="gpt-3.5-turbo",
             messages=prompt,
-            temperature=0.7,
             max_completion_tokens=1024
         )
     return response
@@ -115,7 +111,6 @@ def openai_chat(system_prompt, humain_input, model="o1-2024-12-17", max_token=40
     response = openai.ChatCompletion.create(
         model="o1-2024-12-17",
         messages=messages,
-        # temperature=0.7,
         max_completion_tokens=max_token,
     )
     response_str = response["choices"][0]["message"]["content"]
@@ -151,7 +146,7 @@ class Global_summary:
                                     - Assume your description will even be understood by a non-hardware expert; or this non-hardware expert can deliver this description with reasonable amount of training.
                                     - Strict rule: Be very concise and high-level, avoid low-level details.
                                     """
-        self.sft_data_gen_chain =  SimpleConverseChain(system_prompt=self.system_prompt, model=model, temperature=0.95, max_tokens=2048, top_p=0.95, have_memory=False, verbose=False)
+        self.sft_data_gen_chain =  SimpleConverseChain(system_prompt=self.system_prompt, model="o1-2024-12-17", max_tokens=2048, top_p=0.95, have_memory=False, verbose=False)
 
 
     def gen_global_summary(self, 
@@ -228,11 +223,10 @@ def gen_block_summary_chain(model="llama2", temperature=0.7, max_tokens=1024):
     if "gpt" in model or "o1" in model:
         ### Azure Endpoint here
         llm = AzureChatOpenAI(
-            azure_endpoint="https://llm-proxy.perflab.nvidia.com",
-            model=model,
+            openai_api_base="https://llm-proxy.perflab.nvidia.com",
+            model="o1-2024-12-17",
             openai_api_type="azure",
             openai_api_version="2024-02-15-preview",
-            temperature=temperature,
             max_tokens=max_tokens,
             max_retries=4,
             request_timeout=40,
@@ -244,7 +238,6 @@ def gen_block_summary_chain(model="llama2", temperature=0.7, max_tokens=1024):
                         inference_server_url=os.environ.get("LLAMA_INFERENCE_SERVER_URL"),
                         max_new_tokens=max_tokens,
                         repetition_penalty=1.17,
-                        temperature=0.7,
                         top_k=40,
                         top_p=0.1
                         )
@@ -275,11 +268,10 @@ def detail_steps_chain(model="llama2", temperature=0.7, max_tokens=256):
     if "gpt" in model or "o1" in model:
         ### Azure Endpoint here
         llm = AzureChatOpenAI(
-            azure_endpoint="https://llm-proxy.perflab.nvidia.com",
-            model=model,
+            openai_api_base="https://llm-proxy.perflab.nvidia.com",
+            model="o1-2024-12-17",
             openai_api_type="azure",
             openai_api_version="2024-02-15-preview",
-            temperature=temperature,
             max_tokens=max_tokens,
             max_retries=0,
             request_timeout=40,
@@ -291,7 +283,6 @@ def detail_steps_chain(model="llama2", temperature=0.7, max_tokens=256):
                         inference_server_url=os.environ.get("LLAMA_INFERENCE_SERVER_URL"),
                         max_new_tokens=max_tokens,
                         repetition_penalty=1.17,
-                        temperature=0.7,
                         top_k=40,
                         top_p=0.1
                         )
@@ -336,11 +327,10 @@ def func_name_lookup_chain(model="llama2", temperature=0.7, max_tokens=128, lang
     if "gpt" in model or "o1" in model:
         ### Azure Endpoint here
         cheap_model = AzureChatOpenAI(
-            azure_endpoint="https://llm-proxy.perflab.nvidia.com",
-            model=model,
+            openai_api_base="https://llm-proxy.perflab.nvidia.com",
+            model="o1-2024-12-17",
             openai_api_type="azure",
             openai_api_version="2024-02-15-preview",
-            temperature=temperature,
             max_tokens=max_tokens,
             max_retries=2,
             request_timeout=40,
@@ -356,11 +346,10 @@ def func_name_lookup_chain(model="llama2", temperature=0.7, max_tokens=128, lang
     # gpt-3.5-turbo or gpt-4-0613
     ### Azure Endpoint here
     expensive_model = AzureChatOpenAI(
-        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+        openai_api_base="https://llm-proxy.perflab.nvidia.com",
         model="o1-2024-12-17",
         openai_api_type="azure",
         openai_api_version="2024-02-15-preview",
-        temperature=temperature,
         max_tokens=max_tokens,
         max_retries=0,
         request_timeout=40,
@@ -471,11 +460,10 @@ class SimpleConverseChain:
                 if not self.json_mode:
                     ### Azure Endpoint here
                     cheap_model = AzureChatOpenAI(
-                        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
-                        model=model,
+                        openai_api_base="https://llm-proxy.perflab.nvidia.com",
+                        model="o1-2024-12-17",
                         openai_api_type="azure",
                         openai_api_version="2024-02-15-preview",
-                        temperature=temperature,
                         top_p=top_p,
                         max_tokens=max_tokens,
                         max_retries=5,
@@ -486,11 +474,10 @@ class SimpleConverseChain:
                 else:
                     ### Azure Endpoint here
                     cheap_model = AzureChatOpenAI(
-                        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
-                        model=model,
+                        openai_api_base="https://llm-proxy.perflab.nvidia.com",
+                        model="o1-2024-12-17",
                         openai_api_type="azure",
                         openai_api_version="2024-02-15-preview",
-                        temperature=temperature,
                         top_p=top_p,
                         max_tokens=max_tokens,
                         max_retries=5,
@@ -512,11 +499,10 @@ class SimpleConverseChain:
             if not self.json_mode:
                 ### Azure Endpoint here
                 expensive_model = AzureChatOpenAI(
-                    azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+                    openai_api_base="https://llm-proxy.perflab.nvidia.com",
                     model="o1-2024-12-17",
                     openai_api_type="azure",
                     openai_api_version="2024-02-15-preview",
-                    temperature=temperature,
                     top_p=top_p,
                     max_tokens=max_tokens,
                     max_retries=5,
@@ -527,11 +513,10 @@ class SimpleConverseChain:
             else:
                 ### Azure Endpoint here
                 expensive_model = AzureChatOpenAI(
-                    azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+                    openai_api_base="https://llm-proxy.perflab.nvidia.com",
                     model="o1-2024-12-17",
                     openai_api_type="azure",
                     openai_api_version="2024-02-15-preview",
-                    temperature=temperature,
                     top_p=top_p,
                     max_tokens=max_tokens,
                     max_retries=5,
@@ -583,11 +568,10 @@ class SimpleConverseChain:
                 if not self.json_mode:
                     ### Azure Endpoint here
                     cheap_model = AzureChatOpenAI(
-                        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
-                        model=model,
+                        openai_api_base="https://llm-proxy.perflab.nvidia.com",
+                        model="o1-2024-12-17",
                         openai_api_type="azure",
                         openai_api_version="2024-02-15-preview",
-                        temperature=temperature,
                         top_p=top_p,
                         max_tokens=max_tokens,
                         max_retries=5,
@@ -598,11 +582,10 @@ class SimpleConverseChain:
                 else:
                     ### Azure Endpoint here
                     cheap_model = AzureChatOpenAI(
-                        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
-                        model=model,
+                        openai_api_base="https://llm-proxy.perflab.nvidia.com",
+                        model="o1-2024-12-17",
                         openai_api_type="azure",
                         openai_api_version="2024-02-15-preview",
-                        temperature=temperature,
                         top_p=top_p,
                         max_tokens=max_tokens,
                         max_retries=5,
@@ -621,11 +604,10 @@ class SimpleConverseChain:
             if not self.json_mode:
                 ### Azure Endpoint here
                 expensive_model = AzureChatOpenAI(
-                    azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+                    openai_api_base="https://llm-proxy.perflab.nvidia.com",
                     model="o1-2024-12-17",
                     openai_api_type="azure",
                     openai_api_version="2024-02-15-preview",
-                    temperature=temperature,
                     top_p=top_p,
                     max_tokens=max_tokens,
                     max_retries=5,
@@ -636,11 +618,10 @@ class SimpleConverseChain:
             else:
                 ### Azure Endpoint here
                 expensive_model = AzureChatOpenAI(
-                    azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+                    openai_api_base="https://llm-proxy.perflab.nvidia.com",
                     model="o1-2024-12-17",
                     openai_api_type="azure",
                     openai_api_version="2024-02-15-preview",
-                    temperature=temperature,
                     top_p=top_p,
                     max_tokens=max_tokens,
                     max_retries=5,
@@ -881,7 +862,7 @@ class VerilogEval:
             #                                                top_p=0.95, 
             #                                                have_memory=False, 
             #                                                verbose=False)
-        self.sft_data_gen_chain =  SimpleConverseChain(system_prompt=self.system_prompt, model=model, temperature=0.95, max_tokens=512, top_p=0.95, have_memory=False, verbose=False)
+        self.sft_data_gen_chain =  SimpleConverseChain(system_prompt=self.system_prompt, model="o1-2024-12-17", max_tokens=512, top_p=0.95, have_memory=False, verbose=False)
 
 
     def verilog_eval_sft_data(self, code_string, desc_key = "detail_description", example_code_description_file=None, example_code_strings={}):

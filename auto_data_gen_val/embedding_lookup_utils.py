@@ -57,13 +57,6 @@ from langchain.agents.output_parsers import JSONAgentOutputParser
 from langchain.agents.format_scratchpad import format_log_to_str
 from langchain.agents import AgentExecutor
 
-def get_azure_embeddings():
-    return OpenAIEmbeddings(
-        openai_api_base=f"https://{os.environ.get('AZURE_OPENAI_SERVICE')}.openai.azure.com",
-        openai_api_type='azure',
-        deployment='text-embedding-ada-002',
-    )
-
 
 def process_block_summary(fname):
     #load the block summary from json
@@ -144,7 +137,7 @@ def validate_global_summary_openai(global_summary, task_id, eval_file, max_trial
         raise Exception("Module header not found")
     #generate the prompt
     user_prompt = question_prompt + problem_description.format(description=global_summary, module_header=module_header)
-    chain = SimpleConverseChain(system_prompt=system_prompt, model="o1-2024-12-17", temperature=0.7, max_tokens=512, top_p=0.95, have_memory=False, verbose=False)
+    chain = SimpleConverseChain(system_prompt=system_prompt, model="o1-2024-12-17", max_tokens=512, top_p=0.95, have_memory=False, verbose=False)
     for trial in range(max_trials):
         print("Trial: {}".format(trial))
         completion = chain.chat(user_prompt, system_prompt=system_prompt)
@@ -158,9 +151,9 @@ def validate_global_summary_openai(global_summary, task_id, eval_file, max_trial
 class EmbedTool0:
     def __init__(self, fields, system_context_dir, system_context_embedding_dir, system_context_embedding_file):
         # embedding model parameters
-        self.embedding_model = "text-embedding-ada-002"
-        self.embedding_encoding = "cl100k_base"  # this the encoding for text-embedding-ada-002
-        self.max_tokens = 8000  # the maximum for text-embedding-ada-002 is 8191
+        self.embedding_model = "text-embedding-3-large"
+        self.embedding_encoding = "cl100k_base"
+        self.max_tokens = 8000
         self.fields = fields # the fields of the csv file
         self.system_context_dir = system_context_dir
         self.system_context_embedding_dir = system_context_embedding_dir
@@ -209,7 +202,7 @@ class EmbedTool0:
         self.df_raw = self.df_raw[self.df_raw.n_tokens <= self.max_tokens]
         # This may take a few minutes
         ### Azure Endpoint here
-        self.df_raw["embedding"] = self.df_raw.Text.apply(lambda x: get_embedding(x, engine=self.embedding_model))
+        self.df_raw["embedding"] = self.df_raw.Text.apply(lambda x: get_embedding(x, engine=self.embedding_model, api_key=os.getenv("EMBEDDING_KEY")))
         # only store the embedding and filename
         self.df_embed = self.df_raw[["Filename", "embedding", "Line_id", "Text"]]
         self.df_embed.to_csv(self.system_context_embedding_dir+"/"+self.system_context_embedding_file, index=False)
@@ -225,7 +218,8 @@ def search_contexts(embedding_model, df, user_query_str, n=3):
     ### Azure Endpoint here
     user_query_embeding = get_embedding(
         user_query_str,
-        engine=embedding_model
+        engine=embedding_model,
+        api_key=os.getenv("EMBEDDING_KEY")
     )
     df["similarity"] = df.embedding.apply(lambda x: cosine_similarity(x, user_query_embeding))
 
@@ -474,8 +468,8 @@ class CodeDataset:
             persist_directory=os.path.join(self.vectorembedding_dir, code + "_small"),
             collection_name="code_library_small_blocks",
             ### Azure Endpoint here
-            embedding_function=get_azure_embeddings()
-            # embedding_function=OpenAIEmbeddings()
+            # embedding_function=get_azure_embeddings()
+            embedding_function=OpenAIEmbeddings(api_key=os.getenv("EMBEDDING_KEY"))
         )
         return vectorstore_per_code_small
 
@@ -485,8 +479,8 @@ class CodeDataset:
             persist_directory=os.path.join(self.vectorembedding_dir, code + "_large"),
             collection_name="code_library_large_blocks",
             ### Azure Endpoint here
-            embedding_function=get_azure_embeddings()
-            # embedding_function=OpenAIEmbeddings()
+            # embedding_function=get_azure_embeddings()
+            embedding_function=OpenAIEmbeddings(api_key=os.getenv("EMBEDDING_KEY"))
         )
         return vectorstore_per_code_large
 
@@ -504,15 +498,15 @@ class CodeDataset:
             persist_directory=os.path.join(self.vectorembedding_dir, "global"),
             collection_name="code_library_summary",
             ### Azure Endpoint here
-            embedding_function=get_azure_embeddings()
-            # embedding_function=OpenAIEmbeddings()
+            # embedding_function=get_azure_embeddings()
+            embedding_function=OpenAIEmbeddings(api_key=os.getenv("EMBEDDING_KEY"))
         )
         self.vectorstore_global_title = Chroma(
             persist_directory=os.path.join(self.vectorembedding_dir, "global_title"),
             collection_name="code_library_title",
             ### Azure Endpoint here
-            embedding_function=get_azure_embeddings()
-            # embedding_function=OpenAIEmbeddings()
+            # embedding_function=get_azure_embeddings()
+            embedding_function=OpenAIEmbeddings(api_key=os.getenv("EMBEDDING_KEY"))
         )
         #TODO: embed memory
         self.block_summary_chain = gen_block_summary_chain(model=block_summary_model)

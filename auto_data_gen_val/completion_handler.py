@@ -19,8 +19,7 @@ from langchain.vectorstores import Chroma # for the vectorization part
 from langchain.retrievers.multi_vector import MultiVectorRetriever
 from langchain.memory import ConversationBufferMemory, ConversationBufferWindowMemory
 ### Azure Endpoint here
-from langchain_openai import AzureChatOpenAI
-from langchain.chat_models import ChatOpenAI
+from langchain.chat_models import AzureChatOpenAI
 from langchain.schema.output_parser import StrOutputParser
 from langchain.output_parsers import PydanticOutputParser
 from langchain.pydantic_v1 import BaseModel, Field, validator
@@ -28,13 +27,6 @@ from langchain.prompts import PromptTemplate
 from my_pydantic import PydanticOutputParserMessages
 from langchain.llms import HuggingFaceTextGenInference
 from langchain.schema import SystemMessage, AIMessage, HumanMessage
-
-def get_azure_embeddings():
-    return OpenAIEmbeddings(
-        openai_api_base=f"https://{os.environ.get('AZURE_OPENAI_SERVICE')}.openai.azure.com",
-        openai_api_type='azure',
-        deployment='text-embedding-ada-002',
-    )
 
 def load_system_messages_all_in_one(msg_file, optional_system_messages):
     #check if msg_file is exist
@@ -155,11 +147,10 @@ class Line_comment_format(BaseModel):
 def Line_comment_format_fixing_chain(model="o1-2024-12-17", temperature=0.7, max_tokens=128):
     ### Azure Endpoint here
     llm = AzureChatOpenAI(
-        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+        openai_api_base="https://llm-proxy.perflab.nvidia.com",
         model=model,
         openai_api_type="azure",
         openai_api_version="2024-02-15-preview",
-        temperature=temperature,
         max_tokens=max_tokens,
         max_retries=0,
         request_timeout=10,
@@ -183,12 +174,11 @@ def Line_comment_format_fixing_chain(model="o1-2024-12-17", temperature=0.7, max
 
 def summarize_comments_fixing_chain(model="o1-2024-12-17", temperature=0.7, max_tokens=512):
     ### Azure Endpoint here
-        llm = AzureChatOpenAI(
-        azure_endpoint="https://llm-proxy.perflab.nvidia.com",
+    llm = AzureChatOpenAI(
+        openai_api_base="https://llm-proxy.perflab.nvidia.com",
         model=model,
         openai_api_type="azure",
         openai_api_version="2024-02-15-preview",
-        temperature=temperature,
         max_tokens=max_tokens,
         max_retries=0,
         request_timeout=10,
@@ -253,7 +243,7 @@ class Chatbot:
         
         self.system_context_embedding = None
         ## 
-        self.embedding_model = "text-embedding-ada-002"
+        self.embedding_model = "text-embedding-3-large"
         #cost tracker
         self.cb = cb
 
@@ -273,7 +263,7 @@ class Chatbot:
         self.code_summary_response_parser = PydanticOutputParserMessages(pydantic_object=Code_summary_format)
 
         self.line_by_line_format_instructions = """Format your answer in json format, with entries of "comment_exist", "comment", and "line_number"; \n "comment_exist" is a List of boolean value denating if comment exist for each code line.\n "comment" is list of string comments, each of which is the comment for the corresponding code line; do not include original code here; empty string if comment does not exist. \n "line_number" is {line_numbers}. \n Here is the response format: {"comment_exist": [bool, bool], "comment": [str comment, str comment], "line_number": {line_numbers}}\n Only include the json response! Do not include anything else!\n"""
-        self.line_by_line_comment_converse_chain = SimpleConverseChain(model="o1-2024-12-17", temperature=0.7, max_tokens=2048, 
+        self.line_by_line_comment_converse_chain = SimpleConverseChain(model="o1-2024-12-17", max_tokens=2048, 
                                                   verbose=False, 
                                                   memory=self.converse_memory,
                                                   memory_length=self.convers_memory_length,
@@ -283,12 +273,12 @@ class Chatbot:
                                                   json_mode=True)
         
         self.summary_format_instructions = """Format your answer in json format, with entries of "usage" and "summary", denoting usage of the code block and summary of the code, respectively\n Do not include answer other than the json string.\n"""
-        self.summarize_comments_chain = SimpleConverseChain(model="o1-2024-12-17", temperature=0.7, max_tokens=2048,
+        self.summarize_comments_chain = SimpleConverseChain(model="o1-2024-12-17", max_tokens=2048,
                                                             verbose=False,
                                                             have_memory=False,
                                                             customized_format_instructions=self.summary_format_instructions,
                                                             output_parser=self.code_summary_response_parser)
-        self.reverse_code_gen_chain = SimpleConverseChain(model="o1-2024-12-17", temperature=0.7, max_tokens=1024,
+        self.reverse_code_gen_chain = SimpleConverseChain(model="o1-2024-12-17", max_tokens=1024,
                                                             verbose=False,
                                                             have_memory=False)
 
@@ -299,8 +289,8 @@ class Chatbot:
             persist_directory=self.convers_store_dir,
             collection_name="conversation_history",
             ### Azure Endpoint here
-            embedding_function=get_azure_embeddings()
-            # embedding_function=OpenAIEmbeddings()
+            # embedding_function=get_azure_embeddings()
+            embedding_function=OpenAIEmbeddings()
         )
         store = InMemoryStore()
         self.converse_retriever = MultiVectorRetriever(

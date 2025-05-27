@@ -70,7 +70,7 @@ def reverse_codegen(description, code_str, model="o1-2024-12-17", max_trials=10)
     module_header = extract_module_header(code_str, code_str=True)
     #generate the prompt
     user_prompt = question_prompt + problem_description.format(description=description, module_header=module_header)
-    chain = SimpleConverseChain(system_prompt=system_prompt, model=model, temperature=0.7, max_tokens=512, top_p=0.95, have_memory=False, verbose=False)
+    chain = SimpleConverseChain(system_prompt=system_prompt, model=model, max_tokens=512, top_p=0.95, have_memory=False, verbose=False)
     for trial in range(max_trials):
         completion = chain.chat(user_prompt, system_prompt=system_prompt)
         #check if the completion is valid
