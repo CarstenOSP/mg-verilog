@@ -111,7 +111,6 @@ dependencies:
       - attrs==23.1.0
       - audioread==3.0.1
       - authlib==1.2.1
-      - av==9.2.0
       - awadb==0.3.10
       - azure-ai-formrecognizer==3.3.0
       - azure-ai-vision==0.11.1b1
